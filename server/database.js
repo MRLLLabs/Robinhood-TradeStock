@@ -14,7 +14,7 @@ const Users = sequelize.define('users', {
         primaryKey: true
     },
     funds: {
-        type: Sequelize.INTEGER
+        type: Sequelize.FLOAT
     },
     shares: {
         type: Sequelize.INTEGER
@@ -33,7 +33,7 @@ const Stocks = sequelize.define('stocks', {
         type: Sequelize.STRING
     },
     price: {
-        type: Sequelize.INTEGER
+        type: Sequelize.FLOAT
     }
 }, {
     timestamps: false
