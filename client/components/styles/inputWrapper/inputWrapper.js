@@ -5,7 +5,7 @@ import InputLabel from './inputLabel';
 const InputWrapper = styled.div`
     width: 220px;
     margin: auto;
-    padding: 10px;
+    padding: 20px;
     display: flex;
     justify-content: space-between;
 `

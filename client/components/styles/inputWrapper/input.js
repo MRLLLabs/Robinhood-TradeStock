@@ -1,7 +1,12 @@
 import styled from 'styled-components';
 
 export default styled.input`
-    width: 100px;
-    border: 1px solid black;
+    width: 80px;
+    height: 34px;
+    border: 1px solid #1b1a1d;
+    border-raidus: 8px;
+    background: #161618;
+    color: grey;
+    text-align: right;
 `
 

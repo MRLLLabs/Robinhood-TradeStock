@@ -7,6 +7,7 @@ import MarketOrder from './marketOrder.jsx'
 import Wrapper from './styles/mainWrapper/wrapper';
 import InputWrapper from './styles/inputWrapper/inputWrapper';
 import Span from './styles/Span/span';
+import GlobalStyle from './styles/globalStyle';
 
 const EstimateWrapper = styled(InputWrapper)`
     border-top: 1px solid black;
@@ -51,6 +52,8 @@ class App extends React.Component {
 
     render() {
         return (
+            <>
+            <GlobalStyle />
             <Wrapper>
                 <Wrapper.Header>
                     <Wrapper.H1>Buy {this.state.ticker}</Wrapper.H1>
@@ -62,8 +65,11 @@ class App extends React.Component {
                     <Span.Value>${this.state.estimate}</Span.Value>
                 </EstimateWrapper>
                 <Wrapper.Button>Review Order</Wrapper.Button>
-                <Wrapper.Footer>${this.state.bp} Buying Power Available</Wrapper.Footer>
+                <Wrapper.Footer>
+                    <Span.Color>${this.state.bp} Buying Power Available</Span.Color>
+                </Wrapper.Footer>
             </Wrapper>
+            </>
         )
     }
 }
