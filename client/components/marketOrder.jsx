@@ -7,17 +7,17 @@ class MarketOrder extends React.Component {
         super(props)
 
         this.state = {
-            shares: 0,
-            estimate: 0
+            shares: 0
         }
 
         this.changeHandler = this.changeHandler.bind(this)
     }
 
     changeHandler(e) {
+        this.props.estimateHandler(e.target.value * this.props.price)
+
         this.setState({
-            shares: e.target.value,
-            estimate: e.target.value * this.props.price
+            shares: e.target.value
         })
     }
 
@@ -31,10 +31,6 @@ class MarketOrder extends React.Component {
                 <InputWrapper>
                     <Span.Color>Market Price</Span.Color>
                     <Span.Value>${this.props.price}</Span.Value>
-                </InputWrapper>
-                <InputWrapper>
-                    <Span>Estimated Cost</Span>
-                    <Span.Value>${this.state.estimate}</Span.Value>
                 </InputWrapper>
             </div>
             
