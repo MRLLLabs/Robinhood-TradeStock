@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
@@ -11,67 +10,68 @@ import GlobalStyle from './styles/globalStyle';
 
 const EstimateWrapper = styled(InputWrapper)`
     border-top: 1px solid black;
-`
+`;
 
 class App extends React.Component {
-    constructor() {
-        super()
+  constructor() {
+    super();
 
-        this.state = {
-            ticker: "",
-            bp: 0,
-            shares: 0,
-            price: 0,
-            estimate: 0,
-            type: 'Buy',
-            tab: 'Market Order'
-        };
+    this.state = {
+      ticker: '',
+      bp: 0,
+      shares: 0,
+      price: 0,
+      estimate: 0,
+      type: 'Buy',
+      tab: 'Market Order',
+    };
 
-        this.estimateHandler = this.estimateHandler.bind(this);
-    }
+    this.estimateHandler = this.estimateHandler.bind(this);
+  }
 
-    componentDidMount() {
-        axios.get('/api/F')
-        .then((response) => {
-            let {user, stock} = response.data;
-            this.setState({
-                ticker: stock.ticker,
-                bp: user.funds,
-                shares: user.shares,
-                price: stock.price
-            })
-        })
-        .catch((err) => console.log(err))
-    }
-
-    estimateHandler(estimate) {
+  componentDidMount() {
+    axios.get('/api/F')
+      .then((response) => {
+        const { user, stock } = response.data;
         this.setState({
-            estimate: estimate
-        })
-    }
+          ticker: stock.ticker,
+          bp: user.funds,
+          shares: user.shares,
+          price: stock.price,
+        });
+      })
+      .catch((err) => console.log(err));
+  }
 
-    render() {
-        return (
-            <>
-            <GlobalStyle />
-            <Wrapper>
-                <Wrapper.Header>
-                    <Wrapper.H1>Buy {this.state.ticker}</Wrapper.H1>
-                    <Wrapper.MenuIcon>...</Wrapper.MenuIcon>
-                </Wrapper.Header>
-                <MarketOrder price={this.state.price} estimateHandler={this.estimateHandler}/>
-                <EstimateWrapper>
-                    <Span>Estimated Cost</Span>
-                    <Span.Value>${this.state.estimate}</Span.Value>
-                </EstimateWrapper>
-                <Wrapper.Button>Review Order</Wrapper.Button>
-                <Wrapper.Footer>
-                    <Span.Color>${this.state.bp} Buying Power Available</Span.Color>
-                </Wrapper.Footer>
-            </Wrapper>
-            </>
-        )
-    }
+  estimateHandler(estimate) {
+    this.setState({
+      estimate,
+    });
+  }
+
+  render() {
+    return (
+      <>
+          <GlobalStyle />
+          <Wrapper>
+              <Wrapper.Header>
+                  <Wrapper.H1>Buy {this.state.ticker}</Wrapper.H1>
+                  <Wrapper.MenuIcon>...</Wrapper.MenuIcon>
+              </Wrapper.Header>
+              <MarketOrder price={this.state.price} estimateHandler={this.estimateHandler}/>
+              <EstimateWrapper>
+                  <Span>Estimated Cost</Span>
+                  <Span.Value>${this.state.estimate}</Span.Value>
+              </EstimateWrapper>
+              <Wrapper.Button>Review Order</Wrapper.Button>
+              <Wrapper.Footer>
+                  <Span.Color>${this.state.bp} Buying Power Available</Span.Color>
+              </Wrapper.Footer>
+          </Wrapper>
+      </>
+    );
+  }
 }
 
+// eslint-disable-next-line no-undef
 ReactDOM.render(<App />, document.querySelector('#app'));

@@ -11,6 +11,6 @@ const GlobalStyle = createGlobalStyle`
     input[type=number]::-webkit-outer-spin-button { 
         -webkit-appearance: none; 
     }
-`
+`;
 
 export default GlobalStyle;
