@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import styled from 'styled-components';
-import MarketOrder from './marketOrder.jsx'
+import MarketOrder from './marketOrder.jsx';
 import Wrapper from './styles/mainWrapper/wrapper';
 import InputWrapper from './styles/inputWrapper/inputWrapper';
 import Span from './styles/Span/span';
