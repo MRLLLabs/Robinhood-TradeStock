@@ -9,5 +9,4 @@ export default styled.input`
     background: #161618;
     color: grey;
     text-align: right;
-`
-
+`;

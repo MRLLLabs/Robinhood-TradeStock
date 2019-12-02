@@ -8,7 +8,7 @@ const InputWrapper = styled.div`
     padding: 20px;
     display: flex;
     justify-content: space-between;
-`
+`;
 InputWrapper.Input = Input;
 InputWrapper.Label = InputLabel;
 

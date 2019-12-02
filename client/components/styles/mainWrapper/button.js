@@ -9,4 +9,4 @@ export default styled.button`
     border-radius: 4px;
     margin-bottom: 20px;
     margin-top: 10px;
-`
+`;

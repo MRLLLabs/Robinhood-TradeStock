@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export default styled.div`
     border-bottom: 1px solid black;
@@ -6,4 +6,4 @@ export default styled.div`
     padding: 10px;
     display: flex;
     justify-content: space-between;
-`
+`;
