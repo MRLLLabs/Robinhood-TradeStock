@@ -29,19 +29,19 @@ class App extends React.Component {
     this.estimateHandler = this.estimateHandler.bind(this);
   }
 
-  // componentDidMount() {
-  //   axios.get('/api/F')
-  //     .then((response) => {
-  //       const { user, stock } = response.data;
-  //       this.setState({
-  //         ticker: stock.ticker,
-  //         bp: user.funds,
-  //         shares: user.shares,
-  //         price: stock.price,
-  //       });
-  //     })
-  //     .catch((err) => console.log(err));
-  // }
+  componentDidMount() {
+    axios.get('/api/F')
+      .then((response) => {
+        const { user, stock } = response.data;
+        this.setState({
+          ticker: stock.ticker,
+          bp: user.funds,
+          shares: user.shares,
+          price: stock.price,
+        });
+      })
+      .catch((err) => console.log(err));
+  }
 
   estimateHandler(estimate) {
     this.setState({
