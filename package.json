@@ -4,7 +4,9 @@
   "description": "Trade stock module for robinhood clone",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage --colors",
     "build": "webpack -w -d",
     "start": "nodemon ./server/server.js",
     "db:setup": "node ./server/seed.js"
@@ -31,10 +33,14 @@
   },
   "devDependencies": {
     "@babel/core": "^7.7.4",
+    "@babel/polyfill": "^7.7.0",
     "@babel/preset-env": "^7.7.4",
     "@babel/preset-react": "^7.7.4",
     "babel-eslint": "^10.0.3",
+    "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.6",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
     "eslint": "^6.7.2",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",

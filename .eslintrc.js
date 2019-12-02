@@ -9,7 +9,7 @@ module.exports = {
     //     "array-callback-return": "off",
          "no-unused-vars": "off",
     //     "no-multiple-empty-lines": "off",
-         "no-plusplus": "off",
+         "no-plusplus": "off"
     //     "prefer-const": "off",
     //     "indent": "off",
     //     "no-trailing-spaces": "off",
