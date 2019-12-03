@@ -1,6 +1,5 @@
 /* eslint-disable no-undef */
 const supertest = require('supertest');
-// const babelPolyfill = require('babel-polyfill');
 const app = require('./server');
 
 const request = supertest(app);
@@ -17,7 +16,14 @@ describe('Server endpoint', () => {
     const res = await request.get('/api/F');
 
     expect(res.body.user).toBeTruthy();
-    expect(res.body.user.funds).toBe(830.19);
+    expect(res.body.stock.price).toBe(705.35);
+    done();
+  });
+
+  it('Responsds with 400 to a request for non-existing company', async (done) => {
+    const res = await request.get('/api/zzzzzz');
+
+    expect(res.status).toBe(400);
     done();
   });
 });

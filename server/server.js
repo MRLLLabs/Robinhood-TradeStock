@@ -19,17 +19,18 @@ app.get('/api/:ticker', (req, res) => {
     .then((result) => body.user = result)
     .then(() => Stocks.findOne({ where: { ticker }, raw: true }))
     .then((result) => {
-      body.stock = result;
-      res.send(body);
+      if (!result) {
+        res.status(400);
+        res.send('No Company Found');
+      } else {
+        body.stock = result;
+        res.send(body);
+      }
     })
     .catch((err) => {
       res.status(400);
       res.send(err);
     });
 });
-
-// app.listen(port, () => {
-//   console.log(`listening on port: ${port}`);
-// });
 
 module.exports = app;
