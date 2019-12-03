@@ -28,6 +28,7 @@ class App extends React.Component {
     };
 
     this.estimateHandler = this.estimateHandler.bind(this);
+    this.tabHandler = this.tabHandler.bind(this);
   }
 
   componentDidMount() {
@@ -50,6 +51,10 @@ class App extends React.Component {
     });
   }
 
+  tabHandler(e) {
+    console.log(e.target.innerText);
+  }
+
   render() {
     return (
       <>
@@ -58,7 +63,7 @@ class App extends React.Component {
               <Wrapper.Header>
                   <Wrapper.H1>Buy {this.state.ticker}</Wrapper.H1>
                   <Wrapper.MenuIcon>...</Wrapper.MenuIcon>
-                  <DropDown></DropDown>
+                  <DropDown tab={this.state.tab} tabHandler={this.tabHandler}></DropDown>
               </Wrapper.Header>
               <MarketOrder price={this.state.price} estimateHandler={this.estimateHandler}/>
               <EstimateWrapper>

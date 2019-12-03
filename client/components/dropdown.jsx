@@ -1,4 +1,3 @@
-/* eslint-disable class-methods-use-this */
 import React from 'react';
 import styled from 'styled-components';
 import Span from './styles/Span/span';
@@ -19,37 +18,40 @@ const Item = styled.div`
   text-alignt: left;
   padding: 16px;
   font-size: 13px;
+  cursor: pointer;
+  color: ${props => props.current === props.tab ? '#20cd99' : 'white'}
+
+  &:hover {
+    color: #20cd99;
+  }
 `;
-const MenuHeader = styled(Item)`
+
+const MenuHeader = styled.div`
   border-bottom: 1px solid black;
   font-size: 18px;
+  padding: 16px;
+  text-alignt: left;
 `;
 
-class DropDown extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      selected: 'Market Order',
-    };
-  }
-
-  // clickHandler() {
-
-  // }
-
-  render() {
-    return (
-      <MenuWrapper>
-        <MenuHeader>Order Type</MenuHeader>
-        <Item>Market Order</Item>
-        <Item>Limit Order</Item>
-        <Item>Stop Loss Order</Item>
-        <Item>Stop Limit Order</Item>
-        <Item>Trailing Stop Order</Item>
-      </MenuWrapper>
-    );
-  }
-}
+const DropDown = ({ tabHandler, tab }) => (
+  <MenuWrapper>
+    <MenuHeader>Order Type</MenuHeader>
+    <Item tab={tab} current={'Market Order'}
+      onClick={tabHandler}> Market Order
+    </Item>
+    <Item tab={tab} current={'Limit Order'}
+      onClick={tabHandler}>Limit Order
+    </Item>
+    <Item tab={tab} current={'Stop Loss Order'}
+      onClick={tabHandler}>Stop Loss Order
+    </Item>
+    <Item tab={tab} current={'Stop Limit Order'}
+      onClick={tabHandler}>Stop Limit Order
+    </Item>
+    <Item tab={tab} current={'Trailing Stop Order'}
+      onClick={tabHandler}>Trailing Stop Order
+    </Item>
+  </MenuWrapper>
+);
 
 export default DropDown;
