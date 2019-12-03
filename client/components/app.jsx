@@ -74,8 +74,8 @@ class App extends React.Component {
               <Wrapper.Header>
                   <Wrapper.H1>Buy {this.state.ticker}</Wrapper.H1>
                   <Wrapper.MenuIcon onClick={this.menuHandler}>...</Wrapper.MenuIcon>
-                  {this.state.menu ? <DropDown tab={this.state.tab} tabHandler={this.tabHandler}></DropDown>
-                    : null}
+                  {this.state.menu ? <DropDown tab={this.state.tab} tabHandler={this.tabHandler}>
+                  </DropDown> : null}
               </Wrapper.Header>
               <MarketOrder price={this.state.price} estimateHandler={this.estimateHandler}/>
               <EstimateWrapper>
