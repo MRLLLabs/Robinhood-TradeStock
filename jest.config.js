@@ -13,6 +13,8 @@ module.exports = {
   // An array of file extensions your modules use
   moduleFileExtensions: ['js', 'json', 'jsx'],
 
+  // potentially needed for axios? moduleDirectories: ['node_modules']
+
   // The paths to modules that run some code to configure or set up the testing environment before each test
   setupFiles: ['<rootDir>/enzyme.config.js'],
 
