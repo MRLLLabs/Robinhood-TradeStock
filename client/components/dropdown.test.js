@@ -4,6 +4,7 @@ import { mount, shallow } from 'enzyme';
 import Dropdown from './dropdown.jsx';
 import App from './app.jsx';
 import H1 from './styles/mainWrapper/h1';
+import Menu from './styles/Menu/wrapper';
 
 describe('<Dropdown /> Component', () => {
   const menuWrapper = mount(<Dropdown/>);
@@ -21,7 +22,7 @@ describe('<Dropdown /> Component', () => {
 
   it('updates state of <App /> on a click', () => {
     const appWrapper = shallow(<App />, { disableLifecycleMethods: true });
-    let header = appWrapper.find(H1);
+    let header = menuWrapper.find(Menu.Header);
     console.log(header.text())
     // expect(menuWrapper.find('Styled Component > div')).to.have.lenghtOf(5);
     // console.log(appWrapper.state());
