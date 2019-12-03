@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 const supertest = require('supertest');
-const app = require('./server');
+const app = require('../server/server');
 
 const request = supertest(app);
 

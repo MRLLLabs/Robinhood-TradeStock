@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import React from 'react';
 import { mount, shallow } from 'enzyme';
-import App from './app.jsx';
+import App from '../client/components/app.jsx';
 
 describe('App component', () => {
   it('displays Buy in Header', () => {

@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Dropdown /> Component matches the snapshot 1`] = `
+<div
+  className="sc-EHOje sc-htoDjs igfBCU"
+>
+  <div
+    className="sc-gzVnrw cDWGqg"
+  >
+    Order Type
+  </div>
+  <div
+    className="sc-bZQynM sfvQx"
+  >
+    Market Order
+  </div>
+  <div
+    className="sc-bZQynM sfvQx"
+  >
+    Limit Order
+  </div>
+  <div
+    className="sc-bZQynM sfvQx"
+  >
+    Stop Loss Order
+  </div>
+  <div
+    className="sc-bZQynM sfvQx"
+  >
+    Stop Limit Order
+  </div>
+  <div
+    className="sc-bZQynM sfvQx"
+  >
+    Trailing Stop Order
+  </div>
+</div>
+`;
