@@ -20,10 +20,10 @@ describe('Server endpoint', () => {
     done();
   });
 
-  it('Responsds with 400 to a request for non-existing company', async (done) => {
+  it('Responds with 404 to a request for non-existing company', async (done) => {
     const res = await request.get('/api/zzzzzz');
 
-    expect(res.status).toBe(400);
+    expect(res.status).toBe(404);
     done();
   });
 });

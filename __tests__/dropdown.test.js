@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-undef */
 import React from 'react';
 import renderer from 'react-test-renderer';
@@ -11,9 +12,9 @@ import Menu from '../client/components/styles/Menu/wrapper';
 describe('<Dropdown /> Component', () => {
   it('matches the snapshot', () => {
     const tree = renderer.create(<Dropdown />).toJSON();
-    //console.log(tree);
     expect(tree).toMatchSnapshot();
-  })
+  });
+
   it('displays menu header', () => {
     const menuWrapper = mount(<Dropdown/>);
     expect(menuWrapper.contains('Order Type')).toBe(true);

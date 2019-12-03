@@ -9,6 +9,12 @@ describe('App component', () => {
     expect(wrapper.containsMatchingElement('Estimated Cost')).toBe(true);
   });
 
+  // it('updates state from componoentDidMount', async (done) => {
+  //   const wrapper = await shallow(<App />);
+  //   console.log('WRAPPER', wrapper.state());
+  //   done();
+  // });
+
   // it('displays Buy in Header', () => {
   //   const wrapper = mount(<App />);
   //   expect(wrapper.containsMatchingElement('Estimated Cost')).toBe(true);

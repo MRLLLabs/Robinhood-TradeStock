@@ -20,7 +20,7 @@ app.get('/api/:ticker', (req, res) => {
     .then(() => Stocks.findOne({ where: { ticker }, raw: true }))
     .then((result) => {
       if (!result) {
-        res.status(400);
+        res.status(404);
         res.send('No Company Found');
       } else {
         body.stock = result;
