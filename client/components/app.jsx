@@ -25,10 +25,12 @@ class App extends React.Component {
       estimate: 0,
       type: 'Buy',
       tab: 'Market Order',
+      menu: false,
     };
 
     this.estimateHandler = this.estimateHandler.bind(this);
     this.tabHandler = this.tabHandler.bind(this);
+    this.menuHandler = this.menuHandler.bind(this);
   }
 
   componentDidMount() {
@@ -51,10 +53,16 @@ class App extends React.Component {
     });
   }
 
+  menuHandler() {
+    this.setState({
+      menu: !this.state.menu,
+    });
+  }
+
   tabHandler(e) {
-    console.log(e.target.innerText);
     this.setState({
       tab: e.target.innerText,
+      menu: !this.state.menu,
     });
   }
 
@@ -65,8 +73,9 @@ class App extends React.Component {
           <Wrapper>
               <Wrapper.Header>
                   <Wrapper.H1>Buy {this.state.ticker}</Wrapper.H1>
-                  <Wrapper.MenuIcon>...</Wrapper.MenuIcon>
-                  <DropDown tab={this.state.tab} tabHandler={this.tabHandler}></DropDown>
+                  <Wrapper.MenuIcon onClick={this.menuHandler}>...</Wrapper.MenuIcon>
+                  {this.state.menu ? <DropDown tab={this.state.tab} tabHandler={this.tabHandler}></DropDown>
+                    : null}
               </Wrapper.Header>
               <MarketOrder price={this.state.price} estimateHandler={this.estimateHandler}/>
               <EstimateWrapper>
