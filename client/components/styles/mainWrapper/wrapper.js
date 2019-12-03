@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import Header from './header';
 import Footer from './footer';
 import Button from './button';

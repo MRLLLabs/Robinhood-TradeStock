@@ -2,10 +2,12 @@ import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import MarketOrder from './marketOrder.jsx';
+import DropDown from './dropdown.jsx';
 import Wrapper from './styles/mainWrapper/wrapper';
 import InputWrapper from './styles/inputWrapper/inputWrapper';
 import Span from './styles/Span/span';
 import GlobalStyle from './styles/globalStyle';
+
 
 const EstimateWrapper = styled(InputWrapper)`
     border-top: 1px solid black;
@@ -23,9 +25,12 @@ class App extends React.Component {
       estimate: 0,
       type: 'Buy',
       tab: 'Market Order',
+      menu: false,
     };
 
     this.estimateHandler = this.estimateHandler.bind(this);
+    this.tabHandler = this.tabHandler.bind(this);
+    this.menuHandler = this.menuHandler.bind(this);
   }
 
   componentDidMount() {
@@ -48,6 +53,19 @@ class App extends React.Component {
     });
   }
 
+  menuHandler() {
+    this.setState({
+      menu: !this.state.menu,
+    });
+  }
+
+  tabHandler(e) {
+    this.setState({
+      tab: e.target.innerText,
+      menu: !this.state.menu,
+    });
+  }
+
   render() {
     return (
       <>
@@ -55,7 +73,9 @@ class App extends React.Component {
           <Wrapper>
               <Wrapper.Header>
                   <Wrapper.H1>Buy {this.state.ticker}</Wrapper.H1>
-                  <Wrapper.MenuIcon>...</Wrapper.MenuIcon>
+                  <Wrapper.MenuIcon onClick={this.menuHandler}>...</Wrapper.MenuIcon>
+                  {this.state.menu ? <DropDown tab={this.state.tab} tabHandler={this.tabHandler}>
+                  </DropDown> : null}
               </Wrapper.Header>
               <MarketOrder price={this.state.price} estimateHandler={this.estimateHandler}/>
               <EstimateWrapper>
