@@ -2,10 +2,12 @@ import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import MarketOrder from './marketOrder.jsx';
+import DropDown from './dropdown.jsx';
 import Wrapper from './styles/mainWrapper/wrapper';
 import InputWrapper from './styles/inputWrapper/inputWrapper';
 import Span from './styles/Span/span';
 import GlobalStyle from './styles/globalStyle';
+
 
 const EstimateWrapper = styled(InputWrapper)`
     border-top: 1px solid black;
@@ -56,6 +58,7 @@ class App extends React.Component {
               <Wrapper.Header>
                   <Wrapper.H1>Buy {this.state.ticker}</Wrapper.H1>
                   <Wrapper.MenuIcon>...</Wrapper.MenuIcon>
+                  <DropDown></DropDown>
               </Wrapper.Header>
               <MarketOrder price={this.state.price} estimateHandler={this.estimateHandler}/>
               <EstimateWrapper>
