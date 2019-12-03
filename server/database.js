@@ -3,6 +3,7 @@ const Sequelize = require('sequelize');
 const sequelize = new Sequelize('robinhood', 'root', '', {
   host: 'localhost',
   dialect: 'mysql',
+  logging: false
 });
 
 sequelize.authenticate().then(() => console.log('db connect'));

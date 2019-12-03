@@ -1,7 +1,6 @@
 const express = require('express');
 
 const app = express();
-const port = 3000;
 const bodyParser = require('body-parser');
 const path = require('path');
 const { Users, Stocks } = require('./database.js');
@@ -13,7 +12,6 @@ app.use(express.static('public'));
 
 app.get('/api/:ticker', (req, res) => {
   const ticker = path.basename(req.url);
-  console.log(ticker);
   const body = {};
   const userId = Math.floor(Math.random() * (21 - 1) + 1);
 
@@ -30,6 +28,8 @@ app.get('/api/:ticker', (req, res) => {
     });
 });
 
-app.listen(port, () => {
-  console.log(`listening on port: ${port}`);
-});
+// app.listen(port, () => {
+//   console.log(`listening on port: ${port}`);
+// });
+
+module.exports = app;
