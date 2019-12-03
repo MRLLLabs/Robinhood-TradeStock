@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import Span from './styles/Span/span';
 import Wrapper from './styles/mainWrapper/wrapper';
 
 
@@ -19,7 +18,7 @@ const Item = styled.div`
   padding: 16px;
   font-size: 13px;
   cursor: pointer;
-  color: ${props => props.current === props.tab ? '#20cd99' : 'white'}
+  color: ${(props) => (props.current === props.tab ? '#20cd99' : 'white')}
 
   &:hover {
     color: #20cd99;

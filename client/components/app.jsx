@@ -53,6 +53,9 @@ class App extends React.Component {
 
   tabHandler(e) {
     console.log(e.target.innerText);
+    this.setState({
+      tab: e.target.innerText,
+    });
   }
 
   render() {
