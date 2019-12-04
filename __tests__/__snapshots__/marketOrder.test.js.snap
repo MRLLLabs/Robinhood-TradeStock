@@ -1,13 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<MarketOrder /> component matches the snapshot 1`] = `
-<div>
+Array [
   <div
-    className="sc-htpNat bWzXUp"
+    className="sc-bxivhb cyWHkv"
   >
     <label
-      className="sc-bwzfXH emek"
-      htmlFor="shares"
+      className="sc-bwzfXH dbwzZe"
     >
       Shares
     </label>
@@ -17,20 +16,20 @@ exports[`<MarketOrder /> component matches the snapshot 1`] = `
       placeholder="0"
       type="number"
     />
-  </div>
+  </div>,
   <div
-    className="sc-htpNat bWzXUp"
+    className="sc-bxivhb cyWHkv"
   >
     <span
-      className="sc-bxivhb bAoTOZ"
+      className="sc-ifAKCX bNpiVu"
     >
       Market Price
     </span>
     <span
-      className="sc-ifAKCX bvFwfG"
+      className="sc-EHOje cANiii"
     >
       $
     </span>
-  </div>
-</div>
+  </div>,
+]
 `;
