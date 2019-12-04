@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import MarketOrder from './marketOrder.jsx';
+import LimitOrder from './limitOrder.jsx';
 import DropDown from './dropdown.jsx';
 import Wrapper from './styles/mainWrapper/wrapper';
 import InputWrapper from './styles/inputWrapper/inputWrapper';
@@ -71,7 +72,7 @@ class App extends React.Component {
     if (tab === 'Market Order') {
       return <MarketOrder price={this.state.price} estimateHandler={this.estimateHandler} />;
     } else if (tab === 'Limit Order') {
-      return <LimitOrder />;
+      return <LimitOrder estimateHandler={this.estimateHandler} />;
     }
   }
 
