@@ -5,11 +5,11 @@ export default styled.div`
   font-size: 13px;
   border: 1px solid black;
   padding: 10px;
+  background: #1b1a1d;
   cursor: pointer;
 
   &:hover {
-    background: ${(props) => (props.current === props.expires ? '#20cd99' : '#161618')} 
+    box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.01), 
+    0 3px 24px rgba(0, 0, 0, 0.6);
   }
-
-  background: ${(props) => (props.current === props.expires ? '#20cd99' : '#1b1a1d')}
 `;

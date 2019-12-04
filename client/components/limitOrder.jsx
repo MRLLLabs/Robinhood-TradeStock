@@ -1,8 +1,11 @@
+/* eslint-disable operator-linebreak */
 import React from 'react';
+import styled from 'styled-components';
 import InputWrapper from './styles/inputWrapper/inputWrapper';
 import Span from './styles/Span/span';
 import OptionWrapper from './styles/Option/optionWrapper';
 import Menu from './styles/Menu/wrapper';
+
 
 class LimitOrder extends React.Component {
   constructor(props) {
@@ -12,9 +15,11 @@ class LimitOrder extends React.Component {
       limitPrice: 0,
       shares: 0,
       expires: 'Good for Day',
+      showOptions: false,
     };
 
     this.changeHandler = this.changeHandler.bind(this);
+    this.clickHandler = this.clickHandler.bind(this);
   }
 
   changeHandler(e) {
@@ -22,6 +27,13 @@ class LimitOrder extends React.Component {
     console.log(e.target.value);
     this.setState({
       [e.target.name]: e.target.value,
+    });
+  }
+
+  clickHandler(e) {
+    this.setState({
+      showOptions: !this.state.showOptions,
+      expires: e.target.innerText,
     });
   }
 
@@ -40,11 +52,19 @@ class LimitOrder extends React.Component {
         </InputWrapper>
         <InputWrapper>
             <Span>Expires</Span>
-            <OptionWrapper.Option>Good for Day</OptionWrapper.Option>
+            <OptionWrapper.Main onClick={this.clickHandler}>{this.state.expires}
+            </OptionWrapper.Main>
+            {this.state.showOptions &&
             <OptionWrapper>
-              <OptionWrapper.Option>Good for Day</OptionWrapper.Option>
-              <OptionWrapper.Option>Good till Canceled</OptionWrapper.Option>
-            </OptionWrapper>
+              <OptionWrapper.Option onClick={this.clickHandler} current={'Good for Day'}
+              expires={this.state.expires}>
+                Good for Day
+              </OptionWrapper.Option>
+              <OptionWrapper.Option onClick={this.clickHandler} current={'Good till Canceled'}
+              expires={this.state.expires}>
+                Good till Canceled
+              </OptionWrapper.Option>
+            </OptionWrapper> }
         </InputWrapper>
       </>
     );

@@ -6,7 +6,7 @@ import InputDollar from './inputDollar';
 const InputWrapper = styled.div`
     width: 220px;
     margin: auto;
-    padding: 20px;
+    padding: 10px;
     display: flex;
     justify-content: space-between;
 `;
