@@ -14,7 +14,7 @@ describe('<StopLossOrder /> Component', () => {
 
   it('initiates state as expected', () => {
     const wrapper = shallow(<StopLossOrder />);
-    expect(wrapper.state().limitPrice).toBe(0);
+    expect(wrapper.state().stopPrice).toBe(0);
     expect(wrapper.state().shares).toBe(0);
     expect(wrapper.state().expires).toBe('Good for Day');
   });
