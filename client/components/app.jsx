@@ -66,6 +66,15 @@ class App extends React.Component {
     });
   }
 
+  renderTab() {
+    const { tab } = this.state;
+    if (tab === 'Market Order') {
+      return <MarketOrder price={this.state.price} estimateHandler={this.estimateHandler} />;
+    } else if (tab === 'Limit Order') {
+      return <LimitOrder />;
+    }
+  }
+
   render() {
     return (
       <>
@@ -77,7 +86,7 @@ class App extends React.Component {
                   {this.state.menu ? <DropDown tab={this.state.tab} tabHandler={this.tabHandler}>
                   </DropDown> : null}
               </Wrapper.Header>
-              <MarketOrder price={this.state.price} estimateHandler={this.estimateHandler}/>
+              {this.renderTab()}
               <EstimateWrapper>
                   <Span>Estimated Cost</Span>
                   <Span.Value>${this.state.estimate}</Span.Value>
