@@ -11,7 +11,8 @@ module.exports = {
     //     "no-multiple-empty-lines": "off",
          "no-plusplus": "off",
          "class-methods-use-this": "off",
-          "no-else-return": "off"
+          "no-else-return": "off",
+          "operator-linebreak": "off"
     //     "prefer-const": "off",
     //     "indent": "off",
     //     "no-trailing-spaces": "off",

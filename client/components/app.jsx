@@ -16,6 +16,14 @@ const AppWrapper = styled.div`
   justify-content: flex-end;
 `;
 
+const MarketPrice = styled.div`
+  width: 220px;
+  margin: auto;
+  padding: 10px;
+  text-align: center;
+`;
+
+
 const EstimateWrapper = styled(InputWrapper)`
     border-top: 1px solid black;
 `;
@@ -100,6 +108,11 @@ class App extends React.Component {
                   <Span.Value>${this.state.estimate}</Span.Value>
               </EstimateWrapper>
               {tab === 'Limit Order' && <CheckBox/>}
+              {tab !== 'Market Order' &&
+              <MarketPrice>
+                <Span.Color>Market Price ${this.state.price}</Span.Color>
+              </MarketPrice>
+              }
               <Wrapper.Button>Review Order</Wrapper.Button>
               <Wrapper.Footer>
                   <Span.Color>${this.state.bp} Buying Power Available</Span.Color>

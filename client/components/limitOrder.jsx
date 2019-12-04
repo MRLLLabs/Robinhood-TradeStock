@@ -51,8 +51,8 @@ class LimitOrder extends React.Component {
         </InputWrapper>
         <InputWrapper>
             <InputWrapper.Label>Shares</InputWrapper.Label>
-            <InputWrapper.Input type="number" placeholder="0" name="shares" onChange={this.changeHandler}>
-            </InputWrapper.Input>
+            <InputWrapper.Dollar type="number" placeholder="0" name="shares" onChange={this.changeHandler}>
+            </InputWrapper.Dollar>
         </InputWrapper>
         <InputWrapper>
             <Span>Expires</Span>
