@@ -23,11 +23,20 @@ class LimitOrder extends React.Component {
   }
 
   changeHandler(e) {
-    console.log(e.target.name);
-    console.log(e.target.value);
+    let value = e.target.value;
+
+    if (e.target.name === 'limitPrice') {
+      this.props.estimateHandler(e.target.value * this.state.shares);
+    } else {
+      this.props.estimateHandler(e.target.value * this.state.limitPrice);
+    }
     this.setState({
       [e.target.name]: e.target.value,
     });
+
+    
+    //console.log(this.state.limitPrice * this.state.shares);
+    //this.props.estimateHandler(this.state.limitPrice * this.state.shares);
   }
 
   clickHandler(e) {
@@ -47,7 +56,7 @@ class LimitOrder extends React.Component {
         </InputWrapper>
         <InputWrapper>
             <InputWrapper.Label>Shares</InputWrapper.Label>
-            <InputWrapper.Input type="number" placeholder="0" onChange={this.changeHandler}>
+            <InputWrapper.Input type="number" placeholder="0" name="shares" onChange={this.changeHandler}>
             </InputWrapper.Input>
         </InputWrapper>
         <InputWrapper>

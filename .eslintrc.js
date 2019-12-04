@@ -2,7 +2,7 @@ module.exports = {
     "extends": "airbnb-base",
     "parser": "babel-eslint",
      "rules": {
-    //     "consistent-return": "off",
+         "consistent-return": "off",
     //     "no-shadow": "off",
          "no-return-assign": "off",
          "no-console": "off",
