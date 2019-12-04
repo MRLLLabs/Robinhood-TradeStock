@@ -53,7 +53,7 @@ class TrailingStopOrder extends React.Component {
     return (
       <>
         <InputWrapper>
-            <Span>Trail Type</Span>
+          <InputWrapper.Label>Trail Type</InputWrapper.Label>
             <OptionWrapper.Main onClick={this.trailsClickHandler}>{this.state.trailType}
             </OptionWrapper.Main>
             {this.state.showTrails &&
@@ -79,7 +79,7 @@ class TrailingStopOrder extends React.Component {
             </InputWrapper.Dollar>
         </InputWrapper>
         <InputWrapper>
-            <Span>Expires</Span>
+          <InputWrapper.Label>Expires</InputWrapper.Label>
             <OptionWrapper.Main onClick={this.clickHandler}>{this.state.expires}
             </OptionWrapper.Main>
             {this.state.showOptions &&
