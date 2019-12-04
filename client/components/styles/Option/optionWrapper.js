@@ -7,7 +7,7 @@ const optionWrapper = styled.div`
   width: 120px;
   position: absolute;
   margin-top: 36px;
-  margin-left: 77px;
+  margin-left: 89.2px;
   background: #1b1a1d;
   border: 1px solid black;
   border-radius: 4px;
