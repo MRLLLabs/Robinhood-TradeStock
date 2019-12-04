@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import MarketOrder from './marketOrder.jsx';
+import CheckBox from './checkbox.jsx';
 import LimitOrder from './limitOrder.jsx';
 import DropDown from './dropdown.jsx';
 import Wrapper from './styles/mainWrapper/wrapper';
@@ -82,6 +83,7 @@ class App extends React.Component {
   }
 
   render() {
+    const { tab } = this.state;
     return (
       <AppWrapper>
           <GlobalStyle />
@@ -97,6 +99,7 @@ class App extends React.Component {
                   <Span>Estimated Cost</Span>
                   <Span.Value>${this.state.estimate}</Span.Value>
               </EstimateWrapper>
+              {tab === 'Limit Order' && <CheckBox/>}
               <Wrapper.Button>Review Order</Wrapper.Button>
               <Wrapper.Footer>
                   <Span.Color>${this.state.bp} Buying Power Available</Span.Color>
