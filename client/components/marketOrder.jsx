@@ -23,16 +23,16 @@ class MarketOrder extends React.Component {
 
   render() {
     return (
-      <div>
+      <>
           <InputWrapper>
-              <InputWrapper.Label htmlFor="shares">Shares</InputWrapper.Label>
+              <InputWrapper.Label>Shares</InputWrapper.Label>
               <InputWrapper.Input type="number" placeholder="0" onChange={this.changeHandler}></InputWrapper.Input>
           </InputWrapper>
           <InputWrapper>
               <Span.Color>Market Price</Span.Color>
               <Span.Value>${this.props.price}</Span.Value>
           </InputWrapper>
-      </div>
+      </>
     );
   }
 }
