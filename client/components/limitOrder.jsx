@@ -1,6 +1,8 @@
 import React from 'react';
 import InputWrapper from './styles/inputWrapper/inputWrapper';
 import Span from './styles/Span/span';
+import OptionWrapper from './styles/optionWrapper';
+import Menu from './styles/Menu/wrapper';
 
 class LimitOrder extends React.Component {
   constructor(props) {
@@ -31,12 +33,19 @@ class LimitOrder extends React.Component {
           <InputWrapper.Dollar type="number" placeholder="$0.00" name="limitPrice"
           step=".01" onChange={this.changeHandler}></InputWrapper.Dollar>
         </InputWrapper>
-        <form>
-          <select>
-            <option value="Good for Day">Good for Day</option>
-            <option value="Good till Canceled">Good till Canceled</option>
-          </select>
-        </form>
+        <InputWrapper>
+            <InputWrapper.Label>Shares</InputWrapper.Label>
+            <InputWrapper.Input type="number" placeholder="0" onChange={this.changeHandler}>
+            </InputWrapper.Input>
+        </InputWrapper>
+        <InputWrapper>
+            <Span>Expires</Span>
+            <OptionWrapper.Option>Good for Day</OptionWrapper.Option>
+            <OptionWrapper>
+              <OptionWrapper.Option>Good for Day</OptionWrapper.Option>
+              <OptionWrapper.Option>Good till Canceled</OptionWrapper.Option>
+            </OptionWrapper>
+        </InputWrapper>
       </>
     );
   }
