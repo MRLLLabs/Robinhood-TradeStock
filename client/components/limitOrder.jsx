@@ -1,7 +1,7 @@
 import React from 'react';
 import InputWrapper from './styles/inputWrapper/inputWrapper';
 import Span from './styles/Span/span';
-import OptionWrapper from './styles/optionWrapper';
+import OptionWrapper from './styles/Option/optionWrapper';
 import Menu from './styles/Menu/wrapper';
 
 class LimitOrder extends React.Component {

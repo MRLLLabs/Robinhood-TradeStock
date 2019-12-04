@@ -9,6 +9,11 @@ import InputWrapper from './styles/inputWrapper/inputWrapper';
 import Span from './styles/Span/span';
 import GlobalStyle from './styles/globalStyle';
 
+const AppWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+`;
 
 const EstimateWrapper = styled(InputWrapper)`
     border-top: 1px solid black;
@@ -78,7 +83,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <>
+      <AppWrapper>
           <GlobalStyle />
           <Wrapper>
               <Wrapper.Header>
@@ -97,7 +102,7 @@ class App extends React.Component {
                   <Span.Color>${this.state.bp} Buying Power Available</Span.Color>
               </Wrapper.Footer>
           </Wrapper>
-      </>
+      </AppWrapper>
     );
   }
 }

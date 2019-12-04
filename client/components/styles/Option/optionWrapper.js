@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Menu from './Menu/wrapper';
 import Option from './option';
 
 
