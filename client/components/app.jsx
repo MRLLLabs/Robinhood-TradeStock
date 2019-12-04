@@ -5,6 +5,7 @@ import MarketOrder from './marketOrder.jsx';
 import CheckBox from './checkbox.jsx';
 import LimitOrder from './limitOrder.jsx';
 import StopLossOrder from './stopLossOrder.jsx';
+import StopLimitOrder from './stopLimitOrder.jsx';
 import DropDown from './dropdown.jsx';
 import Wrapper from './styles/mainWrapper/wrapper';
 import InputWrapper from './styles/inputWrapper/inputWrapper';
@@ -91,6 +92,8 @@ class App extends React.Component {
       return <LimitOrder estimateHandler={this.estimateHandler} />;
     } else if (tab === 'Stop Loss Order') {
       return <StopLossOrder estimateHandler={this.estimateHandler} />;
+    } else if (tab === 'Stop Limit Order') {
+      return <StopLimitOrder estimateHandler={this.estimateHandler} />;
     }
   }
 
