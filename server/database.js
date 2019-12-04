@@ -6,7 +6,7 @@ const sequelize = new Sequelize('robinhood', 'root', '', {
   logging: false,
 });
 
-sequelize.authenticate().then(() => console.log('db connect'));
+// sequelize.authenticate().then(() => console.log('db connect'));
 
 const Users = sequelize.define('users', {
   id: {

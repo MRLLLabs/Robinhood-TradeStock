@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MarketOrder /> component matches the snapshot 1`] = `
+<div>
+  <div
+    className="sc-htpNat bWzXUp"
+  >
+    <label
+      className="sc-bwzfXH emek"
+      htmlFor="shares"
+    >
+      Shares
+    </label>
+    <input
+      className="sc-bdVaJa eqHRdS"
+      onChange={[Function]}
+      placeholder="0"
+      type="number"
+    />
+  </div>
+  <div
+    className="sc-htpNat bWzXUp"
+  >
+    <span
+      className="sc-bxivhb bAoTOZ"
+    >
+      Market Price
+    </span>
+    <span
+      className="sc-ifAKCX bvFwfG"
+    >
+      $
+    </span>
+  </div>
+</div>
+`;
