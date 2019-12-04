@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import MarketOrder from './marketOrder.jsx';
 import CheckBox from './checkbox.jsx';
 import LimitOrder from './limitOrder.jsx';
+import StopLossOrder from './stopLossOrder.jsx';
 import DropDown from './dropdown.jsx';
 import Wrapper from './styles/mainWrapper/wrapper';
 import InputWrapper from './styles/inputWrapper/inputWrapper';
@@ -78,6 +79,7 @@ class App extends React.Component {
     this.setState({
       tab: e.target.innerText,
       menu: !this.state.menu,
+      estimate: 0,
     });
   }
 
@@ -87,6 +89,8 @@ class App extends React.Component {
       return <MarketOrder price={this.state.price} estimateHandler={this.estimateHandler} />;
     } else if (tab === 'Limit Order') {
       return <LimitOrder estimateHandler={this.estimateHandler} />;
+    } else if (tab === 'Stop Loss Order') {
+      return <StopLossOrder estimateHandler={this.estimateHandler} />;
     }
   }
 

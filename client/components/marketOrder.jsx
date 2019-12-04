@@ -13,6 +13,7 @@ class MarketOrder extends React.Component {
     this.changeHandler = this.changeHandler.bind(this);
   }
 
+
   changeHandler(e) {
     this.props.estimateHandler(e.target.value * this.props.price);
 
