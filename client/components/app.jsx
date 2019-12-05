@@ -6,10 +6,12 @@ import CheckBox from './checkbox.jsx';
 import LimitOrder from './limitOrder.jsx';
 import StopLossOrder from './stopLossOrder.jsx';
 import StopLimitOrder from './stopLimitOrder.jsx';
+import Message from './message.jsx';
 import TrailingStopOrder from './trailingStopOrder.jsx';
 import DropDown from './dropdown.jsx';
 import Wrapper from './styles/mainWrapper/wrapper';
 import InputWrapper from './styles/inputWrapper/inputWrapper';
+import WarningWrapper from './styles/Messages/wrapper';
 import Span from './styles/Span/span';
 import GlobalStyle from './styles/globalStyle';
 
@@ -44,11 +46,14 @@ class App extends React.Component {
       type: 'Buy',
       tab: 'Market Order',
       menu: false,
+      orderPlaced: false,
+      showWarning: false,
     };
 
     this.estimateHandler = this.estimateHandler.bind(this);
     this.tabHandler = this.tabHandler.bind(this);
     this.menuHandler = this.menuHandler.bind(this);
+    this.orderHandler = this.orderHandler.bind(this);
   }
 
   componentDidMount() {
@@ -57,8 +62,10 @@ class App extends React.Component {
         const { user, stock } = response.data;
         this.setState({
           ticker: stock.ticker,
-          bp: user.funds,
-          shares: user.shares,
+          bp: 1000,
+          shares: 0,
+          // bp: user.funds,
+          // shares: user.shares,
           price: stock.price,
         });
       })
@@ -83,6 +90,19 @@ class App extends React.Component {
       menu: !this.state.menu,
       estimate: 0,
     });
+  }
+
+  orderHandler() {
+    if (this.state.estimate > 0) {
+      this.setState({
+        orderPlaced: !this.state.orderPlaced,
+        showWarning: false,
+      });
+    } else {
+      this.setState({
+        showWarning: true,
+      });
+    }
   }
 
   renderTab() {
@@ -110,8 +130,8 @@ class App extends React.Component {
               <Wrapper.Header>
                   <Wrapper.H1>Buy {this.state.ticker}</Wrapper.H1>
                   <Wrapper.MenuIcon onClick={this.menuHandler}>...</Wrapper.MenuIcon>
-                  {this.state.menu ? <DropDown tab={this.state.tab} tabHandler={this.tabHandler}>
-                  </DropDown> : null}
+                  {this.state.menu &&
+                  <DropDown tab={this.state.tab} tabHandler={this.tabHandler}></DropDown>}
               </Wrapper.Header>
               {this.renderTab()}
               <EstimateWrapper>
@@ -124,7 +144,17 @@ class App extends React.Component {
                 <Span.Color>Market Price ${this.state.price}</Span.Color>
               </MarketPrice>
               }
-              <Wrapper.Button>Review Order</Wrapper.Button>
+              {this.state.orderPlaced &&
+              <Message estimate={this.state.estimate} bp={this.state.bp}
+              ticker={this.state.ticker} shares={this.state.shares}
+              orderHandler={this.orderHandler}/>}
+              {this.state.showWarning &&
+              <WarningWrapper>
+                (!) Error<br></br>
+                Please enter a valid number of shares.
+              </WarningWrapper>}
+              {!this.state.orderPlaced &&
+              <Wrapper.Button onClick={this.orderHandler}>Review Order</Wrapper.Button>}
               <Wrapper.Footer>
                   <Span.Color>${this.state.bp} Buying Power Available</Span.Color>
               </Wrapper.Footer>

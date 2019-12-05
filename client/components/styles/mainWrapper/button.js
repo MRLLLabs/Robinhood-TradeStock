@@ -9,4 +9,6 @@ export default styled.button`
     border-radius: 4px;
     margin-bottom: 20px;
     margin-top: 10px;
+    border: 1px solid #20cd99;
+    cursor: pointer;
 `;

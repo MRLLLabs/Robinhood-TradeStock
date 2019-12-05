@@ -4,6 +4,7 @@ import Footer from './footer';
 import Button from './button';
 import H1 from './h1';
 import MenuIcon from './menuIcon';
+import InvertedButton from './invertedButton';
 
 const Wrapper = styled.div`
      width: 280px;
@@ -18,5 +19,6 @@ Wrapper.Footer = Footer;
 Wrapper.Button = Button;
 Wrapper.H1 = H1;
 Wrapper.MenuIcon = MenuIcon;
+Wrapper.InvertedButton = InvertedButton;
 
 export default Wrapper;
