@@ -29,8 +29,10 @@ class MarketOrder extends React.Component {
               <InputWrapper.Label>Shares</InputWrapper.Label>
               <InputWrapper.Input type="number" placeholder="0" onChange={this.changeHandler}></InputWrapper.Input>
           </InputWrapper>
-          <InputWrapper onClick={this.props.marketInfoToggle}>
-              <Span.Cursor>Market Price (?)</Span.Cursor>
+          <InputWrapper>
+              <Span.Cursor onClick={this.props.marketInfoToggle}>
+                Market Price (?)
+              </Span.Cursor>
               <Span.Value>${this.props.price}</Span.Value>
           </InputWrapper>
       </>

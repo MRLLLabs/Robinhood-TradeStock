@@ -3,6 +3,8 @@ import InfoWrapper from './wrapper';
 
 const BpWrapper = styled(InfoWrapper)`
   width: 320px;
+  margin-left: -310px;
+  margin-top: -150px;
 `;
 
 BpWrapper.Data = styled(InfoWrapper.DataWrapper)`

@@ -50,6 +50,7 @@ class App extends React.Component {
       orderPlaced: false,
       showWarning: false,
       marketInfo: false,
+      bpInfo: false,
     };
 
     this.estimateHandler = this.estimateHandler.bind(this);
@@ -57,6 +58,7 @@ class App extends React.Component {
     this.menuHandler = this.menuHandler.bind(this);
     this.orderHandler = this.orderHandler.bind(this);
     this.marketInfoToggle = this.marketInfoToggle.bind(this);
+    this.bpInfoToggle = this.bpInfoToggle.bind(this);
   }
 
   componentDidMount() {
@@ -98,6 +100,12 @@ class App extends React.Component {
   marketInfoToggle() {
     this.setState({
       marketInfo: !this.state.marketInfo,
+    });
+  }
+
+  bpInfoToggle() {
+    this.setState({
+      bpInfo: !this.state.bpInfo,
     });
   }
 
@@ -170,9 +178,12 @@ class App extends React.Component {
               {!this.state.orderPlaced &&
               <Wrapper.Button onClick={this.orderHandler}>Review Order</Wrapper.Button>}
               <Wrapper.Footer>
-                  <Span.Cursor>${this.state.bp} Buying Power Available (?)</Span.Cursor>
+                  <Span.Cursor onClick={this.bpInfoToggle}>
+                    ${this.state.bp} Buying Power Available (?)
+                  </Span.Cursor>
               </Wrapper.Footer>
-              <BpInfo ticker={this.state.ticker} bp={this.state.bp}></BpInfo>
+              {this.state.bpInfo &&
+              <BpInfo ticker={this.state.ticker} bp={this.state.bp}></BpInfo>}
           </Wrapper>
       </AppWrapper>
     );
