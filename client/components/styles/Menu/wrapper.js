@@ -9,6 +9,7 @@ const Menu = styled(Wrapper)`
   margin-top: 64px;
   margin-left: 80px;
   background: #1b1a1d;
+  z-index: 2;
 `;
 
 Menu.Item = Item;

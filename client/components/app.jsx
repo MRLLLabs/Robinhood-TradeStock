@@ -130,8 +130,8 @@ class App extends React.Component {
               <Wrapper.Header>
                   <Wrapper.H1>Buy {this.state.ticker}</Wrapper.H1>
                   <Wrapper.MenuIcon onClick={this.menuHandler}>...</Wrapper.MenuIcon>
-                  {this.state.menu ? <DropDown tab={this.state.tab} tabHandler={this.tabHandler}>
-                  </DropDown> : null}
+                  {this.state.menu &&
+                  <DropDown tab={this.state.tab} tabHandler={this.tabHandler}></DropDown>}
               </Wrapper.Header>
               {this.renderTab()}
               <EstimateWrapper>
@@ -148,8 +148,11 @@ class App extends React.Component {
               <Message estimate={this.state.estimate} bp={this.state.bp}
               ticker={this.state.ticker} shares={this.state.shares}
               orderHandler={this.orderHandler}/>}
-              {this.state.showWarning && <WarningWrapper>(!) Error<br></br>
-                  Please enter a valid number of shares.</WarningWrapper>}
+              {this.state.showWarning &&
+              <WarningWrapper>
+                (!) Error<br></br>
+                Please enter a valid number of shares.
+              </WarningWrapper>}
               {!this.state.orderPlaced &&
               <Wrapper.Button onClick={this.orderHandler}>Review Order</Wrapper.Button>}
               <Wrapper.Footer>

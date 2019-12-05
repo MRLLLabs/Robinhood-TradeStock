@@ -29,7 +29,7 @@ class Message extends React.Component {
         <>
           <Wrapper>
             (!) Not enough buying power to purchase
-            <Span.Color>shares of {this.props.ticker}.</Span.Color><br></br>
+            <Span.Color> shares of {this.props.ticker}.</Span.Color><br></br>
             <br></br>Please deposit funds to purchase at market price
             (5% collar included).<br></br><br></br>Market orders on
             Robinhood are placed as limit orders up to 5% above the market price
