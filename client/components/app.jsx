@@ -41,10 +41,11 @@ class App extends React.Component {
     this.marketInfoToggle = this.marketInfoToggle.bind(this);
     this.bpInfoToggle = this.bpInfoToggle.bind(this);
     this.orderToggle = this.orderToggle.bind(this);
+    this.typeSwitch = this.typeSwitch.bind(this);
   }
 
   componentDidMount() {
-    axios.get('/api/F')
+    axios.get('/api/JJB')
       .then((response) => {
         const { user, stock } = response.data;
         this.setState({
@@ -76,6 +77,12 @@ class App extends React.Component {
       tab: e.target.innerText,
       menu: !this.state.menu,
       estimate: 0,
+    });
+  }
+
+  typeSwitch(e) {
+    this.setState({
+      type: e.target.id,
     });
   }
 
@@ -136,10 +143,10 @@ class App extends React.Component {
           <Wrapper>
               <Wrapper.Header>
                 <Wrapper.TypeWrapper>
-                  <Wrapper.Type current={'Buy'} type={this.state.type}>
+                  <Wrapper.Type onClick={this.typeSwitch} type={this.state.type} id={'Buy'}>
                     Buy {this.state.ticker}
                   </Wrapper.Type>
-                  <Wrapper.Type current={'Sell'} type={this.state.type}>
+                  <Wrapper.Type onClick={this.typeSwitch} type={this.state.type} id={'Sell'}>
                     Sell {this.state.ticker}
                   </Wrapper.Type>
                 </Wrapper.TypeWrapper>
