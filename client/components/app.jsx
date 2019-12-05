@@ -91,9 +91,11 @@ class App extends React.Component {
   }
 
   orderHandler() {
-    this.setState({
-      orderPlaced: !this.state.orderPlaced,
-    });
+    if (this.state.estimate > 0) {
+      this.setState({
+        orderPlaced: !this.state.orderPlaced,
+      });
+    }
   }
 
   renderTab() {
@@ -137,7 +139,8 @@ class App extends React.Component {
               }
               {this.state.orderPlaced &&
               <Message estimate={this.state.estimate} bp={this.state.bp}
-              ticker={this.state.ticker} shares={this.state.shares}/>}
+              ticker={this.state.ticker} shares={this.state.shares}
+              orderHandler={this.orderHandler}/>}
               {!this.state.orderPlaced &&
               <Wrapper.Button onClick={this.orderHandler}>Review Order</Wrapper.Button>}
               <Wrapper.Footer>
