@@ -11,6 +11,7 @@ import TrailingStopOrder from './trailingStopOrder.jsx';
 import DropDown from './dropdown.jsx';
 import Wrapper from './styles/mainWrapper/wrapper';
 import InputWrapper from './styles/inputWrapper/inputWrapper';
+import WarningWrapper from './styles/Messages/wrapper';
 import Span from './styles/Span/span';
 import GlobalStyle from './styles/globalStyle';
 
@@ -46,6 +47,7 @@ class App extends React.Component {
       tab: 'Market Order',
       menu: false,
       orderPlaced: false,
+      showWarning: false,
     };
 
     this.estimateHandler = this.estimateHandler.bind(this);
@@ -94,6 +96,11 @@ class App extends React.Component {
     if (this.state.estimate > 0) {
       this.setState({
         orderPlaced: !this.state.orderPlaced,
+        showWarning: false,
+      });
+    } else {
+      this.setState({
+        showWarning: true,
       });
     }
   }
@@ -141,6 +148,8 @@ class App extends React.Component {
               <Message estimate={this.state.estimate} bp={this.state.bp}
               ticker={this.state.ticker} shares={this.state.shares}
               orderHandler={this.orderHandler}/>}
+              {this.state.showWarning && <WarningWrapper>(!) Error<br></br>
+                  Please enter a valid number of shares.</WarningWrapper>}
               {!this.state.orderPlaced &&
               <Wrapper.Button onClick={this.orderHandler}>Review Order</Wrapper.Button>}
               <Wrapper.Footer>
