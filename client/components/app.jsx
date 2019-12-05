@@ -10,6 +10,7 @@ import Message from './message.jsx';
 import TrailingStopOrder from './trailingStopOrder.jsx';
 import DropDown from './dropdown.jsx';
 import MarketPriceInfo from './marketPriceInfo.jsx';
+import BpInfo from './bpInfo.jsx';
 import Wrapper from './styles/mainWrapper/wrapper';
 import InputWrapper from './styles/inputWrapper/inputWrapper';
 import WarningWrapper from './styles/Messages/wrapper';
@@ -49,6 +50,7 @@ class App extends React.Component {
       orderPlaced: false,
       showWarning: false,
       marketInfo: false,
+      bpInfo: false,
     };
 
     this.estimateHandler = this.estimateHandler.bind(this);
@@ -56,6 +58,7 @@ class App extends React.Component {
     this.menuHandler = this.menuHandler.bind(this);
     this.orderHandler = this.orderHandler.bind(this);
     this.marketInfoToggle = this.marketInfoToggle.bind(this);
+    this.bpInfoToggle = this.bpInfoToggle.bind(this);
   }
 
   componentDidMount() {
@@ -97,6 +100,12 @@ class App extends React.Component {
   marketInfoToggle() {
     this.setState({
       marketInfo: !this.state.marketInfo,
+    });
+  }
+
+  bpInfoToggle() {
+    this.setState({
+      bpInfo: !this.state.bpInfo,
     });
   }
 
@@ -169,8 +178,12 @@ class App extends React.Component {
               {!this.state.orderPlaced &&
               <Wrapper.Button onClick={this.orderHandler}>Review Order</Wrapper.Button>}
               <Wrapper.Footer>
-                  <Span.Cursor>${this.state.bp} Buying Power Available (?)</Span.Cursor>
+                  <Span.Cursor onClick={this.bpInfoToggle}>
+                    ${this.state.bp} Buying Power Available (?)
+                  </Span.Cursor>
               </Wrapper.Footer>
+              {this.state.bpInfo &&
+              <BpInfo ticker={this.state.ticker} bp={this.state.bp}></BpInfo>}
           </Wrapper>
       </AppWrapper>
     );

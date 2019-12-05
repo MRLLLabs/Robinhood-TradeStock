@@ -4,6 +4,7 @@ export default styled.div`
   width: 108px;
   font-size: 13px;
   border: 1px solid black;
+  border-radius: 4px;
   padding: 10px;
   cursor: pointer;
 
