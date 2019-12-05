@@ -1,7 +1,6 @@
 import React from 'react';
 import InputWrapper from './styles/inputWrapper/inputWrapper';
 import Span from './styles/Span/span';
-import MarketPriceInfo from './marketPriceInfo.jsx';
 
 class MarketOrder extends React.Component {
   constructor(props) {

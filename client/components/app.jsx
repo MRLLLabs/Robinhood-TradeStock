@@ -40,6 +40,7 @@ class App extends React.Component {
     this.orderHandler = this.orderHandler.bind(this);
     this.marketInfoToggle = this.marketInfoToggle.bind(this);
     this.bpInfoToggle = this.bpInfoToggle.bind(this);
+    this.orderToggle = this.orderToggle.bind(this);
   }
 
   componentDidMount() {
@@ -90,6 +91,13 @@ class App extends React.Component {
     });
   }
 
+  orderToggle() {
+    this.setState({
+      orderPlaced: !this.state.orderPlaced,
+      showWarning: false,
+    });
+  }
+
   orderHandler() {
     if (this.state.estimate > 0) {
       this.setState({
@@ -128,8 +136,12 @@ class App extends React.Component {
           <Wrapper>
               <Wrapper.Header>
                 <Wrapper.TypeWrapper>
-                  <Wrapper.Type>Buy {this.state.ticker}</Wrapper.Type>
-                  <Wrapper.Type>Sell {this.state.ticker}</Wrapper.Type>
+                  <Wrapper.Type current={'Buy'} type={this.state.type}>
+                    Buy {this.state.ticker}
+                  </Wrapper.Type>
+                  <Wrapper.Type current={'Sell'} type={this.state.type}>
+                    Sell {this.state.ticker}
+                  </Wrapper.Type>
                 </Wrapper.TypeWrapper>
                   <Wrapper.MenuIcon onClick={this.menuHandler}>...</Wrapper.MenuIcon>
                   {this.state.menu &&
@@ -153,7 +165,7 @@ class App extends React.Component {
               {this.state.orderPlaced &&
               <Message estimate={this.state.estimate} bp={this.state.bp}
               ticker={this.state.ticker} shares={this.state.shares}
-              orderHandler={this.orderHandler}/>}
+              orderToggle={this.orderToggle}/>}
               {this.state.showWarning &&
               <WarningWrapper>
                 (!) Error<br></br>

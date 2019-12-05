@@ -39,10 +39,15 @@ Wrapper.Estimate = styled(InputWrapper)`
 Wrapper.Type = styled.div`
   font-size: 16px;
   display: inline-block;
+  cursor: pointer;
   // border-bottom: 1px solid green;
   padding-top: 12px;
   padding-bottom: 12px;
   margin-left: 15px;
+
+  &:hover {
+    color: #20cd99;
+  }
 `;
 
 Wrapper.TypeWrapper = styled.div`

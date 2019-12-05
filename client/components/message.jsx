@@ -19,7 +19,7 @@ class Message extends React.Component {
             the market opens and executed at the best available price.
           </Wrapper>
           <MainWrapper.Button>Buy</MainWrapper.Button>
-          <MainWrapper.InvertedButton onClick={this.props.orderHandler}>
+          <MainWrapper.InvertedButton onClick={this.props.orderToggle}>
             Edit
           </MainWrapper.InvertedButton>
         </>
@@ -40,7 +40,7 @@ class Message extends React.Component {
           <MainWrapper.Button>
             Deposit ${(this.props.estimate - this.props.bp).toFixed(2)}
           </MainWrapper.Button>
-          <MainWrapper.InvertedButton onClick={this.props.orderHandler}>
+          <MainWrapper.InvertedButton onClick={this.props.orderToggle}>
             Back
           </MainWrapper.InvertedButton>
         </>
