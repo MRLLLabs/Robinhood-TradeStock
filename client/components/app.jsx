@@ -96,7 +96,8 @@ class App extends React.Component {
     } else if (tab === 'Stop Limit Order') {
       return <StopLimitOrder estimateHandler={this.estimateHandler} />;
     } else if (tab === 'Trailing Stop Order') {
-      return <TrailingStopOrder estimateHandler={this.estimateHandler} />;
+      return <TrailingStopOrder estimateHandler={this.estimateHandler}
+              price={this.state.price} />;
     }
   }
 

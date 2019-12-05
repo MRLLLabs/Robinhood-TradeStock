@@ -1,3 +1,4 @@
+/* eslint-disable no-lonely-if */
 /* eslint-disable operator-linebreak */
 import React from 'react';
 import InputWrapper from './styles/inputWrapper/inputWrapper';
@@ -24,10 +25,27 @@ class TrailingStopOrder extends React.Component {
   }
 
   changeHandler(e) {
-    if (e.target.name === 'limitPrice') {
-      this.props.estimateHandler(e.target.value * this.state.shares);
+    let value;
+    if (e.target.name === 'shares') {
+      if (this.state.trailType === 'Percentage') {
+        value = ((this.state.trail / 100) * this.props.price) +
+                (this.props.price * e.target.value);
+      } else {
+        value = Number(this.state.trail) + (this.props.price * e.target.value);
+        console.log(value);
+      }
+      this.props.estimateHandler(value.toFixed(2));
     } else {
-      this.props.estimateHandler(e.target.value * this.state.limitPrice);
+      if (this.state.shares !== 0) {
+        if (this.state.trailType === 'Percentage') {
+          value = ((e.target.value / 100) * this.props.price) +
+                  (this.props.price * this.state.shares);
+        } else {
+          value = Number(e.target.value) + (this.props.price * this.state.shares);
+          console.log(value);
+        }
+        this.props.estimateHandler(value.toFixed(2));
+      }
     }
 
     this.setState({
