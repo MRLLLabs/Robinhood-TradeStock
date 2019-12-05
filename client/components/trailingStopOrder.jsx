@@ -22,6 +22,7 @@ class TrailingStopOrder extends React.Component {
     this.changeHandler = this.changeHandler.bind(this);
     this.clickHandler = this.clickHandler.bind(this);
     this.trailsClickHandler = this.trailsClickHandler.bind(this);
+    this.toggle = this.toggle.bind(this);
   }
 
   changeHandler(e) {
@@ -32,7 +33,6 @@ class TrailingStopOrder extends React.Component {
                 (this.props.price * e.target.value);
       } else {
         value = Number(this.state.trail) + (this.props.price * e.target.value);
-        console.log(value);
       }
       this.props.estimateHandler(value.toFixed(2));
     } else {
@@ -42,7 +42,6 @@ class TrailingStopOrder extends React.Component {
                   (this.props.price * this.state.shares);
         } else {
           value = Number(e.target.value) + (this.props.price * this.state.shares);
-          console.log(value);
         }
         this.props.estimateHandler(value.toFixed(2));
       }
@@ -60,11 +59,21 @@ class TrailingStopOrder extends React.Component {
     });
   }
 
+  toggle() {
+    this.setState({
+      showTrails: !this.state.showTrails,
+    });
+  }
+
   trailsClickHandler(e) {
     this.setState({
       showTrails: !this.state.showTrails,
       trailType: e.target.innerText,
+      trail: 0,
+      shares: 0,
     });
+
+    this.props.estimateHandler(0);
   }
 
   render() {
@@ -72,7 +81,7 @@ class TrailingStopOrder extends React.Component {
       <>
         <InputWrapper>
           <InputWrapper.Label>Trail Type</InputWrapper.Label>
-            <OptionWrapper.Main onClick={this.trailsClickHandler}>{this.state.trailType}
+            <OptionWrapper.Main onClick={this.toggle}>{this.state.trailType}
             </OptionWrapper.Main>
             {this.state.showTrails &&
             <OptionWrapper>
@@ -89,11 +98,12 @@ class TrailingStopOrder extends React.Component {
         <InputWrapper>
           <InputWrapper.Label>Trail</InputWrapper.Label>
           <InputWrapper.Dollar type="number" placeholder="$0.00" name="trail"
-          step=".01" onChange={this.changeHandler}></InputWrapper.Dollar>
+          step=".01" onChange={this.changeHandler} value={this.state.trail}></InputWrapper.Dollar>
         </InputWrapper>
         <InputWrapper>
             <InputWrapper.Label>Shares</InputWrapper.Label>
-            <InputWrapper.Dollar type="number" placeholder="0" name="shares" onChange={this.changeHandler}>
+            <InputWrapper.Dollar type="number" placeholder="0" name="shares"
+            onChange={this.changeHandler} value={this.state.shares}>
             </InputWrapper.Dollar>
         </InputWrapper>
         <InputWrapper>
