@@ -11,6 +11,6 @@ font-size: 13;
 Span.Color = ColorSpan;
 Span.Value = SpanValue;
 Span.Bold = Bold;
-Span.MarketPrice = MarketPrice;
+Span.Cursor = MarketPrice;
 
 export default Span;

@@ -9,25 +9,16 @@ class MarketOrder extends React.Component {
 
     this.state = {
       shares: 0,
-      marketInfo: false,
     };
 
     this.changeHandler = this.changeHandler.bind(this);
-    this.marketInfoToggle = this.marketInfoToggle.bind(this);
   }
-
 
   changeHandler(e) {
     this.props.estimateHandler(e.target.value * this.props.price);
 
     this.setState({
       shares: e.target.value,
-    });
-  }
-
-  marketInfoToggle() {
-    this.setState({
-      marketInfo: !this.state.marketInfo,
     });
   }
 
@@ -38,13 +29,10 @@ class MarketOrder extends React.Component {
               <InputWrapper.Label>Shares</InputWrapper.Label>
               <InputWrapper.Input type="number" placeholder="0" onChange={this.changeHandler}></InputWrapper.Input>
           </InputWrapper>
-          <InputWrapper onClick={this.marketInfoToggle}>
-              <Span.MarketPrice>Market Price (?)</Span.MarketPrice>
+          <InputWrapper onClick={this.props.marketInfoToggle}>
+              <Span.Cursor>Market Price (?)</Span.Cursor>
               <Span.Value>${this.props.price}</Span.Value>
           </InputWrapper>
-          {this.state.marketInfo &&
-          <MarketPriceInfo ticker={this.props.ticker} price={this.props.price}/>
-          }
       </>
     );
   }

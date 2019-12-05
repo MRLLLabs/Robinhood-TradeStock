@@ -9,7 +9,7 @@ const Info = styled(MainWrapper)`
   background: #1b1a1d;
   position: absolute;
   margin-left: -275px;
-  margin-top: -25px;
+  margin-top: -120px;
   z-index: 1;
 `;
 
