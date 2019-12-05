@@ -96,8 +96,9 @@ class TrailingStopOrder extends React.Component {
             </OptionWrapper> }
         </InputWrapper>
         <InputWrapper>
-          <InputWrapper.Label>Trail</InputWrapper.Label>
-          <InputWrapper.Dollar type="number" placeholder="$0.00" name="trail"
+          <InputWrapper.Label>Trail ({this.state.trailType === 'Percentage' ?
+            '%' : '$'})</InputWrapper.Label>
+          <InputWrapper.Dollar type="number" name="trail"
           step=".01" onChange={this.changeHandler} value={this.state.trail}></InputWrapper.Dollar>
         </InputWrapper>
         <InputWrapper>
