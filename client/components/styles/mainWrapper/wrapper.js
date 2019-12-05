@@ -7,7 +7,7 @@ import MenuIcon from './menuIcon';
 import InvertedButton from './invertedButton';
 
 const Wrapper = styled.div`
-     width: 280px;
+     width: 275px;
      border: 1px solid black;
      border-radius: 4px;
      box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.01), 

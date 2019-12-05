@@ -5,6 +5,7 @@ const GlobalStyle = createGlobalStyle`
         font-family: Arial;
         background: #1b1a1d;
         color: white;
+        font-size: 13px;
     }
 
     input[type=number]::-webkit-inner-spin-button, 
