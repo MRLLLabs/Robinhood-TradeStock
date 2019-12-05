@@ -131,7 +131,7 @@ class App extends React.Component {
       return <StopLimitOrder estimateHandler={this.estimateHandler} />;
     } else if (tab === 'Trailing Stop Order') {
       return <TrailingStopOrder estimateHandler={this.estimateHandler}
-              price={this.state.price} />;
+              price={this.state.price} type={this.state.type}/>;
     }
   }
 
@@ -157,7 +157,7 @@ class App extends React.Component {
               </Wrapper.Header>
               {this.renderTab()}
               <Wrapper.Estimate>
-                  <Span>Estimated Cost</Span>
+                  <Span>Estimated {this.state.type === 'Buy' ? 'Cost' : 'Credit'}</Span>
                   <Span.Value>${this.state.estimate}</Span.Value>
               </Wrapper.Estimate>
               {tab === 'Limit Order' && <CheckBox/>}
@@ -182,9 +182,14 @@ class App extends React.Component {
               {!this.state.orderPlaced &&
               <Wrapper.Button onClick={this.orderHandler}>Review Order</Wrapper.Button>}
               <Wrapper.Footer>
+                {this.state.type === 'Buy' ?
                   <Span.Cursor onClick={this.bpInfoToggle}>
                     ${this.state.bp} Buying Power Available (?)
                   </Span.Cursor>
+                  :
+                  <Span>
+                    {this.state.shares} Shares Available
+                  </Span>}
               </Wrapper.Footer>
               {this.state.bpInfo &&
               <BpInfo ticker={this.state.ticker} bp={this.state.bp}></BpInfo>}

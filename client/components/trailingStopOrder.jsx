@@ -27,23 +27,45 @@ class TrailingStopOrder extends React.Component {
 
   changeHandler(e) {
     let value;
-    if (e.target.name === 'shares') {
-      if (this.state.trailType === 'Percentage') {
-        value = ((this.state.trail / 100) * this.props.price) +
-                (this.props.price * e.target.value);
-      } else {
-        value = Number(this.state.trail) + (this.props.price * e.target.value);
-      }
-      this.props.estimateHandler(value.toFixed(2));
-    } else {
-      if (this.state.shares !== 0 && this.state.shares !== '') {
+    if (this.props.type === 'Buy') {
+      if (e.target.name === 'shares') {
         if (this.state.trailType === 'Percentage') {
-          value = ((e.target.value / 100) * this.props.price) +
-                  (this.props.price * this.state.shares);
+          value = ((this.state.trail / 100) * this.props.price) +
+                  (this.props.price * e.target.value);
         } else {
-          value = Number(e.target.value) + (this.props.price * this.state.shares);
+          value = Number(this.state.trail) + (this.props.price * e.target.value);
         }
         this.props.estimateHandler(value.toFixed(2));
+      } else {
+        if (this.state.shares !== 0 && this.state.shares !== '') {
+          if (this.state.trailType === 'Percentage') {
+            value = ((e.target.value / 100) * this.props.price) +
+                    (this.props.price * this.state.shares);
+          } else {
+            value = Number(e.target.value) + (this.props.price * this.state.shares);
+          }
+          this.props.estimateHandler(value.toFixed(2));
+        }
+      }
+    } else {
+      if (e.target.name === 'shares') {
+        if (this.state.trailType === 'Percentage') {
+          value = (this.props.price * e.target.value) -
+          ((this.state.trail / 100) * this.props.price);
+        } else {
+          value = (this.props.price * e.target.value) - Number(this.state.trail);
+        }
+        this.props.estimateHandler(value.toFixed(2));
+      } else {
+        if (this.state.shares !== 0 && this.state.shares !== '') {
+          if (this.state.trailType === 'Percentage') {
+            value = (this.props.price * this.state.shares) -
+                    ((e.target.value / 100) * this.props.price);
+          } else {
+            value = (this.props.price * this.state.shares) - Number(e.target.value);
+          }
+          this.props.estimateHandler(value.toFixed(2));
+        }
       }
     }
 
