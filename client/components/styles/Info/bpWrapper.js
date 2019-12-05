@@ -1,13 +1,18 @@
 import styled from 'styled-components';
 import InfoWrapper from './wrapper';
 
-const bpWrapper = styled(InfoWrapper)`
-  width: 360px;
+const BpWrapper = styled(InfoWrapper)`
+  width: 320px;
 `;
 
-bpWrapper.Data = styled(InfoWrapper.DataWrapper)`
-  width: 320px;
+BpWrapper.Data = styled(InfoWrapper.DataWrapper)`
+  width: 280px;
+  padding: 15px;
   border: none;
 `;
 
-export default bpWrapper;
+BpWrapper.Header = styled(BpWrapper.Data)`
+  text-align: center;
+`;
+
+export default BpWrapper;
