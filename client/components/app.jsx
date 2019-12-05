@@ -6,6 +6,7 @@ import CheckBox from './checkbox.jsx';
 import LimitOrder from './limitOrder.jsx';
 import StopLossOrder from './stopLossOrder.jsx';
 import StopLimitOrder from './stopLimitOrder.jsx';
+import Message from './message.jsx';
 import TrailingStopOrder from './trailingStopOrder.jsx';
 import DropDown from './dropdown.jsx';
 import Wrapper from './styles/mainWrapper/wrapper';
@@ -44,11 +45,13 @@ class App extends React.Component {
       type: 'Buy',
       tab: 'Market Order',
       menu: false,
+      orderPlaced: false,
     };
 
     this.estimateHandler = this.estimateHandler.bind(this);
     this.tabHandler = this.tabHandler.bind(this);
     this.menuHandler = this.menuHandler.bind(this);
+    this.orderHandler = this.orderHandler.bind(this);
   }
 
   componentDidMount() {
@@ -57,8 +60,10 @@ class App extends React.Component {
         const { user, stock } = response.data;
         this.setState({
           ticker: stock.ticker,
-          bp: user.funds,
-          shares: user.shares,
+          bp: 1000,
+          shares: 0,
+          // bp: user.funds,
+          // shares: user.shares,
           price: stock.price,
         });
       })
@@ -82,6 +87,12 @@ class App extends React.Component {
       tab: e.target.innerText,
       menu: !this.state.menu,
       estimate: 0,
+    });
+  }
+
+  orderHandler() {
+    this.setState({
+      orderPlaced: !this.state.orderPlaced,
     });
   }
 
@@ -124,7 +135,11 @@ class App extends React.Component {
                 <Span.Color>Market Price ${this.state.price}</Span.Color>
               </MarketPrice>
               }
-              <Wrapper.Button>Review Order</Wrapper.Button>
+              {this.state.orderPlaced &&
+              <Message estimate={this.state.estimate} bp={this.state.bp}
+              ticker={this.state.ticker} shares={this.state.shares}/>}
+              {!this.state.orderPlaced &&
+              <Wrapper.Button onClick={this.orderHandler}>Review Order</Wrapper.Button>}
               <Wrapper.Footer>
                   <Span.Color>${this.state.bp} Buying Power Available</Span.Color>
               </Wrapper.Footer>
