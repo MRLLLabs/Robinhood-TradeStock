@@ -38,11 +38,11 @@ Array [
   <div
     className="sc-bxivhb cyWHkv"
   >
-    <span
-      className="sc-bZQynM iCwhxW"
+    <label
+      className="sc-bwzfXH dbwzZe"
     >
       Expires
-    </span>
+    </label>
     <div
       className="sc-htoDjs gmNRED"
       onClick={[Function]}

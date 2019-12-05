@@ -53,7 +53,7 @@ class LimitOrder extends React.Component {
             </InputWrapper.Dollar>
         </InputWrapper>
         <InputWrapper>
-            <Span>Expires</Span>
+          <InputWrapper.Label>Expires</InputWrapper.Label>
             <OptionWrapper.Main onClick={this.clickHandler}>{this.state.expires}
             </OptionWrapper.Main>
             {this.state.showOptions &&

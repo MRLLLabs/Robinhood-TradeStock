@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<StopLimitOrder /> Component matches the snapshot 1`] = `
+exports[`<TrailingStopOrder /> Component matches the snapshot 1`] = `
 Array [
   <div
     className="sc-bxivhb cyWHkv"
@@ -8,16 +8,14 @@ Array [
     <label
       className="sc-bwzfXH dbwzZe"
     >
-      Stop Price
+      Trail Type
     </label>
-    <input
-      className="sc-bdVaJa sc-htpNat dFFWgj"
-      name="stopPrice"
-      onChange={[Function]}
-      placeholder="$0.00"
-      step=".01"
-      type="number"
-    />
+    <div
+      className="sc-htoDjs gmNRED"
+      onClick={[Function]}
+    >
+      Percentage
+    </div>
   </div>,
   <div
     className="sc-bxivhb cyWHkv"
@@ -25,15 +23,17 @@ Array [
     <label
       className="sc-bwzfXH dbwzZe"
     >
-      Limit Price
+      Trail (
+      %
+      )
     </label>
     <input
       className="sc-bdVaJa sc-htpNat dFFWgj"
-      name="limitPrice"
+      name="trail"
       onChange={[Function]}
-      placeholder="$0.00"
       step=".01"
       type="number"
+      value={0}
     />
   </div>,
   <div
@@ -50,6 +50,7 @@ Array [
       onChange={[Function]}
       placeholder="0"
       type="number"
+      value={0}
     />
   </div>,
   <div
