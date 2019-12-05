@@ -36,7 +36,7 @@ class TrailingStopOrder extends React.Component {
       }
       this.props.estimateHandler(value.toFixed(2));
     } else {
-      if (this.state.shares !== 0) {
+      if (this.state.shares !== 0 && this.state.shares !== '') {
         if (this.state.trailType === 'Percentage') {
           value = ((e.target.value / 100) * this.props.price) +
                   (this.props.price * this.state.shares);
