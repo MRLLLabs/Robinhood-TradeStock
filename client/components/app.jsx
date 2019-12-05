@@ -151,7 +151,7 @@ class App extends React.Component {
               {tab !== 'Market Order' &&
               <MarketPrice>
                 <Span.Cursor onClick={this.marketInfoToggle}>
-                  Market Price ${this.state.price}
+                  Market Price ${this.state.price} (?)
                 </Span.Cursor>
               </MarketPrice>}
               {this.state.marketInfo &&

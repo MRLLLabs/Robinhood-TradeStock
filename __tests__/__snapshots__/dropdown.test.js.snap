@@ -2,35 +2,35 @@
 
 exports[`<Dropdown /> Component matches the snapshot 1`] = `
 <div
-  className="sc-EHOje sc-htoDjs igfBCU"
+  className="sc-bZQynM sc-dnqmqq bKVrRA"
 >
   <div
-    className="sc-gzVnrw cDWGqg"
+    className="sc-htoDjs fRSDcx"
   >
     Order Type
   </div>
   <div
-    className="sc-bZQynM dakOvu"
+    className="sc-gzVnrw gFKKaX"
   >
     Market Order
   </div>
   <div
-    className="sc-bZQynM dakOvu"
+    className="sc-gzVnrw gFKKaX"
   >
     Limit Order
   </div>
   <div
-    className="sc-bZQynM dakOvu"
+    className="sc-gzVnrw gFKKaX"
   >
     Stop Loss Order
   </div>
   <div
-    className="sc-bZQynM dakOvu"
+    className="sc-gzVnrw gFKKaX"
   >
     Stop Limit Order
   </div>
   <div
-    className="sc-bZQynM dakOvu"
+    className="sc-gzVnrw gFKKaX"
   >
     Trailing Stop Order
   </div>
