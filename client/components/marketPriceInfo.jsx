@@ -9,16 +9,22 @@ const MarketPriceInfo = ({ ticker, price }) => (
     </Info.Header>
     <Info.DataWrapper>
       <Span>Last Sale (IEXG)</Span>
-      <Span.bold>${price + 0.04} x 100</Span.bold>
+      <Span.Bold>${price + 0.04} x 100</Span.Bold>
     </Info.DataWrapper>
     <Info.DataWrapper>
       <Span>Bid (IEXG)</Span>
-      <Span.bold>${price - 0.02} x 1</Span.bold>
+      <Span.Bold>${price - 0.02} x 1</Span.Bold>
     </Info.DataWrapper>
     <Info.DataWrapper>
       <Span>Ask (XNAS)</Span>
-      <Span.bold>${price - 0.03} x 10</Span.bold>
+      <Span.Bold>${price - 0.03} x 10</Span.Bold>
     </Info.DataWrapper>
+    <Info.Footer>
+      The market price on the previous screen may be
+      different because it represents the last trade
+      reported on Nasdaq. Learn more about market data on
+      our help center.
+    </Info.Footer>
   </Info>
 );
 

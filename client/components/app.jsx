@@ -9,6 +9,7 @@ import StopLimitOrder from './stopLimitOrder.jsx';
 import Message from './message.jsx';
 import TrailingStopOrder from './trailingStopOrder.jsx';
 import DropDown from './dropdown.jsx';
+// import MarketPriceInfo from './marketPriceInfo.jsx';
 import Wrapper from './styles/mainWrapper/wrapper';
 import InputWrapper from './styles/inputWrapper/inputWrapper';
 import WarningWrapper from './styles/Messages/wrapper';
@@ -48,6 +49,7 @@ class App extends React.Component {
       menu: false,
       orderPlaced: false,
       showWarning: false,
+      marketInfo: false,
     };
 
     this.estimateHandler = this.estimateHandler.bind(this);
@@ -108,7 +110,8 @@ class App extends React.Component {
   renderTab() {
     const { tab } = this.state;
     if (tab === 'Market Order') {
-      return <MarketOrder price={this.state.price} estimateHandler={this.estimateHandler} />;
+      return <MarketOrder price={this.state.price} estimateHandler={this.estimateHandler}
+              ticker={this.state.ticker}/>;
     } else if (tab === 'Limit Order') {
       return <LimitOrder estimateHandler={this.estimateHandler} />;
     } else if (tab === 'Stop Loss Order') {

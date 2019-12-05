@@ -7,6 +7,9 @@ import DataWrapper from './dataWrapper';
 const Info = styled(MainWrapper)`
   width: 290px;
   background: #1b1a1d;
+  position: absolute;
+  margin-left: -275px;
+  margin-top: -25px;
   z-index: 1;
 `;
 
