@@ -2,7 +2,6 @@
 /* eslint-disable operator-linebreak */
 import React from 'react';
 import InputWrapper from './styles/inputWrapper/inputWrapper';
-import Span from './styles/Span/span';
 import OptionWrapper from './styles/Option/optionWrapper';
 
 
