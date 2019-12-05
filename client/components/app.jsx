@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import styled from 'styled-components';
 import MarketOrder from './marketOrder.jsx';
 import CheckBox from './checkbox.jsx';
 import LimitOrder from './limitOrder.jsx';
@@ -12,27 +11,9 @@ import DropDown from './dropdown.jsx';
 import MarketPriceInfo from './marketPriceInfo.jsx';
 import BpInfo from './bpInfo.jsx';
 import Wrapper from './styles/mainWrapper/wrapper';
-import InputWrapper from './styles/inputWrapper/inputWrapper';
 import WarningWrapper from './styles/Messages/wrapper';
 import Span from './styles/Span/span';
 import GlobalStyle from './styles/globalStyle';
-
-const AppWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-`;
-
-const MarketPrice = styled.div`
-  width: 220px;
-  margin: auto;
-  padding: 10px;
-  text-align: center;
-`;
-
-const EstimateWrapper = styled(InputWrapper)`
-    border-top: 1px solid black;
-`;
 
 class App extends React.Component {
   constructor() {
@@ -142,7 +123,7 @@ class App extends React.Component {
   render() {
     const { tab } = this.state;
     return (
-      <AppWrapper>
+      <Wrapper.App>
           <GlobalStyle />
           <Wrapper>
               <Wrapper.Header>
@@ -152,17 +133,17 @@ class App extends React.Component {
                   <DropDown tab={this.state.tab} tabHandler={this.tabHandler}></DropDown>}
               </Wrapper.Header>
               {this.renderTab()}
-              <EstimateWrapper>
+              <Wrapper.Estimate>
                   <Span>Estimated Cost</Span>
                   <Span.Value>${this.state.estimate}</Span.Value>
-              </EstimateWrapper>
+              </Wrapper.Estimate>
               {tab === 'Limit Order' && <CheckBox/>}
               {tab !== 'Market Order' &&
-              <MarketPrice>
+              <Wrapper.MarketPrice>
                 <Span.Cursor onClick={this.marketInfoToggle}>
                   Market Price ${this.state.price} (?)
                 </Span.Cursor>
-              </MarketPrice>}
+              </Wrapper.MarketPrice>}
               {this.state.marketInfo &&
               <MarketPriceInfo price={this.state.price} ticker={this.state.ticker}/>
               }
@@ -185,7 +166,7 @@ class App extends React.Component {
               {this.state.bpInfo &&
               <BpInfo ticker={this.state.ticker} bp={this.state.bp}></BpInfo>}
           </Wrapper>
-      </AppWrapper>
+      </Wrapper.App>
     );
   }
 }
