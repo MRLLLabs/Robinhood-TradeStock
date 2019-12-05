@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import MainWrapper from '../mainWrapper/wrapper';
 import Header from './header';
 import Footer from './footer';
+import DataWrapper from './dataWrapper';
 
 const Info = styled(MainWrapper)`
   width: 290px;
@@ -11,5 +12,6 @@ const Info = styled(MainWrapper)`
 
 Info.Header = Header;
 Info.Footer = Footer;
+Info.DataWrapper = DataWrapper;
 
 export default Info;
