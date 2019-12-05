@@ -36,4 +36,18 @@ Wrapper.Estimate = styled(InputWrapper)`
   border-top: 1px solid black;
 `;
 
+Wrapper.Type = styled.div`
+  font-size: 16px;
+  display: inline-block;
+  // border-bottom: 1px solid green;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  margin-left: 15px;
+`;
+
+Wrapper.TypeWrapper = styled.div`
+  width: 180px;
+  margin-left: 12px;
+`;
+
 export default Wrapper;

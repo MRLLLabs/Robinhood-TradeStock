@@ -127,7 +127,10 @@ class App extends React.Component {
           <GlobalStyle />
           <Wrapper>
               <Wrapper.Header>
-                  <Wrapper.H1>Buy {this.state.ticker}</Wrapper.H1>
+                <Wrapper.TypeWrapper>
+                  <Wrapper.Type>Buy {this.state.ticker}</Wrapper.Type>
+                  <Wrapper.Type>Sell {this.state.ticker}</Wrapper.Type>
+                </Wrapper.TypeWrapper>
                   <Wrapper.MenuIcon onClick={this.menuHandler}>...</Wrapper.MenuIcon>
                   {this.state.menu &&
                   <DropDown tab={this.state.tab} tabHandler={this.tabHandler}></DropDown>}
