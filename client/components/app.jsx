@@ -9,6 +9,7 @@ import StopLimitOrder from './stopLimitOrder.jsx';
 import Message from './message.jsx';
 import TrailingStopOrder from './trailingStopOrder.jsx';
 import DropDown from './dropdown.jsx';
+import MarketPriceInfo from './marketPriceInfo.jsx';
 import Wrapper from './styles/mainWrapper/wrapper';
 import InputWrapper from './styles/inputWrapper/inputWrapper';
 import WarningWrapper from './styles/Messages/wrapper';
@@ -27,7 +28,6 @@ const MarketPrice = styled.div`
   padding: 10px;
   text-align: center;
 `;
-
 
 const EstimateWrapper = styled(InputWrapper)`
     border-top: 1px solid black;
@@ -48,12 +48,14 @@ class App extends React.Component {
       menu: false,
       orderPlaced: false,
       showWarning: false,
+      marketInfo: false,
     };
 
     this.estimateHandler = this.estimateHandler.bind(this);
     this.tabHandler = this.tabHandler.bind(this);
     this.menuHandler = this.menuHandler.bind(this);
     this.orderHandler = this.orderHandler.bind(this);
+    this.marketInfoToggle = this.marketInfoToggle.bind(this);
   }
 
   componentDidMount() {
@@ -92,6 +94,12 @@ class App extends React.Component {
     });
   }
 
+  marketInfoToggle() {
+    this.setState({
+      marketInfo: !this.state.marketInfo,
+    });
+  }
+
   orderHandler() {
     if (this.state.estimate > 0) {
       this.setState({
@@ -108,7 +116,8 @@ class App extends React.Component {
   renderTab() {
     const { tab } = this.state;
     if (tab === 'Market Order') {
-      return <MarketOrder price={this.state.price} estimateHandler={this.estimateHandler} />;
+      return <MarketOrder price={this.state.price} estimateHandler={this.estimateHandler}
+              marketInfoToggle={this.marketInfoToggle}/>;
     } else if (tab === 'Limit Order') {
       return <LimitOrder estimateHandler={this.estimateHandler} />;
     } else if (tab === 'Stop Loss Order') {
@@ -141,8 +150,12 @@ class App extends React.Component {
               {tab === 'Limit Order' && <CheckBox/>}
               {tab !== 'Market Order' &&
               <MarketPrice>
-                <Span.Color>Market Price ${this.state.price}</Span.Color>
-              </MarketPrice>
+                <Span.Cursor onClick={this.marketInfoToggle}>
+                  Market Price ${this.state.price} (?)
+                </Span.Cursor>
+              </MarketPrice>}
+              {this.state.marketInfo &&
+              <MarketPriceInfo price={this.state.price} ticker={this.state.ticker}/>
               }
               {this.state.orderPlaced &&
               <Message estimate={this.state.estimate} bp={this.state.bp}
@@ -156,7 +169,7 @@ class App extends React.Component {
               {!this.state.orderPlaced &&
               <Wrapper.Button onClick={this.orderHandler}>Review Order</Wrapper.Button>}
               <Wrapper.Footer>
-                  <Span.Color>${this.state.bp} Buying Power Available</Span.Color>
+                  <Span.Cursor>${this.state.bp} Buying Power Available (?)</Span.Cursor>
               </Wrapper.Footer>
           </Wrapper>
       </AppWrapper>

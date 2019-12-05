@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 
 export default styled.div`
-  font-color: gery;
+  color: grey;
+  width: 240px;
+  margin: auto;
+  padding: 20px;
 `;

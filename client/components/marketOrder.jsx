@@ -1,6 +1,7 @@
 import React from 'react';
 import InputWrapper from './styles/inputWrapper/inputWrapper';
 import Span from './styles/Span/span';
+import MarketPriceInfo from './marketPriceInfo.jsx';
 
 class MarketOrder extends React.Component {
   constructor(props) {
@@ -12,7 +13,6 @@ class MarketOrder extends React.Component {
 
     this.changeHandler = this.changeHandler.bind(this);
   }
-
 
   changeHandler(e) {
     this.props.estimateHandler(e.target.value * this.props.price);
@@ -29,8 +29,8 @@ class MarketOrder extends React.Component {
               <InputWrapper.Label>Shares</InputWrapper.Label>
               <InputWrapper.Input type="number" placeholder="0" onChange={this.changeHandler}></InputWrapper.Input>
           </InputWrapper>
-          <InputWrapper>
-              <Span.Color>Market Price</Span.Color>
+          <InputWrapper onClick={this.props.marketInfoToggle}>
+              <Span.Cursor>Market Price (?)</Span.Cursor>
               <Span.Value>${this.props.price}</Span.Value>
           </InputWrapper>
       </>
