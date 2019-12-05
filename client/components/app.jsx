@@ -57,8 +57,10 @@ class App extends React.Component {
         const { user, stock } = response.data;
         this.setState({
           ticker: stock.ticker,
-          bp: user.funds,
-          shares: user.shares,
+          bp: 0,
+          shares: 0,
+          // bp: user.funds,
+          // shares: user.shares,
           price: stock.price,
         });
       })
