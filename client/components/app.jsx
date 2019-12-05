@@ -51,7 +51,7 @@ class App extends React.Component {
         this.setState({
           ticker: stock.ticker,
           bp: 1000,
-          shares: 0,
+          shares: 2,
           // bp: user.funds,
           // shares: user.shares,
           price: stock.price,
@@ -142,6 +142,7 @@ class App extends React.Component {
           <GlobalStyle />
           <Wrapper>
               <Wrapper.Header>
+                {this.state.shares === 0 ? <Span.Big>Buy {this.state.ticker}</Span.Big> :
                 <Wrapper.TypeWrapper>
                   <Wrapper.Type onClick={this.typeSwitch} type={this.state.type} id={'Buy'}>
                     Buy {this.state.ticker}
@@ -149,7 +150,7 @@ class App extends React.Component {
                   <Wrapper.Type onClick={this.typeSwitch} type={this.state.type} id={'Sell'}>
                     Sell {this.state.ticker}
                   </Wrapper.Type>
-                </Wrapper.TypeWrapper>
+                </Wrapper.TypeWrapper>}
                   <Wrapper.MenuIcon onClick={this.menuHandler}>...</Wrapper.MenuIcon>
                   {this.state.menu &&
                   <DropDown tab={this.state.tab} tabHandler={this.tabHandler}></DropDown>}
