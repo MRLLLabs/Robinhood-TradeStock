@@ -33,8 +33,6 @@ class LimitOrder extends React.Component {
   }
 
   clickHandler(e) {
-    console.log(e.target);
-    console.log(e.target.id)
     this.setState({
       showOptions: !this.state.showOptions,
       expires: e.target.id,
