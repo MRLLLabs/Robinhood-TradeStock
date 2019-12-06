@@ -29,6 +29,7 @@
     "react": "^16.12.0",
     "react-animate-height": "^2.0.17",
     "react-dom": "^16.12.0",
+    "react-spring": "^8.0.27",
     "sequelize": "^5.21.2",
     "styled-components": "^4.4.1"
   },

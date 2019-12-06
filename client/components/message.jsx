@@ -1,9 +1,9 @@
 /* eslint-disable no-useless-constructor */
 import React from 'react';
+import { Spring } from 'react-spring/renderprops';
 import Wrapper from './styles/Messages/wrapper';
 import MainWrapper from './styles/mainWrapper/wrapper';
 import Span from './styles/Span/span';
-
 
 class Message extends React.Component {
   constructor(props) {
@@ -14,11 +14,23 @@ class Message extends React.Component {
     if (this.props.bp > this.props.estimate) {
       return (
         <>
-          <Wrapper height={100}>
+          <Spring
+  from={{ height: 0 }}
+  to={{ height: 'auto' }}>
+  {props => <Wrapper style={props}>
             You are placing a good for day market order to buy 1
             share of {this.props.ticker}. Your order will be placed after
             the market opens and executed at the best available price.
-          </Wrapper>
+          </Wrapper>}
+</Spring>
+          
+          {/* <Wrapper>
+            You are placing a good for day market order to buy 1
+            share of {this.props.ticker}. Your order will be placed after
+            the market opens and executed at the best available price.
+          </Wrapper> */}
+
+
           <MainWrapper.Button>Buy</MainWrapper.Button>
           <MainWrapper.InvertedButton onClick={this.props.orderToggle}>
             Edit

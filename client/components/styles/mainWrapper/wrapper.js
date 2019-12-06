@@ -57,11 +57,11 @@ Wrapper.TypeWrapper = styled.div`
   margin-left: 12px;
 `;
 
-Wrapper.Hidden = styled.div`
-  height: ${(props) => (props.show ? '150px' : '0px')}
-  overflow: hidden;
-  transition: height .5s ease;
-`;
+// Wrapper.Hidden = styled.div`
+//   height: ${(props) => (props.show ? '150px' : '0px')}
+//   overflow: hidden;
+//   transition: height .5s ease;
+// `;
 
 
 export default Wrapper;
