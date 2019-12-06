@@ -33,9 +33,11 @@ class LimitOrder extends React.Component {
   }
 
   clickHandler(e) {
+    console.log(e.target);
+    console.log(e.target.id)
     this.setState({
       showOptions: !this.state.showOptions,
-      expires: e.target.innerText,
+      expires: e.target.id,
     });
   }
 
@@ -54,17 +56,17 @@ class LimitOrder extends React.Component {
         </InputWrapper>
         <InputWrapper>
           <InputWrapper.Label>Expires</InputWrapper.Label>
-            <OptionWrapper.Main onClick={this.clickHandler}>
-              <OptionWrapper.Text>{this.state.expires === 'Good for Day' ? 'Good for Day' : 'Good till Can...'}</OptionWrapper.Text>
+            <OptionWrapper.Main id={this.state.expires} onClick={this.clickHandler}>
+              <OptionWrapper.Text id={this.state.expires}>{this.state.expires === 'Good for Day' ? 'Good for Day' : 'Good till Can...'}</OptionWrapper.Text>
               <MainWrapper.Arrow src="./arrows.png"/>
             </OptionWrapper.Main>
             {this.state.showOptions &&
             <OptionWrapper>
-              <OptionWrapper.Option onClick={this.clickHandler} current={'Good for Day'}
+              <OptionWrapper.Option onClick={this.clickHandler} id={'Good for Day'}
               expires={this.state.expires}>
                 Good for Day
               </OptionWrapper.Option>
-              <OptionWrapper.Option onClick={this.clickHandler} current={'Good till Canceled'}
+              <OptionWrapper.Option onClick={this.clickHandler} id={'Good till Canceled'}
               expires={this.state.expires}>
                 Good till Canceled
               </OptionWrapper.Option>

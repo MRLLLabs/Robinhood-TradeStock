@@ -9,8 +9,8 @@ export default styled.div`
   cursor: pointer;
 
   &:hover {
-    background: ${(props) => (props.current === props.expires ? '#20cd99' : '#161618')} 
+    background: ${(props) => (props.id === props.expires ? '#20cd99' : '#161618')} 
   }
 
-  background: ${(props) => (props.current === props.expires ? '#20cd99' : '#1b1a1d')}
+  background: ${(props) => (props.id === props.expires ? '#20cd99' : '#1b1a1d')}
 `;

@@ -3,6 +3,7 @@
 import React from 'react';
 import InputWrapper from './styles/inputWrapper/inputWrapper';
 import OptionWrapper from './styles/Option/optionWrapper';
+import MainWrapper from './styles/mainWrapper/wrapper';
 
 
 class TrailingStopOrder extends React.Component {
@@ -22,6 +23,7 @@ class TrailingStopOrder extends React.Component {
     this.clickHandler = this.clickHandler.bind(this);
     this.trailsClickHandler = this.trailsClickHandler.bind(this);
     this.toggle = this.toggle.bind(this);
+    this.toggleOptions = this.toggleOptions.bind(this);
   }
 
   changeHandler(e) {
@@ -76,7 +78,13 @@ class TrailingStopOrder extends React.Component {
   clickHandler(e) {
     this.setState({
       showOptions: !this.state.showOptions,
-      expires: e.target.innerText,
+      expires: e.target.id,
+    });
+  }
+
+  toggleOptions() {
+    this.setState({
+      showOptions: !this.state.showOptions,
     });
   }
 
@@ -89,7 +97,7 @@ class TrailingStopOrder extends React.Component {
   trailsClickHandler(e) {
     this.setState({
       showTrails: !this.state.showTrails,
-      trailType: e.target.innerText,
+      trailType: e.target.id,
       trail: 0,
       shares: 0,
     });
@@ -102,15 +110,19 @@ class TrailingStopOrder extends React.Component {
       <>
         <InputWrapper>
           <InputWrapper.Label>Trail Type</InputWrapper.Label>
-            <OptionWrapper.Main onClick={this.toggle}>{this.state.trailType}
+            <OptionWrapper.Main onClick={this.toggle}>
+              <OptionWrapper.Text id={this.state.expires}>
+                {this.state.trailType}
+              </OptionWrapper.Text>
+              <MainWrapper.Arrow src="./arrows.png"/>
             </OptionWrapper.Main>
             {this.state.showTrails &&
             <OptionWrapper>
-              <OptionWrapper.Option onClick={this.trailsClickHandler} current={'Percentage'}
+              <OptionWrapper.Option onClick={this.trailsClickHandler} id={'Percentage'}
               expires={this.state.trailType}>
                 Percentage
               </OptionWrapper.Option>
-              <OptionWrapper.Option onClick={this.trailsClickHandler} current={'Amount'}
+              <OptionWrapper.Option onClick={this.trailsClickHandler} id={'Amount'}
               expires={this.state.trailType}>
                 Amount
               </OptionWrapper.Option>
@@ -130,15 +142,19 @@ class TrailingStopOrder extends React.Component {
         </InputWrapper>
         <InputWrapper>
           <InputWrapper.Label>Expires</InputWrapper.Label>
-            <OptionWrapper.Main onClick={this.clickHandler}>{this.state.expires}
+            <OptionWrapper.Main onClick={this.toggleOptions}>
+              <OptionWrapper.Text>
+                {this.state.expires === 'Good for Day' ? 'Good for Day' : 'Good till Can...'}
+              </OptionWrapper.Text>
+              <MainWrapper.Arrow src="./arrows.png"/>
             </OptionWrapper.Main>
             {this.state.showOptions &&
             <OptionWrapper>
-              <OptionWrapper.Option onClick={this.clickHandler} current={'Good for Day'}
+              <OptionWrapper.Option onClick={this.clickHandler} id={'Good for Day'}
               expires={this.state.expires}>
                 Good for Day
               </OptionWrapper.Option>
-              <OptionWrapper.Option onClick={this.clickHandler} current={'Good till Canceled'}
+              <OptionWrapper.Option onClick={this.clickHandler} id={'Good till Canceled'}
               expires={this.state.expires}>
                 Good till Canceled
               </OptionWrapper.Option>

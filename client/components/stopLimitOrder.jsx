@@ -1,8 +1,8 @@
 /* eslint-disable operator-linebreak */
 import React from 'react';
 import InputWrapper from './styles/inputWrapper/inputWrapper';
-import Span from './styles/Span/span';
 import OptionWrapper from './styles/Option/optionWrapper';
+import MainWrapper from './styles/mainWrapper/wrapper';
 
 
 class StopLimitOrder extends React.Component {
@@ -36,7 +36,7 @@ class StopLimitOrder extends React.Component {
   clickHandler(e) {
     this.setState({
       showOptions: !this.state.showOptions,
-      expires: e.target.innerText,
+      expires: e.target.id,
     });
   }
 
@@ -60,15 +60,19 @@ class StopLimitOrder extends React.Component {
         </InputWrapper>
         <InputWrapper>
           <InputWrapper.Label>Expires</InputWrapper.Label>
-            <OptionWrapper.Main onClick={this.clickHandler}>{this.state.expires}
+            <OptionWrapper.Main id={this.state.expires} onClick={this.clickHandler}>
+              <OptionWrapper.Text id={this.state.expires}>
+                {this.state.expires === 'Good for Day' ? 'Good for Day' : 'Good till Can...'}
+              </OptionWrapper.Text>
+              <MainWrapper.Arrow src="./arrows.png"/>
             </OptionWrapper.Main>
             {this.state.showOptions &&
             <OptionWrapper>
-              <OptionWrapper.Option onClick={this.clickHandler} current={'Good for Day'}
+              <OptionWrapper.Option onClick={this.clickHandler} id={'Good for Day'}
               expires={this.state.expires}>
                 Good for Day
               </OptionWrapper.Option>
-              <OptionWrapper.Option onClick={this.clickHandler} current={'Good till Canceled'}
+              <OptionWrapper.Option onClick={this.clickHandler} id={'Good till Canceled'}
               expires={this.state.expires}>
                 Good till Canceled
               </OptionWrapper.Option>
