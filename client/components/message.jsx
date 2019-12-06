@@ -1,6 +1,7 @@
 /* eslint-disable no-useless-constructor */
 import React from 'react';
 import { Spring } from 'react-spring/renderprops';
+import axios from 'axios';
 import Wrapper from './styles/Messages/wrapper';
 import MainWrapper from './styles/mainWrapper/wrapper';
 import Span from './styles/Span/span';

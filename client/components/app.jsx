@@ -22,6 +22,7 @@ class App extends React.Component {
 
     this.state = {
       ticker: '',
+      userId: '',
       bp: 0,
       shares: 0,
       price: 0,
@@ -43,18 +44,21 @@ class App extends React.Component {
     this.bpInfoToggle = this.bpInfoToggle.bind(this);
     this.orderToggle = this.orderToggle.bind(this);
     this.typeSwitch = this.typeSwitch.bind(this);
+    this.depositHandler = this.depositHandler.bind(this);
   }
 
   componentDidMount() {
     axios.get('/api/JJB')
       .then((response) => {
         const { user, stock } = response.data;
+        console.log(user, stock);
         this.setState({
           ticker: stock.ticker,
-          bp: 1000,
-          shares: 2,
-          // bp: user.funds,
-          // shares: user.shares,
+          userId: user.id,
+          // bp: 1000,
+          // shares: 2,
+          bp: user.funds,
+          shares: user.shares,
           price: stock.price,
         });
       })
@@ -65,6 +69,24 @@ class App extends React.Component {
     this.setState({
       estimate,
     });
+  }
+
+  depositHandler(amount) {
+    const { userId } = this.state;
+    axios({
+      method: 'post',
+      url: '/user/deposit',
+      data: {
+        amount,
+        userId,
+      },
+    })
+      .then((response) => {
+        const { funds } = response.data;
+        this.setState({
+          funds,
+        });
+      });
   }
 
   menuHandler() {
@@ -174,7 +196,8 @@ class App extends React.Component {
               {this.state.orderPlaced &&
                 <Message estimate={this.state.estimate} bp={this.state.bp}
                 ticker={this.state.ticker} shares={this.state.shares}
-                orderToggle={this.orderToggle} orderPlaced={this.state.orderPlaced}/>}
+                orderToggle={this.orderToggle} orderPlaced={this.state.orderPlaced}
+                userId={this.state.userId}/>}
               {this.state.showWarning &&
               <Spring
                 from={{ height: this.state.showWarning ? 0 : 'auto' }}
