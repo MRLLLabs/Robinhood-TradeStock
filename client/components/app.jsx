@@ -1,4 +1,3 @@
-/* eslint-disable implicit-arrow-linebreak */
 import React from 'react';
 import axios from 'axios';
 import { Spring } from 'react-spring/renderprops';
@@ -179,14 +178,15 @@ class App extends React.Component {
                 }
               {this.state.showWarning &&
               <Spring
-                from={{ height: 0 }}
-                to={{ height: 'auto' }}>
+                from={{ height: this.state.showWarning ? 0 : 'auto' }}
+                to={{ height: this.state.showWarning ? 'auto' : 0 }}>
                 {(props) =>
                   <WarningWrapper style={props}>
                     (!) Error<br></br>
                     Please enter a valid number of shares.
                   </WarningWrapper>}
-              </Spring>}
+              </Spring>
+              }
               {!this.state.orderPlaced &&
               <Wrapper.Button onClick={this.orderHandler}>Review Order</Wrapper.Button>}
               <Wrapper.Footer>
