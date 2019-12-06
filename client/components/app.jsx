@@ -171,9 +171,9 @@ class App extends React.Component {
               <MarketPriceInfo price={this.state.price} ticker={this.state.ticker}/>
               }
               {this.state.orderPlaced &&
-              <Message estimate={this.state.estimate} bp={this.state.bp}
-              ticker={this.state.ticker} shares={this.state.shares}
-              orderToggle={this.orderToggle}/>}
+                <Message estimate={this.state.estimate} bp={this.state.bp}
+                ticker={this.state.ticker} shares={this.state.shares}
+                orderToggle={this.orderToggle}/>}
               {this.state.showWarning &&
               <WarningWrapper>
                 (!) Error<br></br>
