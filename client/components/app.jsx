@@ -174,8 +174,7 @@ class App extends React.Component {
               {this.state.orderPlaced &&
                 <Message estimate={this.state.estimate} bp={this.state.bp}
                 ticker={this.state.ticker} shares={this.state.shares}
-                orderToggle={this.orderToggle}/>
-                }
+                orderToggle={this.orderToggle} orderPlaced={this.state.orderPlaced}/>}
               {this.state.showWarning &&
               <Spring
                 from={{ height: this.state.showWarning ? 0 : 'auto' }}
