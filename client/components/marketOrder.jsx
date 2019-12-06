@@ -1,6 +1,7 @@
 import React from 'react';
 import InputWrapper from './styles/inputWrapper/inputWrapper';
 import Span from './styles/Span/span';
+import MainWrapper from './styles/mainWrapper/wrapper';
 
 class MarketOrder extends React.Component {
   constructor(props) {
@@ -30,7 +31,7 @@ class MarketOrder extends React.Component {
           </InputWrapper>
           <InputWrapper>
               <Span.Cursor onClick={this.props.marketInfoToggle}>
-                Market Price (?)
+                Market Price <MainWrapper.Image src="./questionMark.png"/>
               </Span.Cursor>
               <Span.Value>${this.props.price}</Span.Value>
           </InputWrapper>

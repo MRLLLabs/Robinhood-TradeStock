@@ -40,7 +40,6 @@ Wrapper.Type = styled.div`
   font-size: 16px;
   display: inline-block;
   cursor: pointer;
-  // border-bottom: 1px solid green;
   padding-top: 12px;
   padding-bottom: 12px;
   margin-left: 15px;
@@ -55,6 +54,18 @@ Wrapper.Type = styled.div`
 Wrapper.TypeWrapper = styled.div`
   width: 180px;
   margin-left: 12px;
+`;
+
+Wrapper.Image = styled.img`
+  height: 20px;
+  width: 20px;
+  margin-bottom: -5px;
+`;
+
+Wrapper.Arrow = styled.img`
+  height: 20px;
+  width: 20px;
+  float: right;
 `;
 
 export default Wrapper;

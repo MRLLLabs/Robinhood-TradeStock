@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { Spring } from 'react-spring/renderprops';
 import MarketOrder from './marketOrder.jsx';
 import CheckBox from './checkbox.jsx';
 import LimitOrder from './limitOrder.jsx';
@@ -164,33 +165,39 @@ class App extends React.Component {
               {tab !== 'Market Order' &&
               <Wrapper.MarketPrice>
                 <Span.Cursor onClick={this.marketInfoToggle}>
-                  Market Price ${this.state.price} (?)
+                  Market Price ${this.state.price} <Wrapper.Image src="./questionMark.png"/>
                 </Span.Cursor>
               </Wrapper.MarketPrice>}
               {this.state.marketInfo &&
               <MarketPriceInfo price={this.state.price} ticker={this.state.ticker}/>
               }
               {this.state.orderPlaced &&
-              <Message estimate={this.state.estimate} bp={this.state.bp}
-              ticker={this.state.ticker} shares={this.state.shares}
-              orderToggle={this.orderToggle}/>}
+                <Message estimate={this.state.estimate} bp={this.state.bp}
+                ticker={this.state.ticker} shares={this.state.shares}
+                orderToggle={this.orderToggle} orderPlaced={this.state.orderPlaced}/>}
               {this.state.showWarning &&
-              <WarningWrapper>
-                (!) Error<br></br>
-                Please enter a valid number of shares.
-              </WarningWrapper>}
+              <Spring
+                from={{ height: this.state.showWarning ? 0 : 'auto' }}
+                to={{ height: this.state.showWarning ? 'auto' : 0 }}>
+                {(props) =>
+                  <WarningWrapper style={props}>
+                    (!) Error<br></br>
+                    Please enter a valid number of shares.
+                  </WarningWrapper>}
+              </Spring>
+              }
               {!this.state.orderPlaced &&
               <Wrapper.Button onClick={this.orderHandler}>Review Order</Wrapper.Button>}
               <Wrapper.Footer>
-                {this.state.type === 'Buy' ?
-                  <Span.Cursor onClick={this.bpInfoToggle}>
-                    ${this.state.bp} Buying Power Available (?)
-                  </Span.Cursor>
-                  :
-                  <Span>
-                    {this.state.shares} Shares Available
-                  </Span>}
-              </Wrapper.Footer>
+              {this.state.type === 'Buy' ?
+                <Span.Cursor onClick={this.bpInfoToggle}>
+                  ${this.state.bp} Buying Power Available <Wrapper.Image src="./questionMark.png"/>
+                </Span.Cursor>
+                :
+                <Span>
+                  {this.state.shares} Shares Available
+                </Span>}
+            </Wrapper.Footer>
               {this.state.bpInfo &&
               <BpInfo ticker={this.state.ticker} bp={this.state.bp}></BpInfo>}
           </Wrapper>

@@ -17,6 +17,10 @@ const optionWrapper = styled.div`
 
 optionWrapper.Option = Option;
 optionWrapper.Main = MainOption;
+optionWrapper.Text = styled.div`
+  display: inline-block;
+  padding-top: 3px;
+`;
 
 
 export default optionWrapper;

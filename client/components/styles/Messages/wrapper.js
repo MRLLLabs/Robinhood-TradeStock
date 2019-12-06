@@ -5,7 +5,5 @@ export default styled.div`
   margin: auto;
   padding: 10px;
   font-size: 13px;
-  -webkit-transition: height .25s ease;
-  -moz-transition: height .25s ease;
-  transition: height .25s ease;
+  overflow: hidden;
 `;
