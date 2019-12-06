@@ -165,7 +165,7 @@ class App extends React.Component {
               {tab !== 'Market Order' &&
               <Wrapper.MarketPrice>
                 <Span.Cursor onClick={this.marketInfoToggle}>
-                  Market Price ${this.state.price} (?)
+                  Market Price ${this.state.price} <Wrapper.Image src="./questionMark.png"/>
                 </Span.Cursor>
               </Wrapper.MarketPrice>}
               {this.state.marketInfo &&
@@ -191,7 +191,7 @@ class App extends React.Component {
               <Wrapper.Footer>
               {this.state.type === 'Buy' ?
                 <Span.Cursor onClick={this.bpInfoToggle}>
-                  ${this.state.bp} Buying Power Available (?)
+                  ${this.state.bp} Buying Power Available <Wrapper.Image src="./questionMark.png"/>
                 </Span.Cursor>
                 :
                 <Span>

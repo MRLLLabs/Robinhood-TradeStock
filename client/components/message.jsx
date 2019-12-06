@@ -38,7 +38,7 @@ class Message extends React.Component {
             to={{ height: 'auto' }}>
             {(props) =>
               <Wrapper style={props}>
-              (!) Not enough buying power to purchase
+              <MainWrapper.Image src="./exclamation.png"/> Not enough buying power to purchase
               <Span.Color> shares of {this.props.ticker}.</Span.Color><br></br>
               <br></br>Please deposit funds to purchase at market price
               (5% collar included).<br></br><br></br>Market orders on
