@@ -86,7 +86,8 @@ class App extends React.Component {
         this.setState({
           funds,
         });
-      });
+      })
+      .catch((err) => console.log(err));
   }
 
   menuHandler() {
@@ -197,7 +198,7 @@ class App extends React.Component {
                 <Message estimate={this.state.estimate} bp={this.state.bp}
                 ticker={this.state.ticker} shares={this.state.shares}
                 orderToggle={this.orderToggle} orderPlaced={this.state.orderPlaced}
-                userId={this.state.userId}/>}
+                depositHandler={this.depositHandler}/>}
               {this.state.showWarning &&
               <Spring
                 from={{ height: this.state.showWarning ? 0 : 'auto' }}

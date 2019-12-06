@@ -33,4 +33,9 @@ app.get('/api/:ticker', (req, res) => {
     });
 });
 
+app.post('/user/deposit', (req, res) => {
+  console.log(req.body);
+  res.send('received');
+});
+
 module.exports = app;
