@@ -84,7 +84,8 @@ class App extends React.Component {
       .then((response) => {
         const { funds } = response.data;
         this.setState({
-          funds,
+          bp: funds,
+          orderPlaced: false,
         });
       })
       .catch((err) => console.log(err));
