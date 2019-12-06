@@ -40,16 +40,18 @@ class App extends React.Component {
     this.orderHandler = this.orderHandler.bind(this);
     this.marketInfoToggle = this.marketInfoToggle.bind(this);
     this.bpInfoToggle = this.bpInfoToggle.bind(this);
+    this.orderToggle = this.orderToggle.bind(this);
+    this.typeSwitch = this.typeSwitch.bind(this);
   }
 
   componentDidMount() {
-    axios.get('/api/F')
+    axios.get('/api/JJB')
       .then((response) => {
         const { user, stock } = response.data;
         this.setState({
           ticker: stock.ticker,
           bp: 1000,
-          shares: 0,
+          shares: 2,
           // bp: user.funds,
           // shares: user.shares,
           price: stock.price,
@@ -78,6 +80,12 @@ class App extends React.Component {
     });
   }
 
+  typeSwitch(e) {
+    this.setState({
+      type: e.target.id,
+    });
+  }
+
   marketInfoToggle() {
     this.setState({
       marketInfo: !this.state.marketInfo,
@@ -87,6 +95,13 @@ class App extends React.Component {
   bpInfoToggle() {
     this.setState({
       bpInfo: !this.state.bpInfo,
+    });
+  }
+
+  orderToggle() {
+    this.setState({
+      orderPlaced: !this.state.orderPlaced,
+      showWarning: false,
     });
   }
 
@@ -116,7 +131,7 @@ class App extends React.Component {
       return <StopLimitOrder estimateHandler={this.estimateHandler} />;
     } else if (tab === 'Trailing Stop Order') {
       return <TrailingStopOrder estimateHandler={this.estimateHandler}
-              price={this.state.price} />;
+              price={this.state.price} type={this.state.type}/>;
     }
   }
 
@@ -127,14 +142,22 @@ class App extends React.Component {
           <GlobalStyle />
           <Wrapper>
               <Wrapper.Header>
-                  <Wrapper.H1>Buy {this.state.ticker}</Wrapper.H1>
+                {this.state.shares === 0 ? <Span.Big>Buy {this.state.ticker}</Span.Big> :
+                <Wrapper.TypeWrapper>
+                  <Wrapper.Type onClick={this.typeSwitch} type={this.state.type} id={'Buy'}>
+                    Buy {this.state.ticker}
+                  </Wrapper.Type>
+                  <Wrapper.Type onClick={this.typeSwitch} type={this.state.type} id={'Sell'}>
+                    Sell {this.state.ticker}
+                  </Wrapper.Type>
+                </Wrapper.TypeWrapper>}
                   <Wrapper.MenuIcon onClick={this.menuHandler}>...</Wrapper.MenuIcon>
                   {this.state.menu &&
                   <DropDown tab={this.state.tab} tabHandler={this.tabHandler}></DropDown>}
               </Wrapper.Header>
               {this.renderTab()}
               <Wrapper.Estimate>
-                  <Span>Estimated Cost</Span>
+                  <Span>Estimated {this.state.type === 'Buy' ? 'Cost' : 'Credit'}</Span>
                   <Span.Value>${this.state.estimate}</Span.Value>
               </Wrapper.Estimate>
               {tab === 'Limit Order' && <CheckBox/>}
@@ -150,7 +173,7 @@ class App extends React.Component {
               {this.state.orderPlaced &&
               <Message estimate={this.state.estimate} bp={this.state.bp}
               ticker={this.state.ticker} shares={this.state.shares}
-              orderHandler={this.orderHandler}/>}
+              orderToggle={this.orderToggle}/>}
               {this.state.showWarning &&
               <WarningWrapper>
                 (!) Error<br></br>
@@ -159,9 +182,14 @@ class App extends React.Component {
               {!this.state.orderPlaced &&
               <Wrapper.Button onClick={this.orderHandler}>Review Order</Wrapper.Button>}
               <Wrapper.Footer>
+                {this.state.type === 'Buy' ?
                   <Span.Cursor onClick={this.bpInfoToggle}>
                     ${this.state.bp} Buying Power Available (?)
                   </Span.Cursor>
+                  :
+                  <Span>
+                    {this.state.shares} Shares Available
+                  </Span>}
               </Wrapper.Footer>
               {this.state.bpInfo &&
               <BpInfo ticker={this.state.ticker} bp={this.state.bp}></BpInfo>}
