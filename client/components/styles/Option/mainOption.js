@@ -8,6 +8,8 @@ export default styled.div`
   padding: 10px;
   background: #1b1a1d;
   cursor: pointer;
+  // display: flex;
+  // justify-content: space-between;
 
   &:hover {
     box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.01), 

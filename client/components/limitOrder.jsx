@@ -1,8 +1,8 @@
 /* eslint-disable operator-linebreak */
 import React from 'react';
 import InputWrapper from './styles/inputWrapper/inputWrapper';
-import Span from './styles/Span/span';
 import OptionWrapper from './styles/Option/optionWrapper';
+import MainWrapper from './styles/mainWrapper/wrapper';
 
 
 class LimitOrder extends React.Component {
@@ -54,7 +54,9 @@ class LimitOrder extends React.Component {
         </InputWrapper>
         <InputWrapper>
           <InputWrapper.Label>Expires</InputWrapper.Label>
-            <OptionWrapper.Main onClick={this.clickHandler}>{this.state.expires}
+            <OptionWrapper.Main onClick={this.clickHandler}>
+              <OptionWrapper.Text>{this.state.expires === 'Good for Day' ? 'Good for Day' : 'Good till Can...'}</OptionWrapper.Text>
+              <MainWrapper.Arrow src="./arrows.png"/>
             </OptionWrapper.Main>
             {this.state.showOptions &&
             <OptionWrapper>

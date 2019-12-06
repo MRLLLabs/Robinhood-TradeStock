@@ -62,4 +62,10 @@ Wrapper.Image = styled.img`
   margin-bottom: -5px;
 `;
 
+Wrapper.Arrow = styled.img`
+  height: 20px;
+  width: 20px;
+  float: right;
+`;
+
 export default Wrapper;
