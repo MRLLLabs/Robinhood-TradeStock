@@ -12,7 +12,7 @@ class Message extends React.Component {
   }
 
   render() {
-    if (this.props.bp > this.props.estimate) {
+    if (this.props.bp >= this.props.estimate) {
       return (
         <>
           <Spring
@@ -20,8 +20,8 @@ class Message extends React.Component {
             to={{ height: 'auto' }}>
             {(props) =>
               <Wrapper style={props}>
-                You are placing a good for day market order to buy 1
-                share of {this.props.ticker}. Your order will be placed after
+                You are placing a good for day market order to buy
+                shares of {this.props.ticker}. Your order will be placed after
                 the market opens and executed at the best available price.
               </Wrapper>}
           </Spring>
@@ -49,7 +49,8 @@ class Message extends React.Component {
               of ${this.props.bp} you can place a limit order instead.
             </Wrapper>}
         </Spring>
-          <MainWrapper.Button>
+          <MainWrapper.Button
+          onClick={() => this.props.depositHandler((this.props.estimate - this.props.bp).toFixed(2))}>
             Deposit ${(this.props.estimate - this.props.bp).toFixed(2)}
           </MainWrapper.Button>
           <MainWrapper.InvertedButton onClick={this.props.orderToggle}>

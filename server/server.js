@@ -28,8 +28,29 @@ app.get('/api/:ticker', (req, res) => {
       }
     })
     .catch((err) => {
-      res.status(400);
+      res.status(404);
       res.send(err);
+    });
+});
+
+app.post('/user/deposit', (req, res) => {
+  console.log(req.body);
+  const { amount, userId } = req.body;
+  Users.findOne({ where: { id: userId }, raw: true })
+    .then((response) => {
+      const funds = Number(amount) + Number(response.funds);
+      Users.update(
+        { funds },
+        { returning: true, where: { id: userId } },
+      )
+        .then(() => {
+          Users.findOne({ where: { id: userId }, raw: true })
+            .then((results) => res.send(results));
+        })
+        .catch((err) => {
+          res.status(404);
+          res.send(err);
+        });
     });
 });
 
