@@ -56,6 +56,26 @@ class Message extends React.Component {
             </MainWrapper.InvertedButton>
           </>
         );
+      } else if (tab === 'Stop Loss Order' || tab === 'Stop Limit Order') {
+        return (
+          <>
+            <Spring
+              from={{ height: 0 }}
+              to={{ height: 'auto' }}>
+              {(props) =>
+                <Wrapper style={props}>
+                  You are placing a good for day {tab === 'Stop Loss Order' ? 'stop loss order' : 'stop limit order'}
+                  to {type === 'Buy' ? 'buy' : 'sell'} {inputShares} share(s)
+                  of {ticker}. When the price of {ticker} reaches ${stopPrice} your order will be
+                  converted to a market order and executed at the best available price.
+                </Wrapper>}
+            </Spring>
+            <MainWrapper.Button>Buy</MainWrapper.Button>
+            <MainWrapper.InvertedButton onClick={orderToggle}>
+              Edit
+            </MainWrapper.InvertedButton>
+          </>
+        );
       }
     } else if (bp < estimate) {
       return (

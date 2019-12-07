@@ -20,14 +20,17 @@ class StopLossOrder extends React.Component {
   }
 
   changeHandler(e) {
-    if (e.target.name === 'stopPrice') {
-      this.props.estimateHandler(e.target.value * this.state.shares);
-    } else {
-      this.props.estimateHandler(e.target.value * this.state.stopPrice);
-    }
+    // if (e.target.name === 'stopPrice') {
+    //   this.props.estimateHandler(e.target.value * this.state.shares);
+    // } else {
+    //   this.props.estimateHandler(e.target.value * this.state.stopPrice);
+    // }
 
     this.setState({
       [e.target.name]: e.target.value,
+    }, () => {
+      const { shares, stopPrice } = this.state;
+      this.props.estimateHandler(shares * stopPrice, shares, stopPrice);
     });
   }
 

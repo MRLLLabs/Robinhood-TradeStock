@@ -23,14 +23,11 @@ class StopLimitOrder extends React.Component {
   }
 
   changeHandler(e) {
-    if (e.target.name === 'limitPrice') {
-      this.props.estimateHandler(e.target.value * this.state.shares);
-    } else {
-      this.props.estimateHandler(e.target.value * this.state.limitPrice);
-    }
-
     this.setState({
       [e.target.name]: e.target.value,
+    }, () => {
+      const { stopPrice, shares, limitPrice } = this.state;
+      this.props.estimateHandler(shares * limitPrice, shares, stopPrice);
     });
   }
 
