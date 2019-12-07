@@ -96,33 +96,52 @@ class Message extends React.Component {
           </>
         );
       }
-    } else if (bp < estimate) {
-      return (
-        <>
-        <Spring
-            from={{ height: 0 }}
-            to={{ height: 'auto' }}>
-            {(props) =>
-              <Wrapper style={props}>
-              <MainWrapper.Image src="./exclamation.png"/> Not enough buying power to purchase
-              <Span.Color> shares of {ticker}.</Span.Color><br></br>
-              <br></br>Please deposit funds to purchase at market price
-              (5% collar included).<br></br><br></br>Market orders on
-              Robinhood are placed as limit orders up to 5% above the market price
-              in order to protect customers from spending more than they have in
-              their Robinhood account. If you want to use your full buying power
-              of ${bp} you can place a limit order instead.
-            </Wrapper>}
-        </Spring>
-          <MainWrapper.Button onClick={() =>
-            depositHandler((estimate - bp).toFixed(2))}>
-            Deposit ${(estimate - bp).toFixed(2)}
-          </MainWrapper.Button>
-          <MainWrapper.InvertedButton onClick={orderToggle}>
-            Back
-          </MainWrapper.InvertedButton>
-        </>
-      );
+    } else if ((bp < estimate && type === 'Buy') || (userShares < inputShares && type === 'Sell')) {
+      if (type === 'Buy') {
+        return (
+          <>
+          <Spring
+              from={{ height: 0 }}
+              to={{ height: 'auto' }}>
+              {(props) =>
+                <Wrapper style={props}>
+                <MainWrapper.Image src="./exclamation.png"/> Not enough buying power to purchase
+                <Span.Color> shares of {ticker}.</Span.Color><br></br>
+                <br></br>Please deposit funds to purchase at market price
+                (5% collar included).<br></br><br></br>Market orders on
+                Robinhood are placed as limit orders up to 5% above the market price
+                in order to protect customers from spending more than they have in
+                their Robinhood account. If you want to use your full buying power
+                of ${bp} you can place a limit order instead.
+              </Wrapper>}
+          </Spring>
+            <MainWrapper.Button onClick={() =>
+              depositHandler((estimate - bp).toFixed(2))}>
+              Deposit ${(estimate - bp).toFixed(2)}
+            </MainWrapper.Button>
+            <MainWrapper.InvertedButton onClick={orderToggle}>
+              Back
+            </MainWrapper.InvertedButton>
+          </>
+        );
+      } else if (type === 'Sell') {
+        return (
+          <>
+          <Spring
+              from={{ height: 0 }}
+              to={{ height: 'auto' }}>
+              {(props) =>
+                <Wrapper style={props}>
+                <MainWrapper.Image src="./exclamation.png"/> <Span.Bold>Not Enough Shares</Span.Bold>
+                <br></br>You can only sell up to {userShares} of {ticker}.
+              </Wrapper>}
+          </Spring>
+            <MainWrapper.Button onClick={orderToggle}>
+              Back
+            </MainWrapper.Button>
+          </>
+        );
+      }
     } else {
       return null;
     }
