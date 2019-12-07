@@ -24,7 +24,9 @@ class App extends React.Component {
       ticker: '',
       userId: '',
       bp: 0,
-      shares: 0,
+      userShares: 0,
+      inputShares: 0,
+      stopPrice: 0,
       price: 0,
       estimate: 0,
       type: 'Buy',
@@ -58,16 +60,18 @@ class App extends React.Component {
           // bp: 1000,
           // shares: 2,
           bp: user.funds,
-          shares: user.shares,
+          userShares: user.shares,
           price: stock.price,
         });
       })
       .catch((err) => console.log(err));
   }
 
-  estimateHandler(estimate) {
+  estimateHandler(estimate, inputShares = 0, stopPrice = 0) {
     this.setState({
       estimate,
+      inputShares,
+      stopPrice,
     });
   }
 
@@ -205,9 +209,10 @@ class App extends React.Component {
               }
               {this.state.orderPlaced &&
                 <Message estimate={this.state.estimate} bp={this.state.bp}
-                ticker={this.state.ticker} shares={this.state.shares}
+                ticker={this.state.ticker} userShares={this.state.userShares}
+                inputShares={this.state.inputShares} stopPrice={this.state.stopPrice}
                 orderToggle={this.orderToggle} orderPlaced={this.state.orderPlaced}
-                depositHandler={this.depositHandler}/>}
+                depositHandler={this.depositHandler} type={this.state.type} tab={this.state.tab}/>}
               {this.state.showWarning &&
               <Spring
                 from={{ height: this.state.showWarning ? 0 : 'auto' }}
@@ -228,7 +233,7 @@ class App extends React.Component {
                 </Span.Cursor>
                 :
                 <Span>
-                  {this.state.shares} Shares Available
+                  {this.state.userShares} Shares Available
                 </Span>}
             </Wrapper.Footer>
               {this.state.bpInfo &&

@@ -15,10 +15,10 @@ class MarketOrder extends React.Component {
   }
 
   changeHandler(e) {
-    this.props.estimateHandler(e.target.value * this.props.price);
-
     this.setState({
       shares: e.target.value,
+    }, () => {
+      this.props.estimateHandler(this.state.shares * this.props.price, this.state.shares);
     });
   }
 
