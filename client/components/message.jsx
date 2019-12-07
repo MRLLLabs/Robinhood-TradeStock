@@ -11,9 +11,11 @@ class Message extends React.Component {
   }
 
   render() {
-    const { estimate, bp, ticker, orderToggle,
+    const {
+      estimate, bp, ticker, orderToggle,
       depositHandler, userShares, inputShares,
-      stopPrice, orderPlaced, type, tab } = this.props;
+      stopPrice, type, tab,
+    } = this.props;
 
     if ((bp >= estimate && type === 'Buy') || (userShares >= inputShares && type === 'Sell')) {
       if (tab === 'Market Order') {
@@ -44,8 +46,8 @@ class Message extends React.Component {
               {(props) =>
                 <Wrapper style={props}>
                   You are placing a good for day limit order to {type === 'Buy' ? 'buy' : 'sell'} {inputShares} share(s)
-                  of {ticker}. Your pending order, if executed, will execute at ${stopPrice}
-                  per share or better.
+                  of {ticker}. Your pending order, if executed, will execute at
+                  ${stopPrice} per share or better.
                 </Wrapper>}
             </Spring>
             <MainWrapper.Button>Buy</MainWrapper.Button>

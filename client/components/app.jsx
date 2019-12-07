@@ -211,8 +211,8 @@ class App extends React.Component {
                 <Message estimate={this.state.estimate} bp={this.state.bp}
                 ticker={this.state.ticker} userShares={this.state.userShares}
                 inputShares={this.state.inputShares} stopPrice={this.state.stopPrice}
-                orderToggle={this.orderToggle} orderPlaced={this.state.orderPlaced}
-                depositHandler={this.depositHandler} type={this.state.type} tab={this.state.tab}/>}
+                orderToggle={this.orderToggle} depositHandler={this.depositHandler}
+                type={this.state.type} tab={this.state.tab}/>}
               {this.state.showWarning &&
               <Spring
                 from={{ height: this.state.showWarning ? 0 : 'auto' }}
