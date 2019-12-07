@@ -114,12 +114,20 @@ class App extends React.Component {
   marketInfoToggle() {
     this.setState({
       marketInfo: !this.state.marketInfo,
+    }, () => {
+      if (this.state.marketInfo && this.state.bpInfo) {
+        this.setState({ bpInfo: false });
+      }
     });
   }
 
   bpInfoToggle() {
     this.setState({
       bpInfo: !this.state.bpInfo,
+    }, () => {
+      if (this.state.marketInfo && this.state.bpInfo) {
+        this.setState({ marketInfo: false });
+      }
     });
   }
 
