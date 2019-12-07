@@ -16,6 +16,7 @@ class StopLossOrder extends React.Component {
 
     this.changeHandler = this.changeHandler.bind(this);
     this.clickHandler = this.clickHandler.bind(this);
+    this.toggle = this.toggle.bind(this);
   }
 
   changeHandler(e) {
@@ -28,6 +29,10 @@ class StopLossOrder extends React.Component {
     this.setState({
       [e.target.name]: e.target.value,
     });
+  }
+
+  toggle() {
+    this.setState({ showOptions: !this.state.showOptions });
   }
 
   clickHandler(e) {
@@ -52,8 +57,8 @@ class StopLossOrder extends React.Component {
         </InputWrapper>
         <InputWrapper>
           <InputWrapper.Label>Expires</InputWrapper.Label>
-            <OptionWrapper.Main id={this.state.expires} onClick={this.clickHandler}>
-              <OptionWrapper.Text id={this.state.expires}>
+            <OptionWrapper.Main onClick={this.toggle}>
+              <OptionWrapper.Text>
                 {this.state.expires === 'Good for Day' ? 'Good for Day' : 'Good till Can...'}
               </OptionWrapper.Text>
               <MainWrapper.Arrow src="./arrows.png"/>

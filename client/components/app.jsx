@@ -206,7 +206,7 @@ class App extends React.Component {
                 to={{ height: this.state.showWarning ? 'auto' : 0 }}>
                 {(props) =>
                   <WarningWrapper style={props}>
-                    (!) Error<br></br>
+                    <Wrapper.Image src="./exclamation.png"/> Error<br></br>
                     Please enter a valid number of shares.
                   </WarningWrapper>}
               </Spring>

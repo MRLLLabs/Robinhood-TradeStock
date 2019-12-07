@@ -18,6 +18,7 @@ class LimitOrder extends React.Component {
 
     this.changeHandler = this.changeHandler.bind(this);
     this.clickHandler = this.clickHandler.bind(this);
+    this.toggle = this.toggle.bind(this);
   }
 
   changeHandler(e) {
@@ -39,6 +40,10 @@ class LimitOrder extends React.Component {
     });
   }
 
+  toggle() {
+    this.setState({ showOptions: !this.state.showOptions });
+  }
+
   render() {
     return (
       <>
@@ -54,8 +59,8 @@ class LimitOrder extends React.Component {
         </InputWrapper>
         <InputWrapper>
           <InputWrapper.Label>Expires</InputWrapper.Label>
-            <OptionWrapper.Main id={this.state.expires} onClick={this.clickHandler}>
-              <OptionWrapper.Text id={this.state.expires}>{this.state.expires === 'Good for Day' ? 'Good for Day' : 'Good till Can...'}</OptionWrapper.Text>
+            <OptionWrapper.Main onClick={this.toggle}>
+              <OptionWrapper.Text>{this.state.expires === 'Good for Day' ? 'Good for Day' : 'Good till Can...'}</OptionWrapper.Text>
               <MainWrapper.Arrow src="./arrows.png"/>
             </OptionWrapper.Main>
             {this.state.showOptions &&
