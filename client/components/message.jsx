@@ -49,8 +49,8 @@ class Message extends React.Component {
               of ${this.props.bp} you can place a limit order instead.
             </Wrapper>}
         </Spring>
-          <MainWrapper.Button
-          onClick={() => this.props.depositHandler((this.props.estimate - this.props.bp).toFixed(2))}>
+          <MainWrapper.Button onClick={() =>
+            this.props.depositHandler((this.props.estimate - this.props.bp).toFixed(2))}>
             Deposit ${(this.props.estimate - this.props.bp).toFixed(2)}
           </MainWrapper.Button>
           <MainWrapper.InvertedButton onClick={this.props.orderToggle}>
