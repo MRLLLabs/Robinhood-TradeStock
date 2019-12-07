@@ -36,7 +36,7 @@ class TrailingStopOrder extends React.Component {
         } else {
           value = Number(this.state.trail) + (this.props.price * e.target.value);
         }
-        this.props.estimateHandler(value.toFixed(2));
+        this.props.estimateHandler(value.toFixed(2), e.target.value);
       } else {
         if (this.state.shares !== 0 && this.state.shares !== '') {
           if (this.state.trailType === 'Percentage') {
@@ -45,7 +45,7 @@ class TrailingStopOrder extends React.Component {
           } else {
             value = Number(e.target.value) + (this.props.price * this.state.shares);
           }
-          this.props.estimateHandler(value.toFixed(2));
+          this.props.estimateHandler(value.toFixed(2), this.state.shares);
         }
       }
     } else {
@@ -56,7 +56,7 @@ class TrailingStopOrder extends React.Component {
         } else {
           value = (this.props.price * e.target.value) - Number(this.state.trail);
         }
-        this.props.estimateHandler(value.toFixed(2));
+        this.props.estimateHandler(value.toFixed(2), e.target.value);
       } else {
         if (this.state.shares !== 0 && this.state.shares !== '') {
           if (this.state.trailType === 'Percentage') {
@@ -65,7 +65,7 @@ class TrailingStopOrder extends React.Component {
           } else {
             value = (this.props.price * this.state.shares) - Number(e.target.value);
           }
-          this.props.estimateHandler(value.toFixed(2));
+          this.props.estimateHandler(value.toFixed(2), this.state.shares);
         }
       }
     }

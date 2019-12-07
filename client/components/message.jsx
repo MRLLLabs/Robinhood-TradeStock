@@ -76,6 +76,25 @@ class Message extends React.Component {
             </MainWrapper.InvertedButton>
           </>
         );
+      } else if (tab === 'Trailing Stop Order') {
+        return (
+          <>
+            <Spring
+              from={{ height: 0 }}
+              to={{ height: 'auto' }}>
+              {(props) =>
+                <Wrapper style={props}>
+                  You are placing a good for day trailing stop order to {type === 'Buy' ? 'buy' : 'sell'} {inputShares} share(s)
+                  of {ticker}. Your order will execute at the best available price if {ticker}
+                  rises from its trail amount.
+                </Wrapper>}
+            </Spring>
+            <MainWrapper.Button>Buy</MainWrapper.Button>
+            <MainWrapper.InvertedButton onClick={orderToggle}>
+              Edit
+            </MainWrapper.InvertedButton>
+          </>
+        );
       }
     } else if (bp < estimate) {
       return (
