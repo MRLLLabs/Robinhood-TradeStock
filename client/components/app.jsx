@@ -28,7 +28,7 @@ class App extends React.Component {
       inputShares: 0,
       stopPrice: 0,
       price: 0,
-      estimate: 0,
+      estimate: '0.00',
       type: 'Buy',
       tab: 'Market Order',
       menu: false,
@@ -69,7 +69,7 @@ class App extends React.Component {
 
   estimateHandler(estimate, inputShares = 0, stopPrice = 0) {
     this.setState({
-      estimate,
+      estimate: Number(estimate).toFixed(2),
       inputShares,
       stopPrice,
     });
@@ -105,7 +105,7 @@ class App extends React.Component {
     this.setState({
       tab: e.target.innerText,
       menu: !this.state.menu,
-      estimate: 0,
+      estimate: '0.00',
     });
   }
 
