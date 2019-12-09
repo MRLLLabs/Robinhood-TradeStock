@@ -1,16 +1,11 @@
 import React from 'react';
 import axios from 'axios';
 import { Spring } from 'react-spring/renderprops';
-import MarketOrder from './marketOrder.jsx';
-import CheckBox from './checkbox.jsx';
-import LimitOrder from './limitOrder.jsx';
-import StopLossOrder from './stopLossOrder.jsx';
-import StopLimitOrder from './stopLimitOrder.jsx';
-import Message from './message.jsx';
-import TrailingStopOrder from './trailingStopOrder.jsx';
-import DropDown from './dropdown.jsx';
-import MarketPriceInfo from './marketPriceInfo.jsx';
-import BpInfo from './bpInfo.jsx';
+import {
+  MarketOrder, CheckBox, LimitOrder, StopLossOrder,
+  StopLimitOrder, Message, TrailingStopOrder, DropDown,
+  MarketPriceInfo, BpInfo,
+} from './imports.jsx';
 import Wrapper from './styles/mainWrapper/wrapper';
 import WarningWrapper from './styles/Messages/wrapper';
 import Span from './styles/Span/span';
