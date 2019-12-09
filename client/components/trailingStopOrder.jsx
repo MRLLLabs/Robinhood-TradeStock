@@ -12,8 +12,8 @@ class TrailingStopOrder extends React.Component {
 
     this.state = {
       trailType: 'Percentage',
-      trail: 0,
-      shares: 0,
+      trail: '',
+      shares: '',
       expires: 'Good for Day',
       showOptions: false,
       showTrails: false,
@@ -27,51 +27,31 @@ class TrailingStopOrder extends React.Component {
   }
 
   changeHandler(e) {
-    let value;
-    if (this.props.type === 'Buy') {
-      if (e.target.name === 'shares') {
-        if (this.state.trailType === 'Percentage') {
-          value = ((this.state.trail / 100) * this.props.price) +
-                  (this.props.price * e.target.value);
-        } else {
-          value = Number(this.state.trail) + (this.props.price * e.target.value);
-        }
-        this.props.estimateHandler(value.toFixed(2), e.target.value);
-      } else {
-        if (this.state.shares !== 0 && this.state.shares !== '') {
-          if (this.state.trailType === 'Percentage') {
-            value = ((e.target.value / 100) * this.props.price) +
-                    (this.props.price * this.state.shares);
-          } else {
-            value = Number(e.target.value) + (this.props.price * this.state.shares);
-          }
-          this.props.estimateHandler(value.toFixed(2), this.state.shares);
-        }
-      }
-    } else {
-      if (e.target.name === 'shares') {
-        if (this.state.trailType === 'Percentage') {
-          value = (this.props.price * e.target.value) -
-          ((this.state.trail / 100) * this.props.price);
-        } else {
-          value = (this.props.price * e.target.value) - Number(this.state.trail);
-        }
-        this.props.estimateHandler(value.toFixed(2), e.target.value);
-      } else {
-        if (this.state.shares !== 0 && this.state.shares !== '') {
-          if (this.state.trailType === 'Percentage') {
-            value = (this.props.price * this.state.shares) -
-                    ((e.target.value / 100) * this.props.price);
-          } else {
-            value = (this.props.price * this.state.shares) - Number(e.target.value);
-          }
-          this.props.estimateHandler(value.toFixed(2), this.state.shares);
-        }
-      }
-    }
-
+    console.log(e.target);
+    
     this.setState({
       [e.target.name]: e.target.value,
+    }, () => {
+      let value = 0;
+      const { type, price, estimateHandler } = this.props;
+      const { trailType, trail, shares } = this.state;
+
+      if (shares !== '' && trail !== '') {
+        if (type === 'Buy') {
+          if (trailType === 'Percentage') {
+            value = ((trail / 100) * price) + (price * shares);
+          } else {
+            value = Number(trail) + (price * shares);
+          }
+        } else {
+          if (trailType === 'Percentage') {
+            value = (price * shares) - ((trail / 100) * price);
+          } else {
+            value = (price * shares) - Number(trail);
+          }
+        }
+      }
+      estimateHandler(value.toFixed(2), shares);
     });
   }
 
@@ -98,8 +78,8 @@ class TrailingStopOrder extends React.Component {
     this.setState({
       showTrails: !this.state.showTrails,
       trailType: e.target.id,
-      trail: 0,
-      shares: 0,
+      trail: '',
+      shares: '',
     });
 
     this.props.estimateHandler(0);
@@ -131,7 +111,7 @@ class TrailingStopOrder extends React.Component {
         <InputWrapper>
           <InputWrapper.Label>Trail ({this.state.trailType === 'Percentage' ?
             '%' : '$'})</InputWrapper.Label>
-          <InputWrapper.Dollar type="number" name="trail"
+          <InputWrapper.Dollar type="number" name="trail" placeholder="0"
           step=".01" onChange={this.changeHandler} value={this.state.trail}></InputWrapper.Dollar>
         </InputWrapper>
         <InputWrapper>
