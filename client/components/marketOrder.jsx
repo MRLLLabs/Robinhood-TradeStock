@@ -8,7 +8,7 @@ class MarketOrder extends React.Component {
     super(props);
 
     this.state = {
-      shares: 0,
+      shares: '',
     };
 
     this.changeHandler = this.changeHandler.bind(this);
@@ -27,7 +27,7 @@ class MarketOrder extends React.Component {
       <>
           <InputWrapper>
               <InputWrapper.Label>Shares</InputWrapper.Label>
-              <InputWrapper.Input type="number" placeholder="0" onChange={this.changeHandler}></InputWrapper.Input>
+              <InputWrapper.Input type="number" placeholder="0" value={this.state.shares} onChange={this.changeHandler}></InputWrapper.Input>
           </InputWrapper>
           <InputWrapper>
               <Span.Cursor onClick={this.props.marketInfoToggle}>
