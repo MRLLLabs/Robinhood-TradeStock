@@ -1,16 +1,11 @@
 import React from 'react';
 import axios from 'axios';
 import { Spring } from 'react-spring/renderprops';
-import MarketOrder from './marketOrder.jsx';
-import CheckBox from './checkbox.jsx';
-import LimitOrder from './limitOrder.jsx';
-import StopLossOrder from './stopLossOrder.jsx';
-import StopLimitOrder from './stopLimitOrder.jsx';
-import Message from './message.jsx';
-import TrailingStopOrder from './trailingStopOrder.jsx';
-import DropDown from './dropdown.jsx';
-import MarketPriceInfo from './marketPriceInfo.jsx';
-import BpInfo from './bpInfo.jsx';
+import {
+  MarketOrder, CheckBox, LimitOrder, StopLossOrder,
+  StopLimitOrder, Message, TrailingStopOrder, DropDown,
+  MarketPriceInfo, BpInfo,
+} from './imports.jsx';
 import Wrapper from './styles/mainWrapper/wrapper';
 import WarningWrapper from './styles/Messages/wrapper';
 import Span from './styles/Span/span';
@@ -24,9 +19,11 @@ class App extends React.Component {
       ticker: '',
       userId: '',
       bp: 0,
-      shares: 0,
+      userShares: 0,
+      inputShares: 0,
+      stopPrice: 0,
       price: 0,
-      estimate: 0,
+      estimate: '0.00',
       type: 'Buy',
       tab: 'Market Order',
       menu: false,
@@ -58,16 +55,18 @@ class App extends React.Component {
           // bp: 1000,
           // shares: 2,
           bp: user.funds,
-          shares: user.shares,
+          userShares: user.shares,
           price: stock.price,
         });
       })
       .catch((err) => console.log(err));
   }
 
-  estimateHandler(estimate) {
+  estimateHandler(estimate, inputShares = 0, stopPrice = 0) {
     this.setState({
-      estimate,
+      estimate: Number(estimate).toFixed(2),
+      inputShares,
+      stopPrice,
     });
   }
 
@@ -101,7 +100,7 @@ class App extends React.Component {
     this.setState({
       tab: e.target.innerText,
       menu: !this.state.menu,
-      estimate: 0,
+      estimate: '0.00',
     });
   }
 
@@ -114,12 +113,20 @@ class App extends React.Component {
   marketInfoToggle() {
     this.setState({
       marketInfo: !this.state.marketInfo,
+    }, () => {
+      if (this.state.marketInfo && this.state.bpInfo) {
+        this.setState({ bpInfo: false });
+      }
     });
   }
 
   bpInfoToggle() {
     this.setState({
       bpInfo: !this.state.bpInfo,
+    }, () => {
+      if (this.state.marketInfo && this.state.bpInfo) {
+        this.setState({ marketInfo: false });
+      }
     });
   }
 
@@ -197,16 +204,17 @@ class App extends React.Component {
               }
               {this.state.orderPlaced &&
                 <Message estimate={this.state.estimate} bp={this.state.bp}
-                ticker={this.state.ticker} shares={this.state.shares}
-                orderToggle={this.orderToggle} orderPlaced={this.state.orderPlaced}
-                depositHandler={this.depositHandler}/>}
+                ticker={this.state.ticker} userShares={this.state.userShares}
+                inputShares={this.state.inputShares} stopPrice={this.state.stopPrice}
+                orderToggle={this.orderToggle} depositHandler={this.depositHandler}
+                type={this.state.type} tab={this.state.tab}/>}
               {this.state.showWarning &&
               <Spring
                 from={{ height: this.state.showWarning ? 0 : 'auto' }}
                 to={{ height: this.state.showWarning ? 'auto' : 0 }}>
                 {(props) =>
                   <WarningWrapper style={props}>
-                    (!) Error<br></br>
+                    <Wrapper.Image src="./exclamation.png"/> Error<br></br>
                     Please enter a valid number of shares.
                   </WarningWrapper>}
               </Spring>
@@ -220,7 +228,7 @@ class App extends React.Component {
                 </Span.Cursor>
                 :
                 <Span>
-                  {this.state.shares} Shares Available
+                  {this.state.userShares} Shares Available
                 </Span>}
             </Wrapper.Footer>
               {this.state.bpInfo &&

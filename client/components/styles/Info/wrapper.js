@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 import MainWrapper from '../mainWrapper/wrapper';
-import Header from './header';
-import Footer from './footer';
 import DataWrapper from './dataWrapper';
 
 const Info = styled(MainWrapper)`
@@ -13,8 +11,18 @@ const Info = styled(MainWrapper)`
   z-index: 1;
 `;
 
-Info.Header = Header;
-Info.Footer = Footer;
+Info.Header = styled.div`
+  border-bottom: 1px solid black;
+  padding: 20px;
+  font-size: 16px;
+`;
+
+Info.Footer = styled.div`
+  color: grey;
+  width: 240px;
+  margin: auto;
+  padding: 20px;
+`;
 Info.DataWrapper = DataWrapper;
 
 export default Info;

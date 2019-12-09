@@ -1,17 +1,25 @@
 import styled from 'styled-components';
-import ColorSpan from './colorSpan';
-import SpanValue from './spanValue';
-import Bold from './bold';
-import MarketPrice from './marketPrice';
 
 const Span = styled.span`
   font-size: 13px;
 `;
 
-Span.Color = ColorSpan;
-Span.Value = SpanValue;
-Span.Bold = Bold;
-Span.Cursor = MarketPrice;
+Span.Color = styled.span`
+  color: #20cd99;
+`;
+
+Span.Value = styled.span`
+  font-size: 13px;
+`;
+
+Span.Bold = styled.span`
+  font-weight: bold;
+`;
+
+Span.Cursor = styled(Span.Color)`
+  cursor: pointer;
+`;
+
 Span.Big = styled.span`
   font-size: 16px;
   margin-left: 26px;

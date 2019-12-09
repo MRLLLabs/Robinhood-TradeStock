@@ -18,17 +18,15 @@ class LimitOrder extends React.Component {
 
     this.changeHandler = this.changeHandler.bind(this);
     this.clickHandler = this.clickHandler.bind(this);
+    this.toggle = this.toggle.bind(this);
   }
 
   changeHandler(e) {
-    if (e.target.name === 'limitPrice') {
-      this.props.estimateHandler(e.target.value * this.state.shares);
-    } else {
-      this.props.estimateHandler(e.target.value * this.state.limitPrice);
-    }
-
     this.setState({
       [e.target.name]: e.target.value,
+    }, () => {
+      const { shares, limitPrice } = this.state;
+      this.props.estimateHandler(limitPrice * shares, shares, limitPrice);
     });
   }
 
@@ -37,6 +35,10 @@ class LimitOrder extends React.Component {
       showOptions: !this.state.showOptions,
       expires: e.target.id,
     });
+  }
+
+  toggle() {
+    this.setState({ showOptions: !this.state.showOptions });
   }
 
   render() {
@@ -54,8 +56,8 @@ class LimitOrder extends React.Component {
         </InputWrapper>
         <InputWrapper>
           <InputWrapper.Label>Expires</InputWrapper.Label>
-            <OptionWrapper.Main id={this.state.expires} onClick={this.clickHandler}>
-              <OptionWrapper.Text id={this.state.expires}>{this.state.expires === 'Good for Day' ? 'Good for Day' : 'Good till Can...'}</OptionWrapper.Text>
+            <OptionWrapper.Main onClick={this.toggle}>
+              <OptionWrapper.Text>{this.state.expires === 'Good for Day' ? 'Good for Day' : 'Good till Can...'}</OptionWrapper.Text>
               <MainWrapper.Arrow src="./arrows.png"/>
             </OptionWrapper.Main>
             {this.state.showOptions &&
