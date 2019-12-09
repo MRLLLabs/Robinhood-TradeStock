@@ -48,12 +48,9 @@ class App extends React.Component {
     axios.get('/api/JJB')
       .then((response) => {
         const { user, stock } = response.data;
-        console.log(user, stock);
         this.setState({
           ticker: stock.ticker,
           userId: user.id,
-          // bp: 1000,
-          // shares: 2,
           bp: user.funds,
           userShares: user.shares,
           price: stock.price,
