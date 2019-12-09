@@ -17,3 +17,9 @@ npm run db:setup
 Step 5:
 To run server: 
 npm start 
+
+Step 6: 
+
+In app.jsx line 48, I enter the ticker symbol to be used. Currently it's set to 'JJB'. If you want to test a different company, you can change the ticker symbol here. 
+
+Also, in serveer.js line 16, a random User Id is being chosen to test. If you'd like a specific user, you can change the id number here. 
