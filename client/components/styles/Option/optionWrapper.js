@@ -1,7 +1,4 @@
 import styled from 'styled-components';
-import Option from './option';
-import MainOption from './mainOption';
-
 
 const optionWrapper = styled.div`
   width: 120px;
@@ -15,8 +12,37 @@ const optionWrapper = styled.div`
   0 3px 24px rgba(0, 0, 0, 0.6);
 `;
 
-optionWrapper.Option = Option;
-optionWrapper.Main = MainOption;
+optionWrapper.Option = styled.div`
+  width: 108px;
+  font-size: 13px;
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 10px;
+  cursor: pointer;
+
+  &:hover {
+    background: ${(props) => (props.id === props.expires ? '#20cd99' : '#161618')} 
+  }
+
+  background: ${(props) => (props.id === props.expires ? '#20cd99' : '#1b1a1d')}
+`;
+
+optionWrapper.Main = styled.div`
+  width: 108px;
+  font-size: 13px;
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 10px;
+  background: #1b1a1d;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.01), 
+    0 3px 24px rgba(0, 0, 0, 0.6);
+    transition: box-shadow 0.3s ease-in-out;
+  }
+`;
+
 optionWrapper.Text = styled.div`
   display: inline-block;
   padding-top: 3px;
