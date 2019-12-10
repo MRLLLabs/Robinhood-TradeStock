@@ -10,14 +10,14 @@ app.use(bodyParser.json());
 
 app.use(express.static('public'));
 
-app.get('/api/:ticker', (req, res) => {
-  const ticker = path.basename(req.url);
+app.get('/tradestock/api/:id', (req, res) => {
+  const companyId = path.basename(req.url);
   const body = {};
   const userId = Math.floor(Math.random() * (21 - 1) + 1);
 
   Users.findOne({ where: { id: userId }, raw: true })
     .then((result) => body.user = result)
-    .then(() => Stocks.findOne({ where: { ticker }, raw: true }))
+    .then(() => Stocks.findOne({ where: { id: companyId }, raw: true }))
     .then((result) => {
       if (!result) {
         res.status(404);
@@ -33,7 +33,7 @@ app.get('/api/:ticker', (req, res) => {
     });
 });
 
-app.post('/user/deposit', (req, res) => {
+app.post('/tradestock/user/deposit', (req, res) => {
   console.log(req.body);
   const { amount, userId } = req.body;
   Users.findOne({ where: { id: userId }, raw: true })

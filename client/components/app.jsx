@@ -45,7 +45,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/api/JJB')
+    axios.get('/tradestock/api/10')
       .then((response) => {
         const { user, stock } = response.data;
         this.setState({
@@ -71,7 +71,7 @@ class App extends React.Component {
     const { userId } = this.state;
     axios({
       method: 'post',
-      url: '/user/deposit',
+      url: '/tradestock/user/deposit',
       data: {
         amount,
         userId,
