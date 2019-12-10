@@ -3,9 +3,10 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const path = require('path');
+const cors = require('cors');
 const { Users, Stocks } = require('./database.js');
 
-
+app.use(cors());
 app.use(bodyParser.json());
 
 app.use(express.static('public'));
