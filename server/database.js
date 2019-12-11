@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('robinhood', 'root', '', {
+const sequelize = new Sequelize('robinhood', 'user', 'password', {
   host: 'database',
   dialect: 'mysql',
   logging: false,
