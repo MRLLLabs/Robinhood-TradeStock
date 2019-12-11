@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 
 const sequelize = new Sequelize('robinhood', 'root', '', {
-  host: 'localhost',
+  host: 'database',
   dialect: 'mysql',
   logging: false,
 });

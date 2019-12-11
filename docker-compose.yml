@@ -1,0 +1,21 @@
+version: "2"
+
+services:
+  tradestock: 
+    build: ./
+    depends_on:
+      - 'database'
+    ports: 
+      - 3002:3002
+    command: bash -c "./wait-for-it.sh database:3306 && npm run db:setup && npm start"
+
+  database: 
+    image: mysql:5.7.28
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'robinhood'
+      MYSQL_ROOT_USER: 'root'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: ''
+    ports: [3306:3306]
