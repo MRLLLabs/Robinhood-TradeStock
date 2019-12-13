@@ -6,7 +6,8 @@ const Menu = styled(Wrapper)`
   position: absolute;
   margin-top: 64px;
   margin-left: 80px;
-  background: #1b1a1d;
+  // background: #1b1a1d;
+  background: ${(props) => props.background}
   z-index: 2;
 `;
 
@@ -17,7 +18,7 @@ Menu.Item = styled.div`
   padding: 16px;
   font-size: 13px;
   cursor: pointer;
-  color: ${(props) => (props.current === props.tab ? '#20cd99' : 'white')}
+  color: ${(props) => (props.current === props.tab ? '#20cd99' : props.color)}
 
   &:hover {
     color: #20cd99;

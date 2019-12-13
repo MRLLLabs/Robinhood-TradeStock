@@ -12,6 +12,7 @@ const CheckWrapper = styled.div`
 const TextWrapper = styled.div`
   color: grey;
   width: 180px;
+  font-size: 13px;
 `;
 
 const Box = styled.div`

@@ -18,7 +18,7 @@ Wrapper.Header = styled.div`
 
 Wrapper.Footer = styled.div`
   border-top: 1px solid black;
-  padding: 20px;
+  padding: 15px;
   text-align: center;
 `;
 

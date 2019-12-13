@@ -4,7 +4,7 @@ const GlobalStyle = createGlobalStyle`
     body {
         font-family: Arial;
         background: ${(props) => props.background}
-        color: ${(props) => props.fontColor}
+        color: ${(props) => props.font}
         font-size: 13px;
     }
 

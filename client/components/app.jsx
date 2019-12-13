@@ -97,9 +97,10 @@ class App extends React.Component {
     const totalMinutes = (d.getHours() * 60) + d.getMinutes();
     const colors = {};
 
-    if (totalMinutes < 360 || totalMinutes >= 900) {
+    // if (totalMinutes < 360 || totalMinutes >= 900) {
+    if (totalMinutes < 360 || totalMinutes >= 1000) {
       colors.fontColor = 'white';
-      colors.background = '#161a1d';
+      colors.background = '#1b1a1d';
     } else {
       colors.fontColor = '#171718';
       colors.background = 'white';
@@ -203,7 +204,9 @@ class App extends React.Component {
                 </Wrapper.TypeWrapper>}
                   <Wrapper.MenuIcon onClick={this.menuHandler}>...</Wrapper.MenuIcon>
                   {this.state.menu &&
-                  <DropDown tab={this.state.tab} tabHandler={this.tabHandler}></DropDown>}
+                  <DropDown tab={this.state.tab} tabHandler={this.tabHandler}
+                    background={this.state.background} fontColor={this.state.fontColor}>
+                  </DropDown>}
               </Wrapper.Header>
               {this.renderTab()}
               <Wrapper.Estimate>
