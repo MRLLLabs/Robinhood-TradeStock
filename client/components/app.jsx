@@ -175,14 +175,17 @@ class App extends React.Component {
       return <MarketOrder price={this.state.price} estimateHandler={this.estimateHandler}
               marketInfoToggle={this.marketInfoToggle}/>;
     } else if (tab === 'Limit Order') {
-      return <LimitOrder estimateHandler={this.estimateHandler} background={this.state.background}/>;
+      return <LimitOrder estimateHandler={this.estimateHandler}
+              background={this.state.background}/>;
     } else if (tab === 'Stop Loss Order') {
-      return <StopLossOrder estimateHandler={this.estimateHandler} />;
+      return <StopLossOrder estimateHandler={this.estimateHandler}
+              background={this.state.background}/>;
     } else if (tab === 'Stop Limit Order') {
-      return <StopLimitOrder estimateHandler={this.estimateHandler} />;
+      return <StopLimitOrder estimateHandler={this.estimateHandler}
+              background={this.state.background}/>;
     } else if (tab === 'Trailing Stop Order') {
       return <TrailingStopOrder estimateHandler={this.estimateHandler}
-              price={this.state.price} type={this.state.type}/>;
+              price={this.state.price} type={this.state.type} background={this.state.background}/>;
     }
   }
 

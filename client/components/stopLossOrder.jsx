@@ -60,20 +60,20 @@ class StopLossOrder extends React.Component {
         </InputWrapper>
         <InputWrapper>
           <InputWrapper.Label>Expires</InputWrapper.Label>
-            <OptionWrapper.Main onClick={this.toggle}>
+            <OptionWrapper.Main onClick={this.toggle} background={this.props.background}>
               <OptionWrapper.Text>
                 {this.state.expires === 'Good for Day' ? 'Good for Day' : 'Good till Can...'}
               </OptionWrapper.Text>
               <MainWrapper.Arrow src="./arrows.png"/>
             </OptionWrapper.Main>
             {this.state.showOptions &&
-            <OptionWrapper>
+            <OptionWrapper background={this.props.background}>
               <OptionWrapper.Option onClick={this.clickHandler} id={'Good for Day'}
-              expires={this.state.expires}>
+              expires={this.state.expires} background={this.props.background}>
                 Good for Day
               </OptionWrapper.Option>
               <OptionWrapper.Option onClick={this.clickHandler} id={'Good till Canceled'}
-              expires={this.state.expires}>
+              expires={this.state.expires} background={this.props.background}>
                 Good till Canceled
               </OptionWrapper.Option>
             </OptionWrapper> }
