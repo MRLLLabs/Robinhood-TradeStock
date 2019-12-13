@@ -31,6 +31,8 @@ class App extends React.Component {
       showWarning: false,
       marketInfo: false,
       bpInfo: false,
+      fontColor: 'white',
+      background: 'white',
     };
 
     this.estimateHandler = this.estimateHandler.bind(this);
@@ -48,12 +50,15 @@ class App extends React.Component {
     axios.get('/tradestock/api/10')
       .then((response) => {
         const { user, stock } = response.data;
+        const { background, fontColor } = this.colorPicker();
         this.setState({
           ticker: stock.ticker,
           userId: user.id,
           bp: user.funds,
           userShares: user.shares,
           price: stock.price,
+          background,
+          fontColor,
         });
       })
       .catch((err) => console.log(err));
@@ -85,6 +90,22 @@ class App extends React.Component {
         });
       })
       .catch((err) => console.log(err));
+  }
+
+  colorPicker() {
+    const d = new Date();
+    const totalMinutes = (d.getHours() * 60) + d.getMinutes();
+    const colors = {};
+
+    if (totalMinutes < 360 || totalMinutes >= 900) {
+      colors.fontColor = 'white';
+      colors.background = '#161a1d';
+    } else {
+      colors.fontColor = '#171718';
+      colors.background = 'white';
+    }
+
+    return colors;
   }
 
   menuHandler() {
@@ -168,7 +189,7 @@ class App extends React.Component {
     const { tab } = this.state;
     return (
       <Wrapper.App>
-          <GlobalStyle />
+          <GlobalStyle font={this.state.fontColor} background={this.state.background}/>
           <Wrapper>
               <Wrapper.Header>
                 {this.state.shares === 0 ? <Span.Big>Buy {this.state.ticker}</Span.Big> :
@@ -197,7 +218,8 @@ class App extends React.Component {
                 </Span.Cursor>
               </Wrapper.MarketPrice>}
               {this.state.marketInfo &&
-              <MarketPriceInfo price={this.state.price} ticker={this.state.ticker}/>
+              <MarketPriceInfo price={this.state.price} ticker={this.state.ticker}
+                background={this.state.background}/>
               }
               {this.state.orderPlaced &&
                 <Message estimate={this.state.estimate} bp={this.state.bp}
@@ -229,7 +251,8 @@ class App extends React.Component {
                 </Span>}
             </Wrapper.Footer>
               {this.state.bpInfo &&
-              <BpInfo ticker={this.state.ticker} bp={this.state.bp}></BpInfo>}
+              <BpInfo ticker={this.state.ticker} bp={this.state.bp}
+                background={this.state.background}/>}
           </Wrapper>
       </Wrapper.App>
     );

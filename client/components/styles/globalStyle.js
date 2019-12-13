@@ -3,8 +3,8 @@ import { createGlobalStyle } from 'styled-components';
 const GlobalStyle = createGlobalStyle`
     body {
         font-family: Arial;
-        background: #1b1a1d;
-        color: white;
+        background: ${(props) => props.background}
+        color: ${(props) => props.fontColor}
         font-size: 13px;
     }
 

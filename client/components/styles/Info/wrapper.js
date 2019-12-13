@@ -4,7 +4,7 @@ import DataWrapper from './dataWrapper';
 
 const Info = styled(MainWrapper)`
   width: 290px;
-  background: #1b1a1d;
+  background: ${(props) => props.background}
   position: absolute;
   margin-left: -275px;
   margin-top: -120px;

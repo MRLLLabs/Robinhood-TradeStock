@@ -2,8 +2,8 @@ import React from 'react';
 import BpWrapper from './styles/Info/bpWrapper';
 import Span from './styles/Span/span';
 
-const BpInfo = ({ bp, ticker }) => (
-  <BpWrapper>
+const BpInfo = ({ bp, ticker, background }) => (
+  <BpWrapper background={background}>
     <BpWrapper.Header>
       {ticker} has higher margin requirements because of high volatility.
       You can still invest your full buying power.
