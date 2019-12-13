@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 
 app.get('/tradestock/api/', (req, res) => {
-  const companyId = req.query.id;
+  const companyId = req.query.id ? req.query.id : '1';
   const body = {};
   const userId = Math.floor(Math.random() * (21 - 1) + 1);
 
