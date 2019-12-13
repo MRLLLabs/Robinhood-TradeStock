@@ -66,7 +66,9 @@ class StopLimitOrder extends React.Component {
               <OptionWrapper.Text>
                 {this.state.expires === 'Good for Day' ? 'Good for Day' : 'Good till Can...'}
               </OptionWrapper.Text>
-              <MainWrapper.Arrow src="./arrows.png"/>
+              <MainWrapper.Arrow src={this.props.background === 'white' ?
+                './arrows_black.png' :
+                './arrows.png'}/>
             </OptionWrapper.Main>
             {this.state.showOptions &&
             <OptionWrapper background={this.props.background}>

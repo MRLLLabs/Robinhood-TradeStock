@@ -216,7 +216,7 @@ class App extends React.Component {
                   <Span>Estimated {this.state.type === 'Buy' ? 'Cost' : 'Credit'}</Span>
                   <Span.Value>${this.state.estimate}</Span.Value>
               </Wrapper.Estimate>
-              {tab === 'Limit Order' && <CheckBox/>}
+              {tab === 'Limit Order' && <CheckBox background={this.state.background}/>}
               {tab !== 'Market Order' &&
               <Wrapper.MarketPrice>
                 <Span.Cursor onClick={this.marketInfoToggle}>

@@ -58,7 +58,9 @@ class LimitOrder extends React.Component {
           <InputWrapper.Label>Expires</InputWrapper.Label>
             <OptionWrapper.Main onClick={this.toggle} background={this.props.background}>
               <OptionWrapper.Text>{this.state.expires === 'Good for Day' ? 'Good for Day' : 'Good till Can...'}</OptionWrapper.Text>
-              <MainWrapper.Arrow src="./arrows.png"/>
+              <MainWrapper.Arrow src={this.props.background === 'white' ?
+                './arrows_black.png' :
+                './arrows.png'}/>
             </OptionWrapper.Main>
             {this.state.showOptions &&
             <OptionWrapper background={this.props.background}>
