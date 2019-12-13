@@ -100,7 +100,7 @@ class App extends React.Component {
     // if (totalMinutes < 360 || totalMinutes >= 900) {
     if (totalMinutes < 360 || totalMinutes >= 1000) {
       colors.fontColor = 'white';
-      colors.background = '#1b1a1d';
+      colors.background = '#1b1b1d';
     } else {
       colors.fontColor = '#171718';
       colors.background = 'white';

@@ -19,13 +19,15 @@ const GlobalStyle = createGlobalStyle`
       -ms-transition: all 0.20s ease-in-out;
       -o-transition: all 0.20s ease-in-out;
       outline: none;
+      border: 1px solid ${(props) => (props.background === 'white' ? 'white' : '#1b1a1d')};
       &:hover {
-        border: 1px solid white;
+        border: 1px solid ${(props) => (props.background === 'white' ? 'grey' : 'black')};
       }
-  
       &:focus {
         border: 1px solid #20cd99;
       }
+
+      background: ${(props) => (props.background === 'white' ? '#FAFAFA' : '#161618')};
     }
 `;
 
