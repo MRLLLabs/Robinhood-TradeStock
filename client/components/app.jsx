@@ -232,14 +232,17 @@ class App extends React.Component {
                 ticker={this.state.ticker} userShares={this.state.userShares}
                 inputShares={this.state.inputShares} stopPrice={this.state.stopPrice}
                 orderToggle={this.orderToggle} depositHandler={this.depositHandler}
-                type={this.state.type} tab={this.state.tab}/>}
+                type={this.state.type} tab={this.state.tab} background={this.state.background}/>}
               {this.state.showWarning &&
               <Spring
                 from={{ height: this.state.showWarning ? 0 : 'auto' }}
                 to={{ height: this.state.showWarning ? 'auto' : 0 }}>
                 {(props) =>
                   <WarningWrapper style={props}>
-                    <Wrapper.Image src="./exclamation.png"/> Error<br></br>
+                    {/* <Wrapper.Image src="./exclamation.png"/> Error<br></br> */}
+                    <Wrapper.Image src={this.state.background === 'white' ?
+                      './exclamation-button.png' :
+                      './exclamation.png'}/> Error<br></br>
                     Please enter a valid number of shares.
                   </WarningWrapper>}
               </Spring>
