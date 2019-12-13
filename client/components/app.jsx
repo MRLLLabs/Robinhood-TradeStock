@@ -175,7 +175,7 @@ class App extends React.Component {
       return <MarketOrder price={this.state.price} estimateHandler={this.estimateHandler}
               marketInfoToggle={this.marketInfoToggle}/>;
     } else if (tab === 'Limit Order') {
-      return <LimitOrder estimateHandler={this.estimateHandler} />;
+      return <LimitOrder estimateHandler={this.estimateHandler} background={this.state.background}/>;
     } else if (tab === 'Stop Loss Order') {
       return <StopLossOrder estimateHandler={this.estimateHandler} />;
     } else if (tab === 'Stop Limit Order') {
