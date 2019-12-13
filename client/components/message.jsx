@@ -32,7 +32,7 @@ class Message extends React.Component {
                 </Wrapper>}
             </Spring>
             <MainWrapper.Button>Buy</MainWrapper.Button>
-            <MainWrapper.InvertedButton onClick={orderToggle}>
+            <MainWrapper.InvertedButton onClick={orderToggle} background={background}>
               Edit
             </MainWrapper.InvertedButton>
           </>
@@ -51,7 +51,7 @@ class Message extends React.Component {
                 </Wrapper>}
             </Spring>
             <MainWrapper.Button>Buy</MainWrapper.Button>
-            <MainWrapper.InvertedButton onClick={orderToggle}>
+            <MainWrapper.InvertedButton onClick={orderToggle} background={background}>
               Edit
             </MainWrapper.InvertedButton>
           </>
@@ -71,7 +71,7 @@ class Message extends React.Component {
                 </Wrapper>}
             </Spring>
             <MainWrapper.Button>Buy</MainWrapper.Button>
-            <MainWrapper.InvertedButton onClick={orderToggle}>
+            <MainWrapper.InvertedButton onClick={orderToggle} background={background}>
               Edit
             </MainWrapper.InvertedButton>
           </>
@@ -90,7 +90,7 @@ class Message extends React.Component {
                 </Wrapper>}
             </Spring>
             <MainWrapper.Button>Buy</MainWrapper.Button>
-            <MainWrapper.InvertedButton onClick={orderToggle}>
+            <MainWrapper.InvertedButton onClick={orderToggle} background={background}>
               Edit
             </MainWrapper.InvertedButton>
           </>
@@ -121,7 +121,7 @@ class Message extends React.Component {
               depositHandler((estimate - bp).toFixed(2))}>
               Deposit ${(estimate - bp).toFixed(2)}
             </MainWrapper.Button>
-            <MainWrapper.InvertedButton onClick={orderToggle}>
+            <MainWrapper.InvertedButton onClick={orderToggle} background={background}>
               Back
             </MainWrapper.InvertedButton>
           </>
