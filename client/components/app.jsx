@@ -31,6 +31,8 @@ class App extends React.Component {
       showWarning: false,
       marketInfo: false,
       bpInfo: false,
+      fontColor: 'white',
+      background: 'white',
     };
 
     this.estimateHandler = this.estimateHandler.bind(this);
@@ -45,15 +47,18 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/tradestock/api/10')
+    axios.get('/tradestock/api/1')
       .then((response) => {
         const { user, stock } = response.data;
+        const { background, fontColor } = this.colorPicker();
         this.setState({
           ticker: stock.ticker,
           userId: user.id,
           bp: user.funds,
           userShares: user.shares,
           price: stock.price,
+          background,
+          fontColor,
         });
       })
       .catch((err) => console.log(err));
@@ -85,6 +90,23 @@ class App extends React.Component {
         });
       })
       .catch((err) => console.log(err));
+  }
+
+  colorPicker() {
+    const d = new Date();
+    const totalMinutes = (d.getHours() * 60) + d.getMinutes();
+    const colors = {};
+
+    // if (totalMinutes < 360 || totalMinutes >= 900) {
+    if (totalMinutes < 360 || totalMinutes >= 1000) {
+      colors.fontColor = 'white';
+      colors.background = '#1b1b1d';
+    } else {
+      colors.fontColor = '#171718';
+      colors.background = 'white';
+    }
+
+    return colors;
   }
 
   menuHandler() {
@@ -153,14 +175,17 @@ class App extends React.Component {
       return <MarketOrder price={this.state.price} estimateHandler={this.estimateHandler}
               marketInfoToggle={this.marketInfoToggle}/>;
     } else if (tab === 'Limit Order') {
-      return <LimitOrder estimateHandler={this.estimateHandler} />;
+      return <LimitOrder estimateHandler={this.estimateHandler}
+              background={this.state.background}/>;
     } else if (tab === 'Stop Loss Order') {
-      return <StopLossOrder estimateHandler={this.estimateHandler} />;
+      return <StopLossOrder estimateHandler={this.estimateHandler}
+              background={this.state.background}/>;
     } else if (tab === 'Stop Limit Order') {
-      return <StopLimitOrder estimateHandler={this.estimateHandler} />;
+      return <StopLimitOrder estimateHandler={this.estimateHandler}
+              background={this.state.background}/>;
     } else if (tab === 'Trailing Stop Order') {
       return <TrailingStopOrder estimateHandler={this.estimateHandler}
-              price={this.state.price} type={this.state.type}/>;
+              price={this.state.price} type={this.state.type} background={this.state.background}/>;
     }
   }
 
@@ -168,7 +193,7 @@ class App extends React.Component {
     const { tab } = this.state;
     return (
       <Wrapper.App>
-          <GlobalStyle />
+          <GlobalStyle font={this.state.fontColor} background={this.state.background}/>
           <Wrapper>
               <Wrapper.Header>
                 {this.state.shares === 0 ? <Span.Big>Buy {this.state.ticker}</Span.Big> :
@@ -182,14 +207,16 @@ class App extends React.Component {
                 </Wrapper.TypeWrapper>}
                   <Wrapper.MenuIcon onClick={this.menuHandler}>...</Wrapper.MenuIcon>
                   {this.state.menu &&
-                  <DropDown tab={this.state.tab} tabHandler={this.tabHandler}></DropDown>}
+                  <DropDown tab={this.state.tab} tabHandler={this.tabHandler}
+                    background={this.state.background} fontColor={this.state.fontColor}>
+                  </DropDown>}
               </Wrapper.Header>
               {this.renderTab()}
               <Wrapper.Estimate>
                   <Span>Estimated {this.state.type === 'Buy' ? 'Cost' : 'Credit'}</Span>
                   <Span.Value>${this.state.estimate}</Span.Value>
               </Wrapper.Estimate>
-              {tab === 'Limit Order' && <CheckBox/>}
+              {tab === 'Limit Order' && <CheckBox background={this.state.background}/>}
               {tab !== 'Market Order' &&
               <Wrapper.MarketPrice>
                 <Span.Cursor onClick={this.marketInfoToggle}>
@@ -197,21 +224,25 @@ class App extends React.Component {
                 </Span.Cursor>
               </Wrapper.MarketPrice>}
               {this.state.marketInfo &&
-              <MarketPriceInfo price={this.state.price} ticker={this.state.ticker}/>
+              <MarketPriceInfo price={this.state.price} ticker={this.state.ticker}
+                background={this.state.background}/>
               }
               {this.state.orderPlaced &&
                 <Message estimate={this.state.estimate} bp={this.state.bp}
                 ticker={this.state.ticker} userShares={this.state.userShares}
                 inputShares={this.state.inputShares} stopPrice={this.state.stopPrice}
                 orderToggle={this.orderToggle} depositHandler={this.depositHandler}
-                type={this.state.type} tab={this.state.tab}/>}
+                type={this.state.type} tab={this.state.tab} background={this.state.background}/>}
               {this.state.showWarning &&
               <Spring
                 from={{ height: this.state.showWarning ? 0 : 'auto' }}
                 to={{ height: this.state.showWarning ? 'auto' : 0 }}>
                 {(props) =>
                   <WarningWrapper style={props}>
-                    <Wrapper.Image src="./exclamation.png"/> Error<br></br>
+                    {/* <Wrapper.Image src="./exclamation.png"/> Error<br></br> */}
+                    <Wrapper.Image src={this.state.background === 'white' ?
+                      './exclamation-button.png' :
+                      './exclamation.png'}/> Error<br></br>
                     Please enter a valid number of shares.
                   </WarningWrapper>}
               </Spring>
@@ -229,7 +260,8 @@ class App extends React.Component {
                 </Span>}
             </Wrapper.Footer>
               {this.state.bpInfo &&
-              <BpInfo ticker={this.state.ticker} bp={this.state.bp}></BpInfo>}
+              <BpInfo ticker={this.state.ticker} bp={this.state.bp}
+                background={this.state.background}/>}
           </Wrapper>
       </Wrapper.App>
     );

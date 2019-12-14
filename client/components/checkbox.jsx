@@ -12,11 +12,13 @@ const CheckWrapper = styled.div`
 const TextWrapper = styled.div`
   color: grey;
   width: 180px;
+  font-size: 13px;
 `;
 
 const Box = styled.div`
   border: 1px solid #20cd99;
   color: #20cd99;
+  //color: ${(props) => props.background};
   height: 16px;
   width: 16px;
   text-align: center;
@@ -27,7 +29,7 @@ const Box = styled.div`
 `;
 
 const Check = styled.span`
-  color: #1b1a1d;
+  color: ${(props) => props.background};
 `;
 
 
@@ -52,7 +54,7 @@ class CheckBox extends React.Component {
     return (
     <CheckWrapper>
       <Box checked={this.state.checked} onClick={this.toggleChecked}>
-        <Check>&#10003;</Check>
+        <Check background={this.props.background}>&#10003;</Check>
       </Box>
       <TextWrapper>
         Allow this order to execute <br></br> during extended hours

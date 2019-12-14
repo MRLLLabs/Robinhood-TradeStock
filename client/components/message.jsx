@@ -14,7 +14,7 @@ class Message extends React.Component {
     const {
       estimate, bp, ticker, orderToggle,
       depositHandler, userShares, inputShares,
-      stopPrice, type, tab,
+      stopPrice, type, tab, background,
     } = this.props;
 
     if ((bp >= estimate && type === 'Buy') || (userShares >= inputShares && type === 'Sell')) {
@@ -32,7 +32,7 @@ class Message extends React.Component {
                 </Wrapper>}
             </Spring>
             <MainWrapper.Button>Buy</MainWrapper.Button>
-            <MainWrapper.InvertedButton onClick={orderToggle}>
+            <MainWrapper.InvertedButton onClick={orderToggle} background={background}>
               Edit
             </MainWrapper.InvertedButton>
           </>
@@ -51,7 +51,7 @@ class Message extends React.Component {
                 </Wrapper>}
             </Spring>
             <MainWrapper.Button>Buy</MainWrapper.Button>
-            <MainWrapper.InvertedButton onClick={orderToggle}>
+            <MainWrapper.InvertedButton onClick={orderToggle} background={background}>
               Edit
             </MainWrapper.InvertedButton>
           </>
@@ -71,7 +71,7 @@ class Message extends React.Component {
                 </Wrapper>}
             </Spring>
             <MainWrapper.Button>Buy</MainWrapper.Button>
-            <MainWrapper.InvertedButton onClick={orderToggle}>
+            <MainWrapper.InvertedButton onClick={orderToggle} background={background}>
               Edit
             </MainWrapper.InvertedButton>
           </>
@@ -90,7 +90,7 @@ class Message extends React.Component {
                 </Wrapper>}
             </Spring>
             <MainWrapper.Button>Buy</MainWrapper.Button>
-            <MainWrapper.InvertedButton onClick={orderToggle}>
+            <MainWrapper.InvertedButton onClick={orderToggle} background={background}>
               Edit
             </MainWrapper.InvertedButton>
           </>
@@ -105,7 +105,9 @@ class Message extends React.Component {
               to={{ height: 'auto' }}>
               {(props) =>
                 <Wrapper style={props}>
-                <MainWrapper.Image src="./exclamation.png"/> Not enough buying power to purchase
+                <MainWrapper.Image src={background === 'white' ?
+                  './exclamation-button.png' :
+                  './exclamation.png'}/> Not enough buying power to purchase
                 <Span.Color> shares of {ticker}.</Span.Color><br></br>
                 <br></br>Please deposit funds to purchase at market price
                 (5% collar included).<br></br><br></br>Market orders on
@@ -119,7 +121,7 @@ class Message extends React.Component {
               depositHandler((estimate - bp).toFixed(2))}>
               Deposit ${(estimate - bp).toFixed(2)}
             </MainWrapper.Button>
-            <MainWrapper.InvertedButton onClick={orderToggle}>
+            <MainWrapper.InvertedButton onClick={orderToggle} background={background}>
               Back
             </MainWrapper.InvertedButton>
           </>
@@ -132,7 +134,9 @@ class Message extends React.Component {
               to={{ height: 'auto' }}>
               {(props) =>
                 <Wrapper style={props}>
-                <MainWrapper.Image src="./exclamation.png"/> <Span.Bold>Not Enough Shares</Span.Bold>
+                <MainWrapper.Image src={background === 'white' ?
+                  './exclamation-button.png' :
+                  './exclamation.png'}/> <Span.Bold>Not Enough Shares</Span.Bold>
                 <br></br>You can only sell up to {userShares} of {ticker}.
               </Wrapper>}
           </Spring>

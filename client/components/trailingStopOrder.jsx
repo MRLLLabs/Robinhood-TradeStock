@@ -88,20 +88,22 @@ class TrailingStopOrder extends React.Component {
       <>
         <InputWrapper>
           <InputWrapper.Label>Trail Type</InputWrapper.Label>
-            <OptionWrapper.Main onClick={this.toggle}>
+            <OptionWrapper.Main onClick={this.toggle} background={this.props.background}>
               <OptionWrapper.Text id={this.state.expires}>
                 {this.state.trailType}
               </OptionWrapper.Text>
-              <MainWrapper.Arrow src="./arrows.png"/>
+              <MainWrapper.Arrow src={this.props.background === 'white' ?
+                './arrows_black.png' :
+                './arrows.png'}/>
             </OptionWrapper.Main>
             {this.state.showTrails &&
-            <OptionWrapper>
+            <OptionWrapper background={this.props.background}>
               <OptionWrapper.Option onClick={this.trailsClickHandler} id={'Percentage'}
-              expires={this.state.trailType}>
+              expires={this.state.trailType} background={this.props.background}>
                 Percentage
               </OptionWrapper.Option>
               <OptionWrapper.Option onClick={this.trailsClickHandler} id={'Amount'}
-              expires={this.state.trailType}>
+              expires={this.state.trailType} background={this.props.background}>
                 Amount
               </OptionWrapper.Option>
             </OptionWrapper> }
@@ -120,20 +122,22 @@ class TrailingStopOrder extends React.Component {
         </InputWrapper>
         <InputWrapper>
           <InputWrapper.Label>Expires</InputWrapper.Label>
-            <OptionWrapper.Main onClick={this.toggleOptions}>
+            <OptionWrapper.Main onClick={this.toggleOptions} background={this.props.background}>
               <OptionWrapper.Text>
                 {this.state.expires === 'Good for Day' ? 'Good for Day' : 'Good till Can...'}
               </OptionWrapper.Text>
-              <MainWrapper.Arrow src="./arrows.png"/>
+              <MainWrapper.Arrow src={this.props.background === 'white' ?
+                './arrows_black.png' :
+                './arrows.png'}/>
             </OptionWrapper.Main>
             {this.state.showOptions &&
-            <OptionWrapper>
+            <OptionWrapper background={this.props.background}>
               <OptionWrapper.Option onClick={this.clickHandler} id={'Good for Day'}
-              expires={this.state.expires}>
+              expires={this.state.expires} background={this.props.background}>
                 Good for Day
               </OptionWrapper.Option>
               <OptionWrapper.Option onClick={this.clickHandler} id={'Good till Canceled'}
-              expires={this.state.expires}>
+              expires={this.state.expires} background={this.props.background}>
                 Good till Canceled
               </OptionWrapper.Option>
             </OptionWrapper> }

@@ -2,8 +2,8 @@ import React from 'react';
 import Info from './styles/Info/wrapper';
 import Span from './styles/Span/span';
 
-const MarketPriceInfo = ({ ticker, price }) => (
-  <Info>
+const MarketPriceInfo = ({ ticker, price, background }) => (
+  <Info background={background}>
     <Info.Header>
       The consolidated real-time market data for {ticker} across all US stock exchanges is:
     </Info.Header>
