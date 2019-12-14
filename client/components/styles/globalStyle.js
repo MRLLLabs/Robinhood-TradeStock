@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
     body {
-        font-family: Arial;
+        font-family: DINPro;
         background: ${(props) => props.background}
         color: ${(props) => props.font}
         font-size: 13px;

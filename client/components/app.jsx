@@ -47,7 +47,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/tradestock/api/10')
+    axios.get('/tradestock/api/1')
       .then((response) => {
         const { user, stock } = response.data;
         const { background, fontColor } = this.colorPicker();
