@@ -47,6 +47,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    console.log('mounting latest version');
     axios.get(`/tradestock/api${window.location.search}`)
       .then((response) => {
         const { user, stock } = response.data;

@@ -7,7 +7,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage --colors",
-    "build": "webpack -w -d",
+    "build": "webpack -w -d --mode=production",
     "start": "node ./server/start.js",
     "db:setup": "node ./server/seed.js"
   },
