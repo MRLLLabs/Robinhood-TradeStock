@@ -35,7 +35,6 @@ app.get('/tradestock/api/', (req, res) => {
 });
 
 app.post('/tradestock/user/deposit', (req, res) => {
-  console.log(req.body);
   const { amount, userId } = req.body;
   Users.findOne({ where: { id: userId }, raw: true })
     .then((response) => {
