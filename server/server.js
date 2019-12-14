@@ -11,8 +11,8 @@ app.use(bodyParser.json());
 
 app.use(express.static('public'));
 
-app.get('/tradestock/api/:id', (req, res) => {
-  const companyId = path.basename(req.url);
+app.get('/tradestock/api/', (req, res) => {
+  const companyId = req.query.id;
   const body = {};
   const userId = Math.floor(Math.random() * (21 - 1) + 1);
 
