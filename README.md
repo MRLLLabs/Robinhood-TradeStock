@@ -27,3 +27,40 @@ Also, in server.js line 16, a random User Id is being chosen to test. If you'd l
 Step 7: 
 
 If you need to change the port number, it's in server directory in start.js file. 
+
+
+
+
+GET '/api/stocks/:id'
+
+{   id: 2,
+    name: "AAPL",
+    price: 23.33,
+    CEO: "Andrie",
+    employees: 12,
+    founded: 1989
+}
+
+POST '/api/transactions/'
+
+{   
+    type: 'buy'
+    user_id: 3,
+    stock_id: NVDA,
+    total_stocks: total
+}
+
+DELETE '/api/transactions/:id'
+
+{   
+    
+}
+
+PUT '/api/transactions/:id'
+
+{   
+    type: 'buy'
+    user_id: 3,
+    stock_id: NVDA,
+    total_stocks: total
+}
