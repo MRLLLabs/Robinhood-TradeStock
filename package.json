@@ -9,7 +9,9 @@
     "test:coverage": "jest --coverage --colors",
     "build": "webpack -w -d --mode=production",
     "start": "node ./server/start.js",
-    "db:setup": "node ./server/seed.js"
+    "db:setup": "node ./server/seed.js",
+    "seed:mongo": "node --max-old-space-size=10240 seed.js",
+    "seed:post": "node seed2.js"
   },
   "repository": {
     "type": "git",
