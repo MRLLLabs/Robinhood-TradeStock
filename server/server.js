@@ -1,4 +1,6 @@
+require('newrelic');
 const express = require('express');
+
 
 const app = express();
 const bodyParser = require('body-parser');
@@ -6,9 +8,11 @@ const path = require('path');
 const cors = require('cors');
 const { Users, Stocks } = require('./database.js');
 
-var router = express.Router();
+const router = express.Router();
 
-var db = require('./postgreSQL/queries.js');
+const controller = require('./mongo/controller.js');
+
+const db = require('./postgreSQL/queries.js');
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -58,28 +62,28 @@ app.post('/tradestock/user/deposit', (req, res) => {
     });
 });
 
-app.get('/get', (req, res) => {
-  controller.getData(req, res)
-})
+app.get('/api/transactions/psql/customers', (req, res) => {
+  db.getCustomerFromTranactions(req, res);
+});
 
-app.post('/buy', (req, res) => {
-  controller.buyStock(req, res)
-})
+app.post('/api/transactions/psql/addtransaction', (req, res) => {
+  db.buyStock(req, res);
+});
 
-app.post('/test', (req, res) => {
-  controller.test(req, res)
-})
+app.post('/api/transactions/psql/updatetransaction', (req, res) => {
+  db.updateStock(req, res);
+});
 
-app.get('/user', (req, res) => {
-  controller.user(req, res)
-})
+app.post('/api/transactions/psql/deletetransaction', (req, res) => {
+  db.deleteTransaction(req, res);
+});
 
 app.get('/customers', (req, res) => {
   db.getAllCustomers();
-})
+});
 
 app.post('/customers/post', (req, res) => {
   db.pushCustomers(req.body, res);
-})
+});
 
 module.exports = app;

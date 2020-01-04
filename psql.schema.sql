@@ -17,7 +17,7 @@ CREATE TABLE stock (
  stock_id SERIAL PRIMARY KEY,
  stock_name VARCHAR (50) UNIQUE NOT NULL,
  price float(2) NOT NULL,
- CEO VARCHAR (10) NOT NULL,
+ CEO VARCHAR (50) NOT NULL,
  employees INTEGER NOT NULL,
  founded INTEGER NOT NULL
 );
