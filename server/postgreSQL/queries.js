@@ -1,13 +1,4 @@
-const promise = require('bluebird');
-
-const options = {
-  promiseLib: promise,
-};
-
-const pgp = require('pg-promise')(options);
-
-const connectionString = 'postgres://localhost:5432/sdc';
-const db = pgp(connectionString);
+const db = require('./models.js').default;
 
 function getAllCustomers(req, res, next) {
   console.log('here');
@@ -20,7 +11,7 @@ function getAllCustomers(req, res, next) {
 }
 
 function getCustomerFromTranactions(req, res, next) {
-  db.any(`select * from transactions where user_id=${req.body.id}`)
+  db.query(`select * from transactions where user_id=${req.body.id}`)
     .then((data) => {
       res.status(200).send(data);
     })
@@ -30,7 +21,7 @@ function getCustomerFromTranactions(req, res, next) {
 }
 
 function buyStock(req, res, next) {
-  db.none('insert into transactions(stock_id, user_id, transaction_type, transation_date, quantity, total_price)' +
+  db.query('insert into transactions(stock_id, user_id, transaction_type, transation_date, quantity, total_price)' +
     `values('${req.body.stock_id}', '${req.body.user_id}', '${req.body.transaction_type}', '${req.body.transation_date}', '${req.body.quantity}', '${req.body.total_price}')`, req.body)
     .then((data) => {
       res.status(200).send(data);
