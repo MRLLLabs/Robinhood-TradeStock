@@ -1,50 +1,72 @@
-var promise = require('bluebird');
+const promise = require('bluebird');
 
-var options = {
-  promiseLib: promise
+const options = {
+  promiseLib: promise,
 };
 
-var pgp = require('pg-promise')(options);
-var connectionString = 'postgres://localhost:5432/sdc';
-var db = pgp(connectionString);
+const pgp = require('pg-promise')(options);
+
+const connectionString = 'postgres://localhost:5432/sdc';
+const db = pgp(connectionString);
 
 function getAllCustomers(req, res, next) {
-    console.log('here')
-    db.any('select * from customer')
-      .then((data) => {
-      })
-      .catch(function (err) {
-        console.log(err)
-      });
-  }
+  console.log('here');
+  db.any('select * from customer')
+    .then((data) => {
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
 
-  function pushCustomers(req, res, next) {
-    console.log(test.name)
-    db.none('insert into customer(user_name, user_age, user_phone, street, zip, budget)' +
-    `values('${req.user_name}', '${req.user_age}', '${req.user_phone}', '${req.street}', '${req.zip}', '${req.budget}')`,
-  req.body)
-      .then(() => {
-        console.log('Cool')
-      })
-      .catch(function (err) {
-       console.log(err);
-      });
-  }
+function getCustomerFromTranactions(req, res, next) {
+  db.any(`select * from transactions where user_id=${req.body.id}`)
+    .then((data) => {
+      res.status(200).send(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
 
-  function pushStocks(req, res, next) {
-    db.none('insert into stock(stock_name, price, CEO, employees, founded)' +
-    `values('${req.stock_name}', '${req.price}', '${req.CEO}', '${req.employees}', '${req.founded}')`,
-  req.body)
-      .then(() => {
-        console.log('Cool stocks')
-      })
-      .catch(function (err) {
-       console.log(err);
-      });
-  }
+function buyStock(req, res, next) {
+  db.none('insert into transactions(stock_id, user_id, transaction_type, transation_date, quantity, total_price)' +
+    `values('${req.body.stock_id}', '${req.body.user_id}', '${req.body.transaction_type}', '${req.body.transation_date}', '${req.body.quantity}', '${req.body.total_price}')`, req.body)
+    .then((data) => {
+      res.status(200).send(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+function updateStock(req, res, next) {
+  db.none('update transactions set total_price = 400 where stock_id=2000',
+    req.body)
+    .then((data) => {
+      res.status(200).send(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+
+function deleteTransaction(req, res, next) {
+  db.none('delete from transactions where (select stock_id=2000 from transactions Limit 1)',
+    req.body)
+    .then((data) => {
+      res.status(200).send(data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
 
 module.exports = {
-    getAllCustomers: getAllCustomers,
-    pushCustomers: pushCustomers,
-    pushStocks: pushStocks
+  getAllCustomers,
+  buyStock,
+  getCustomerFromTranactions,
+  updateStock,
+  deleteTransaction,
 };

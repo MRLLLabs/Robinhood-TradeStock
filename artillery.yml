@@ -1,0 +1,27 @@
+config:
+    target: 'http://localhost:3002'
+    processor: "./artillery.faker.js"
+    phases:
+    - duration: 60
+      arrivalRate: 20
+      rampTo: 500
+scenarios:
+    - name: "get all transactions for user with specific id"
+      flow:
+      - function: "generateGetData"
+      - get:
+          url: "/api/transactions/psql/customers"
+          json: 
+            id: "{{ randomIdUser }}"
+    - name: "post transaction for specific user"
+      flow:
+      - function: "generatePostData"
+      - post:
+           url: "/api/transactions/psql/addtransaction" 
+           json:
+            user_id: "{{ user_id }}"
+            stock_id: "{{ stock_id }}"
+            transaction_type: "{{ transaction_type }}"
+            transation_date: "{{ transation_date }}"
+            quantity: "{{ quantity }}"
+            total_price: "{{ total_price }}"
