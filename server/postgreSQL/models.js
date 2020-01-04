@@ -1,11 +1,11 @@
 const { Pool } = require('pg');
 
 const pool = new Pool({
-  host: 'localhost',
-  user: 'database-user',
-  max: 20,
-  idleTimeoutMillis: 30000,
-  connectionTimeoutMillis: 2000,
+  host: '3.137.2.30',
+  user: 'power_user',
+  password: 'Password',
+  database: 'sdc',
+  port: 5432,
 });
 
 pool.connect((err, client, release) => {
@@ -20,3 +20,5 @@ pool.connect((err, client, release) => {
     console.log(result.rows);
   });
 });
+
+module.exports = pool;
