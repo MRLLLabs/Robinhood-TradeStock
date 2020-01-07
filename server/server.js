@@ -1,7 +1,6 @@
 require('newrelic');
 const express = require('express');
 
-
 const app = express();
 const bodyParser = require('body-parser');
 const path = require('path');
@@ -14,10 +13,17 @@ const controller = require('./mongo/controller.js');
 
 const db = require('./postgreSQL/queries.js');
 
+const client = redis.createClient(6379);
+
 app.use(cors());
 app.use(bodyParser.json());
 
 app.use(express.static('public'));
+app.use('/loaderio-e8c42985df9e8fb726f3923de0d97771.txt', express.static(path.join(__dirname, './loaderio-e8c42985df9e8fb726f3923de0d97771.txt')));
+
+client.on('error', (err) => {
+  console.log(`Error ${err}`);
+});
 
 app.get('/tradestock/api/', (req, res) => {
   const companyId = req.query.id ? req.query.id : '1';
@@ -62,7 +68,7 @@ app.post('/tradestock/user/deposit', (req, res) => {
     });
 });
 
-app.get('/api/transactions/psql/customers', (req, res) => {
+app.get('/api/transactions/psql/customers/:id', (req, res) => {
   db.getCustomerFromTranactions(req, res);
 });
 
@@ -70,12 +76,12 @@ app.post('/api/transactions/psql/addtransaction', (req, res) => {
   db.buyStock(req, res);
 });
 
-app.post('/api/transactions/psql/updatetransaction', (req, res) => {
-  db.updateStock(req, res);
-});
-
 app.post('/api/transactions/psql/deletetransaction', (req, res) => {
   db.deleteTransaction(req, res);
+});
+
+app.get('/user', (req, res) => {
+  db.user(req, res);
 });
 
 app.get('/customers', (req, res) => {
