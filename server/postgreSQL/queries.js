@@ -1,8 +1,29 @@
-const db = require('./models.js').default;
+const Pool = require('pg').Pool
+
+const pool = new Pool({
+  host: '3.137.2.30',
+  user: 'power_user',
+  password: 'Password',
+  database: 'sdc',
+  port: 5432,
+});
+
+pool.connect((err, client, release) => {
+  if (err) {
+    return console.error('Error acquiring client', err.stack);
+  }
+  client.query('SELECT NOW()', (err, result) => {
+    release();
+    if (err) {
+      return console.error('Error executing query', err.stack);
+    }
+    console.log(result.rows);
+  });
+});
 
 function getAllCustomers(req, res, next) {
   console.log('here');
-  db.any('select * from customer')
+  pool.any('select * from customer')
     .then((data) => {
     })
     .catch((err) => {
@@ -11,7 +32,7 @@ function getAllCustomers(req, res, next) {
 }
 
 function getCustomerFromTranactions(req, res, next) {
-  db.query(`select * from transactions where user_id=${req.body.id}`)
+  pool.query(`select * from transactions where user_id=${req.params.id}`)
     .then((data) => {
       res.status(200).send(data);
     })
@@ -20,9 +41,9 @@ function getCustomerFromTranactions(req, res, next) {
     });
 }
 
-function buyStock(req, res, next) {
-  db.query('insert into transactions(stock_id, user_id, transaction_type, transation_date, quantity, total_price)' +
-    `values('${req.body.stock_id}', '${req.body.user_id}', '${req.body.transaction_type}', '${req.body.transation_date}', '${req.body.quantity}', '${req.body.total_price}')`, req.body)
+function buyStock(req, res) {
+  pool.query('insert into transactions(stock_id, user_id, transaction_type, transation_date, quantity, total_price)' +
+   `values('${req.body.stock_id}', '${req.body.user_id}', '${req.body.transaction_type}', '${req.body.transation_date}', '${req.body.quantity}', '${req.body.total_price}')`, [])
     .then((data) => {
       res.status(200).send(data);
     })
@@ -32,7 +53,7 @@ function buyStock(req, res, next) {
 }
 
 function updateStock(req, res, next) {
-  db.none('update transactions set total_price = 400 where stock_id=2000',
+  pool.none('update transactions set total_price = 400 where stock_id=2000',
     req.body)
     .then((data) => {
       res.status(200).send(data);
@@ -41,11 +62,11 @@ function updateStock(req, res, next) {
       console.log(err);
     });
 }
-
+//delete from transactions where (select stock_id=1000 from transactions)
 
 function deleteTransaction(req, res, next) {
-  db.none('delete from transactions where (select stock_id=2000 from transactions Limit 1)',
-    req.body)
+  pool.query('delete from transactions where stock_id=1000',
+    [])
     .then((data) => {
       res.status(200).send(data);
     })
